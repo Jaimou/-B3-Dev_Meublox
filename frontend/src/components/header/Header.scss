@@ -1,0 +1,28 @@
+header {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+
+    img {
+        width: 150px;
+    }
+
+    .login-profil-cart {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+
+    a:hover {
+        color: #D01D7B;
+        font-weight: 700;
+    }
+}
