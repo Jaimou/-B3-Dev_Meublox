@@ -50,7 +50,7 @@ const Searchbar = () => {
                 id="searchBar"
                 variant="outlined"
                 fullWidth
-                label="Recherche"
+                label="Recherche &nbsp;"
                 onChange={handleChange}
             />
             <div id="results" style={{ display: (searchInput !== '') ? 'block' : 'none' }}>
