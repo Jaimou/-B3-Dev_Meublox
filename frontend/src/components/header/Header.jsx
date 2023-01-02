@@ -9,9 +9,10 @@ const Header = () => {
             <Searchbar />
             {/* <div className="searchbar">SEARCHBAR</div> */}
             <div className="login-profil-cart">
-                <a href="/login" className="login">Login</a>
-                <a href="/profil">Profil</a>
-                <a href="/cart" className="cart">Panier</a>
+                <a href="/login" className="login">Se connecter</a>
+                {/* <a href="/profil">Profil</a> */}
+                <a href="/cart" className="cart">
+                    <div className='articles-number'>0</div>Panier</a>
             </div>
         </header>
     );
