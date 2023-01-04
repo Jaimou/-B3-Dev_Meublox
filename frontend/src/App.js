@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import './App.scss';
+import Login from './components/login/Login';
 
 function App() {
   return (
     <div className="App">
+      <Login />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,7 +22,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;
