@@ -1,5 +1,22 @@
 @import './lib/colors/colors.scss';
 
+#root {
+    height: 947px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    margin: 0;
+    display: flex !important;
+    flex-direction: column;
+}
+
+
 .trait {
     border-bottom: 2px solid $primary-color;
     margin: 0px 100px 10px;
