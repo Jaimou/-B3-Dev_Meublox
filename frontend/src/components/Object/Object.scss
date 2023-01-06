@@ -1,0 +1,30 @@
+.object {
+    width: 35%;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    padding: 10px;
+
+    .img-div {
+        overflow: hidden;
+        height: 250px;
+        width: 100%;
+        position: relative;
+
+
+        img {
+            width: 100%;
+            margin-top: -150px;
+            border: 1px solid lightgray;
+            position: absolute;
+        }
+    }
+}
+
+
+
+.rate {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
