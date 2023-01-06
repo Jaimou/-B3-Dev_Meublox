@@ -5,7 +5,9 @@ import ObjectsList from './components/objectsList/ObjectsList';
 
 function App() {
   return (
-    <ObjectsList />
+    <>
+      <ObjectsList />
+    </>
   )
 }
 
