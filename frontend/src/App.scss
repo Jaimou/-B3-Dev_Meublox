@@ -1,10 +1,18 @@
 @import './lib/colors/colors.scss';
 
 #root {
-    height: 947px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    min-height: 100%;
+    position: relative;
+}
+
+html {
+    height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
 }
 
 body {
@@ -14,6 +22,8 @@ body {
     margin: 0;
     display: flex !important;
     flex-direction: column;
+    padding: 0;
+    height: 100%;
 }
 
 

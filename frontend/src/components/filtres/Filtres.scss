@@ -1,0 +1,13 @@
+.range {
+    display: flex;
+}
+
+.objects-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    gap: 40px;
+}

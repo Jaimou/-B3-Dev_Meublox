@@ -1,7 +1,35 @@
-import Object from "../Object/Object";
+import FiltrePrix from "../filtres/FiltrePrix";
 import './ObjectsList.scss';
 
 const ObjectsList = () => {
+
+    const getMinPriceProduct = () => {
+        let minPrice = 1000000000;
+
+        objectsData.map((product) => {
+            if (product.Price < minPrice) {
+                minPrice = product.Price;
+            }
+
+            return minPrice;
+        })
+
+        return minPrice;
+    }
+
+    const getMaxPriceProduct = () => {
+        let maxPrice = 0;
+
+        objectsData.map((product) => {
+            if (product.Price > maxPrice) {
+                maxPrice = product.Price;
+            }
+
+            return maxPrice;
+        })
+
+        return maxPrice;
+    }
 
     const objectsData = [
         {
@@ -36,16 +64,10 @@ const ObjectsList = () => {
 
 
     return (
-        <div>
+        <div className="contenu">
             <h1>Produits Populaires</h1>
             <div className='trait'></div>
-            <div className="objects-list">
-                {objectsData.map((object) => {
-                    return (
-                        <Object object={object} />
-                    )
-                })}
-            </div>
+            <FiltrePrix maxFunction={getMaxPriceProduct()} minFunction={getMinPriceProduct()} data={objectsData} />
         </div>
     )
 }
