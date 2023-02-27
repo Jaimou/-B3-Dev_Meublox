@@ -1,12 +1,12 @@
 import './App.scss';
-import Login from './components/login/Login';
-import Object from './components/Object/Object';
-import ObjectsList from './components/objectsList/ObjectsList';
+import Filtres from './components/filtres/Filtres';
+import Home from './components/Home/Home';
+import Recherche from './components/Recherche/Recherche';
 
 function App() {
   return (
     <>
-      <ObjectsList />
+      <Home />
     </>
   )
 }

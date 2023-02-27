@@ -1,6 +1,36 @@
-.range {
+.filtres {
     display: flex;
+    flex-direction: row;
+
+    .filtre {
+        display: flex;
+        width: 300px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+
+        .range {
+            display: flex;
+        }
+
+        .colorChoice {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+
+            .colorSelector {
+                width: 45%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    }
 }
+
+
 
 .objects-list {
     display: flex;

@@ -4,9 +4,7 @@ import './Filtres.scss';
 
 const FiltrePrix = (props) => {
 
-    const getMin = props.minFunction;
-    const getMax = props.maxFunction;
-    const objectsData = props.data
+    const data = props.data
 
     const [objectPrice, setObjectPrice] = useState(40);
 
@@ -14,6 +12,36 @@ const FiltrePrix = (props) => {
         setObjectPrice(e.target.value);
     }
 
+    const getMinPriceProduct = () => {
+        let minPrice = 1000000000;
+
+        data.map((product) => {
+            if (product.Price < minPrice) {
+                minPrice = product.Price;
+            }
+
+            return minPrice;
+        })
+
+        return minPrice;
+    }
+
+    const getMaxPriceProduct = () => {
+        let maxPrice = 0;
+
+        data.map((product) => {
+            if (product.Price > maxPrice) {
+                maxPrice = product.Price;
+            }
+
+            return maxPrice;
+        })
+
+        return maxPrice;
+    }
+
+    const getMin = getMinPriceProduct();
+    const getMax = getMaxPriceProduct();
 
     return (
         <div className="filtre">
@@ -22,15 +50,15 @@ const FiltrePrix = (props) => {
                 <input type="range" min={getMin} max={getMax} onInput={handleInput} />
                 <p>{getMax}</p>
             </div>
-            <h1>Price: {objectPrice}</h1>
-            <div className="objects-list">
-                {objectsData.filter(object => { return object.Price >= parseInt(objectPrice, 10) }).map(object => {
+            <h2>Price: {objectPrice}</h2>
+            {/* <div className="objects-list">
+                {data.filter(object => { return object.Price >= parseInt(objectPrice, 10) }).map(object => {
                     return (
 
                         <Object object={object} />
                     )
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import './Header.scss';
-import logo from '../header/meubloxLogo.svg';
-import Searchbar from '../searchbar/Searchbar';
+import logo from './meubloxLogo.svg';
+import Searchbar from './searchbar/Searchbar';
 
 const Header = () => {
     return (
