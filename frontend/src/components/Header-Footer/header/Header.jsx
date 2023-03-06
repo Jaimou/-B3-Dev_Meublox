@@ -7,7 +7,6 @@ const Header = () => {
         <header>
             <img alt='logo' src={logo}></img>
             <Searchbar />
-            {/* <div className="searchbar">SEARCHBAR</div> */}
             <div className="login-profil-cart">
                 <a href="/login" className="login">Se connecter</a>
                 {/* <a href="/profil">Profil</a> */}

@@ -44,7 +44,7 @@ const FiltrePrix = (props) => {
     const getMax = getMaxPriceProduct();
 
     return (
-        <div className="filtre">
+        <select className="filtre">
             <div className="range">
                 <p>{getMin}</p>
                 <input type="range" min={getMin} max={getMax} onInput={handleInput} />
@@ -59,7 +59,7 @@ const FiltrePrix = (props) => {
                     )
                 })}
             </div> */}
-        </div>
+        </select>
     );
 }
 
