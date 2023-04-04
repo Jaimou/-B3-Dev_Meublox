@@ -5,7 +5,9 @@ import Searchbar from './searchbar/Searchbar';
 const Header = () => {
     return (
         <header>
-            <img alt='logo' src={logo}></img>
+            <a href='/'>
+                <img alt='logo' src={logo}></img>
+            </a>
             <Searchbar />
             <div className="login-profil-cart">
                 <a href="/login" className="login">Se connecter</a>

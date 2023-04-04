@@ -1,21 +1,66 @@
 .filtres {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+
+    .filtrage {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px;
+
+        #button-tri {
+            height: 50px;
+            align-self: flex-end;
+        }
+    }
 
     .filtre {
         display: flex;
         width: 300px;
-        justify-content: center;
         flex-direction: column;
-        align-items: center;
+
+        .filtre-input {
+            border: none;
+            box-shadow: none;
+        }
+
+        .range-value {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        #min {
+            width: 50px;
+            box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
+        }
+
+        #max {
+            width: 50px;
+            box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
+        }
 
 
         .range {
             display: flex;
+            justify-content: space-around;
+
+
         }
+
+
 
         .colorChoice {
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
             justify-content: space-between;
             width: 100%;

@@ -1,14 +1,12 @@
 .object {
-    width: 35%;
-    border: 1px solid lightgrey;
-    border-radius: 20px;
-    padding: 10px;
 
     .img-div {
         overflow: hidden;
         height: 250px;
         width: 100%;
         position: relative;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
 
 
         img {
@@ -19,8 +17,6 @@
         }
     }
 }
-
-
 
 .rate {
     height: 30px;

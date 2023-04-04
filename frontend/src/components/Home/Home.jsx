@@ -105,11 +105,6 @@ const Home = () => {
         return objectsDataPopular
     }
 
-    console.log("data");
-    console.log(data);
-
-
-
     return (
         <div>
             <ObjectsList allData={allData} dataPopular={mostPopular()} />

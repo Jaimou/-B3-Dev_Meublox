@@ -1,0 +1,17 @@
+@import '../lib/colors/colors.scss';
+
+#sidebar {
+    height: 100%;
+    width: 30%;
+    background-color: $primary-color;
+    color: white;
+
+    h1 {
+        color: white;
+    }
+
+    li {
+        list-style: none;
+    }
+
+}

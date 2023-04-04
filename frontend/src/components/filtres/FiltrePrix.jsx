@@ -6,10 +6,16 @@ const FiltrePrix = (props) => {
 
     const data = props.data
 
-    const [objectPrice, setObjectPrice] = useState(40);
+    const [objectMinPrice, setObjectMinPrice] = useState();
+    const [objectMaxPrice, setObjectMaxPrice] = useState();
 
-    const handleInput = (e) => {
-        setObjectPrice(e.target.value);
+
+    const minPrice = (e) => {
+        setObjectMinPrice(e.target.value);
+    }
+
+    const maxPrice = (e) => {
+        setObjectMaxPrice(e.target.value);
     }
 
     const getMinPriceProduct = () => {
@@ -44,22 +50,18 @@ const FiltrePrix = (props) => {
     const getMax = getMaxPriceProduct();
 
     return (
-        <select className="filtre">
+        <div className="filtre">
             <div className="range">
-                <p>{getMin}</p>
-                <input type="range" min={getMin} max={getMax} onInput={handleInput} />
-                <p>{getMax}</p>
+                <div className="range-value">
+                    <h3>min</h3>
+                    <input className="filtre-input" id="min" type="text" defaultValue={getMin} placeholder={getMin} onInput={((e) => { minPrice(e) })} />
+                </div>
+                <div className="range-value">
+                    <h3>max</h3>
+                    <input className="filtre-input" id="max" type="text" defaultValue={getMax} placeholder={getMax} onInput={((e) => { maxPrice(e) })} />
+                </div>
             </div>
-            <h2>Price: {objectPrice}</h2>
-            {/* <div className="objects-list">
-                {data.filter(object => { return object.Price >= parseInt(objectPrice, 10) }).map(object => {
-                    return (
-
-                        <Object object={object} />
-                    )
-                })}
-            </div> */}
-        </select>
+        </div>
     );
 }
 

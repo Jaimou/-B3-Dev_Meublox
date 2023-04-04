@@ -4,6 +4,9 @@
 
     #searchBar {
         width: 500px;
+        color: #502776 !important;
+        font-family: 'Poppins', sans-serif !important;
+        border: 2px solid #502776 !important;
 
         fieldset {
             border-color: red;
@@ -12,44 +15,19 @@
 
 
     #results {
-        z-index: 1;
+        z-index: -1;
         position: absolute;
         background-color: white;
         border: 1px solid rgb(230, 230, 230);
         border-radius: 0 0 10px 10px;
-        width: 500px;
+        width: 487px;
         padding: 5px;
+        padding-top: 10px;
+        margin-top: -5px;
+        flex-direction: column;
+
+        .item-searchbar {
+            width: 100%;
+        }
     }
-}
-
-
-
-.MuiFormLabel-root {
-    color: #502776 !important;
-    font-family: 'Poppins', sans-serif !important;
-}
-
-.MuiOutlinedInput-notchedOutline {
-    border: 2px solid #502776 !important;
-}
-
-.Mui-focused {
-    color: #D01D7B !important;
-
-    .MuiOutlinedInput-input {
-        color: black !important;
-        font-family: 'Poppins', sans-serif !important;
-    }
-
-    .MuiOutlinedInput-notchedOutline {
-        border-color: #D01D7B !important;
-    }
-}
-
-.css-md26zr-MuiInputBase-root-MuiOutlinedInput-notchedOutline {
-    border-color: #502776 !important;
-}
-
-.MuiInputLabel-shrink {
-    width: 20% !important;
 }

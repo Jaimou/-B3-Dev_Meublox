@@ -1,10 +1,9 @@
-import FacebookLog from '../facebook_login/FacebookLog';
 import './Login.scss';
 
 const Login = () => {
 
     return (
-        <div>
+        <div className='login-page'>
             <h1>Authentification</h1>
             <div className='trait'></div>
             <div className="login-block">
@@ -19,7 +18,12 @@ const Login = () => {
                     <button className='validation' type='submit'>Login</button>
                 </div>
                 <div className='trait inside'></div>
-                <FacebookLog />
+                <button className='validation' type='submit'>Se connecter avec Facebook</button>
+                <button className='validation' type='submit'>Se connecter avec Google</button>
+                <p>Je n'ai pas de compte ? <br />
+                    <a href='/signin'>Je m'inscris</a>
+                </p>
+
             </div>
         </div>
     );

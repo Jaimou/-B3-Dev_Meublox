@@ -97,7 +97,7 @@ const Recherche = () => {
     return (
 
         <div className="contenu">
-            <h3><a href="/home">Produit</a> &gt; <a>Type</a></h3>
+            <h3><a href="/">Produit</a> &gt; <a>Type</a></h3>
             <div className='trait'></div>
             <Filtres data={data} />
             <ObjectsList allData={data} />

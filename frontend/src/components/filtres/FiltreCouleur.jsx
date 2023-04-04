@@ -1,47 +1,39 @@
-import { useState } from "react";
-import Object from "../Object/Object";
+import { useEffect, useState } from "react";
+import ReactSelect from "react-select";
 import './Filtres.scss';
 
 const FiltreCouleur = (props) => {
 
     const data = props.data
 
-    const [objectColor, setObjectColor] = useState(40);
+    const [objectColors, setObjectColors] = useState([{ value: '', label: 'Aucune Sélection' }]);
+    const [objectColor, setObjectColor] = useState('');
 
-
-    const handleInput = (e) => {
-        setObjectColor(e.target.value);
+    const selectColor = (e) => {
+        const colorValue = e.value
+        console.log(colorValue)
     }
 
-    const getAllColors = () => {
+    useEffect(() => {
         let allObjectsColor = [];
+        let finalObjectsColor = [];
         data.map((product) => {
             if (allObjectsColor.includes(product.Color)) {
                 return allObjectsColor;
             }
             allObjectsColor.push(product.Color)
+            finalObjectsColor.push({ value: product.Color, label: product.Color })
+            setObjectColors(finalObjectsColor)
             return allObjectsColor;
         })
+    }, [data])
 
-        return allObjectsColor;
-    }
-
-
-    const allObjectsColor = getAllColors();
-    console.log("allObjectsColor");
-    console.log(allObjectsColor);
 
     return (
         <div className="filtre">
             <div className="colorChoice">
-                {allObjectsColor.map(color => {
-                    return (
-                        <div className="colorSelector">
-                            <input type="checkbox" value={color} onInput={handleInput} />
-                            <p>{color}</p>
-                        </div>
-                    )
-                })}
+                <h3>Coloris</h3>
+                <ReactSelect id="colors" options={objectColors} onChange={((e) => { selectColor(e) })} />
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react';
-import TextField from "@mui/material/TextField";
 import './Searchbar.scss'
 
 
@@ -26,14 +25,6 @@ const Searchbar = () => {
         setSearchInput(lowerCase);
     };
 
-    // let results = document.getElementById('results');
-
-    // if (searchInput === '') {
-    //     results.style.display = "none";
-    // } else {
-    //     results.style.display = "block";
-    // }
-
     const filteredData = meubles.filter((item) => {
         if (searchInput === '') {
             return item;
@@ -46,16 +37,22 @@ const Searchbar = () => {
 
     return (
         <div className="search">
-            <TextField
-                id="searchBar"
-                variant="outlined"
-                fullWidth
-                label="Recherche &nbsp;"
-                onChange={handleChange}
-            />
-            <div id="results" style={{ display: (searchInput !== '') ? 'block' : 'none' }}>
+            <div>
+                <form id="search-form" role="search">
+                    <input
+                        id="searchBar"
+                        variant="outlined"
+                        aria-label="Recherche de produits"
+                        placeholder="Recherche &nbsp;"
+                        type="search"
+                        onChange={handleChange}
+                    />
+                </form>
+            </div>
+
+            <div id="results" style={{ display: (searchInput.length > 1) ? 'flex' : 'none' }}>
                 {filteredData.map((item) => (
-                    <p>{item.name}</p>
+                    <a className="item-searchbar" href={'/' + item.category + '/' + item.name}>{item.name}</a>
                 ))}
             </div>
         </div>
