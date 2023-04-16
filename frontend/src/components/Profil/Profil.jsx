@@ -1,4 +1,5 @@
 import SideNav from "../../routes/SideNav"
+import "./Profil.scss"
 
 const Profil = () => {
 
@@ -15,6 +16,9 @@ const Profil = () => {
         <>
             <div className="profile">
                 <SideNav profil={profil} />
+                <div className="profil-views">
+
+                </div>
 
 
             </div>

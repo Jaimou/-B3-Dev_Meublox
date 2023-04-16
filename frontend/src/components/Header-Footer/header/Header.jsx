@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import './Header.scss';
 import logo from './meubloxLogo.svg';
 import Searchbar from './searchbar/Searchbar';
 
-const Header = () => {
+const Header = (props) => {
+
+    const login = props.login
+
+
     return (
         <header>
             <a href='/'>
@@ -10,8 +15,11 @@ const Header = () => {
             </a>
             <Searchbar />
             <div className="login-profil-cart">
-                <a href="/login" className="login">Se connecter</a>
-                {/* <a href="/profil">Profil</a> */}
+                {login ?
+                    <a href="/profil">Profil</a> :
+                    <a href="/login" className="login">Se connecter</a>
+
+                }
                 <a href="/cart" className="cart">
                     <div className='articles-number'>0</div>Panier</a>
             </div>

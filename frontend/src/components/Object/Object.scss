@@ -1,4 +1,6 @@
 .object {
+    display: flex;
+    flex-direction: column;
 
     .img-div {
         overflow: hidden;
@@ -7,13 +9,17 @@
         position: relative;
         border-radius: 10px;
         border: 1px solid lightgrey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
 
 
         img {
             width: 100%;
-            margin-top: -150px;
             border: 1px solid lightgray;
             position: absolute;
+            display: flex;
         }
     }
 }
@@ -23,4 +29,8 @@
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.object:last-child {
+    justify-self: flex-start;
 }

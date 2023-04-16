@@ -1,44 +1,47 @@
 import React from "react";
 import { useState } from 'react';
 import './Searchbar.scss'
+import data from '../../../../lib/data/dataTest.jsx'
+import { useNavigate } from "react-router-dom";
 
 
 const Searchbar = () => {
 
     const [searchInput, setSearchInput] = useState("");
 
-    const meubles = [
-        { name: "chaise n°1", category: "chaise", price: "30€" },
-        { name: "chaise n°2", category: "chaise", price: "30€" },
-        { name: "chaise n°3", category: "chaise", price: "30€" },
-        { name: "chaise n°4", category: "chaise", price: "30€" },
-        { name: "chaise n°5", category: "chaise", price: "30€" },
-        { name: "table n°1", category: "table", price: "80€" },
-        { name: "table n°2", category: "table", price: "80€" },
-        { name: "table n°3", category: "table", price: "80€" },
-        { name: "table n°4", category: "table", price: "80€" },
-        { name: "table n°5", category: "table", price: "80€" }
-    ];
+    const db = data;
+    let allFilteredDataType = []
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         var lowerCase = e.target.value.toLowerCase();
         setSearchInput(lowerCase);
     };
 
-    const filteredData = meubles.filter((item) => {
+    const handleSubmit = () => {
+        navigate(`products/search/${searchInput}`)
+    }
+
+    const filteredData = db.filter((item) => {
         if (searchInput === '') {
             return item;
         }
         else {
-            return item.name.includes(searchInput)
+            const itemNames = item.Name.includes(searchInput)
+            if (itemNames) {
+                allFilteredDataType.push(item.Type)
+            }
+            return itemNames
         }
     });
+
+    const filteredDataType = [...new Set(allFilteredDataType)]
 
 
     return (
         <div className="search">
             <div>
-                <form id="search-form" role="search">
+                <form id="search-form" role="search" onSubmit={handleSubmit}>
                     <input
                         id="searchBar"
                         variant="outlined"
@@ -46,13 +49,24 @@ const Searchbar = () => {
                         placeholder="Recherche &nbsp;"
                         type="search"
                         onChange={handleChange}
+
                     />
                 </form>
             </div>
 
             <div id="results" style={{ display: (searchInput.length > 1) ? 'flex' : 'none' }}>
+                <h3>Catégories :</h3>
+                {filteredDataType.map((item) => {
+                    return (
+                        <a className="itemType-searchbar" href={'/products/category/' + item}>{item}</a>
+                    )
+                })}
+                <div className='trait'></div>
+
+                <h3>Produits :</h3>
+
                 {filteredData.map((item) => (
-                    <a className="item-searchbar" href={'/' + item.category + '/' + item.name}>{item.name}</a>
+                    <a className="itemName-searchbar" href={'/products/' + item.Id}>{item.Name}</a>
                 ))}
             </div>
         </div>

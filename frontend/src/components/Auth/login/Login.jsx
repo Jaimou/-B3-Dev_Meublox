@@ -1,6 +1,29 @@
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import './Login.scss';
+import Home from '../../Home/Home';
+import { useState } from 'react';
 
 const Login = () => {
+
+    const [login, setLogin] = useState(true);
+
+
+    const handleLogoutClick = () => {
+        setLogin(false);
+    }
+
+    const handleLoginClick = () => {
+        setLogin(true);
+    }
+
+
+    const navigate = useNavigate()
+
+    const nextPath = (path) => {
+        navigate(path);
+    }
+
+
 
     return (
         <div className='login-page'>
@@ -13,9 +36,12 @@ const Login = () => {
                 <div className='remember-validation'>
                     <div className='remember'>
                         <input type="checkbox" id="remember" name="remember" />
-                        <label for="remember">Remember me !</label>
+                        <label htmlFor="remember">Remember me !</label>
                     </div>
-                    <button className='validation' type='submit'>Login</button>
+                    <button className='validation' type='button' onClick={() => {
+                        handleLoginClick();
+                        nextPath('/')
+                    }}>Login</button>
                 </div>
                 <div className='trait inside'></div>
                 <button className='validation' type='submit'>Se connecter avec Facebook</button>

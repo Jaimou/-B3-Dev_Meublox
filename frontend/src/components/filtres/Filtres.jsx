@@ -6,17 +6,12 @@ const Filtres = (props) => {
 
     const data = props.data;
 
-    console.log("Filtres - data");
-    console.log(data)
 
     const filtrerPage = () => {
         const minPrice = document.getElementById('min').value;
         const maxPrice = document.getElementById('max').value;
         const colors = document.getElementById('colors').value;
         const tri = document.getElementById('tri').value;
-
-        console.log('data-submit')
-        console.log(data)
     }
 
 

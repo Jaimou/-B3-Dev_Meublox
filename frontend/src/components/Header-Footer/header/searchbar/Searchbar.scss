@@ -26,8 +26,17 @@
         margin-top: -5px;
         flex-direction: column;
 
-        .item-searchbar {
+        .itemType-searchbar {
+            width: 100%;
+            text-transform: capitalize;
+        }
+
+        .itemName-searchbar {
             width: 100%;
         }
     }
+}
+
+.trait {
+    margin-top: 15px;
 }
