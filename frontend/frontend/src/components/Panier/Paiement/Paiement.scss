@@ -1,0 +1,140 @@
+.page {
+    height: auto;
+}
+
+.paiement-page {
+    display: flex;
+    flex-direction: row;
+    margin: 0 100px;
+    justify-content: space-between;
+}
+
+.icon-cards {
+    width: 50px;
+}
+
+.paiement-choice {
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 25px;
+
+    .choice-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .radio {
+            box-shadow: none;
+        }
+
+        .first-part,
+        .second-part {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+    }
+
+
+}
+
+.choice-row-new-card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .card-number {
+        display: flex;
+        gap: 10px;
+
+        input {
+            width: 75%;
+        }
+
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .date-cvv {
+        display: flex;
+        flex-direction: row;
+        gap: 5%;
+
+
+        .date,
+        .cvv {
+            display: flex;
+            width: 45%;
+            gap: 10px;
+            align-items: center;
+
+        }
+    }
+
+}
+
+.choice-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-livraison {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .resume-cart {
+        border: 1px solid black;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+
+
+        .resume-cart-details {
+            display: flex;
+            margin: 0 20px;
+            gap: 15%;
+
+            .name-and-quatity {
+                display: flex;
+                flex-direction: column;
+                width: 25%;
+            }
+
+            h3 {
+                margin: 0px;
+            }
+
+        }
+    }
+
+    .resume-livraison {
+        border: 1px solid black;
+        padding: 10px;
+
+        .adresse-livraison {
+
+            margin: 0 20px;
+
+            h4,
+            p {
+                margin: 0px;
+            }
+        }
+
+    }
+
+}
+
+.button-paiement {
+    width: 45%;
+    margin: 50px 120px;
+}

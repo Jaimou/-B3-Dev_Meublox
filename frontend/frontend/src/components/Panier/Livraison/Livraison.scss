@@ -1,0 +1,14 @@
+.livraison-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
+    justify-content: center;
+    margin: 50px auto;
+
+
+    .input {
+        width: 80%;
+    }
+}

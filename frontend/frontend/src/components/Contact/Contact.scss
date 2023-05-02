@@ -1,0 +1,44 @@
+@import '../../lib/colors/colors.scss';
+
+
+.contact-page {
+    height: 100%;
+
+
+    h1 {
+        align-self: flex-start;
+    }
+
+    .trait {
+        border-bottom: 2px solid $primary-color;
+        margin: 10px 100px 10px;
+        height: 0px;
+    }
+
+
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
+    justify-content: center;
+    margin: 50px auto;
+
+
+    .contact-input {
+        width: 80%;
+    }
+
+    .form-div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .form-control {
+            width: 80%;
+        }
+    }
+}
