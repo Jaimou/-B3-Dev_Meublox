@@ -2,36 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
 class HomeAppBar extends StatelessWidget {
+  const HomeAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(20),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.sort,
             size: 30,
             color: Colors.orange,
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 20,
-            ),
-            child: Text(
-              "Meublox",
-              style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange,
-              ),
+          const Spacer(),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, "/");
+            },
+            child : const Image(
+              image: AssetImage("assets/images/logo_sans_meublox.png"),
+              height: 50,
+              width: 50,
             ),
           ),
-           Spacer(),
-           badges.Badge(
+          const Spacer(),
+          badges.Badge(
             badgeColor: Colors.orange,
-            padding: EdgeInsets.all(7),
-            badgeContent: Text(
+            padding: const EdgeInsets.all(7),
+            badgeContent: const Text(
               "3",
               style: TextStyle(
                 color: Colors.white,
@@ -41,7 +41,7 @@ class HomeAppBar extends StatelessWidget {
               onTap: (){
                 Navigator.pushNamed(context, "cartPage");
               },
-              child: Icon(
+              child: const Icon(
                 Icons.shopping_bag_outlined,
                 size: 32,
                 color: Colors.orange,

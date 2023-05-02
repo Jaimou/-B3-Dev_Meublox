@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemBottomNavBar extends StatelessWidget {
+  const ItemBottomNavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Container(
         height: 70,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -16,14 +18,15 @@ class ItemBottomNavBar extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 3,
               blurRadius: 10,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            // Récupérer le prix de l'article avec l'API
+            const Text(
               "45 €",
               style: TextStyle(
                 fontSize: 25,
@@ -33,9 +36,11 @@ class ItemBottomNavBar extends StatelessWidget {
             ),
 
             ElevatedButton.icon(
-              onPressed: () {},
-              icon: Icon(CupertinoIcons.cart_badge_plus),
-              label: Text(
+              onPressed: () {
+                // Ajouter l'article au panier
+              },
+              icon: const Icon(CupertinoIcons.cart_badge_plus),
+              label: const Text(
                 "Ajouter au panier",
                 style: TextStyle(
                   fontSize: 16,
@@ -46,7 +51,10 @@ class ItemBottomNavBar extends StatelessWidget {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.orange),
                 padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+                  const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 13
+                  ),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(

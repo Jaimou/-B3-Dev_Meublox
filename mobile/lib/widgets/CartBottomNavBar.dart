@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CartBottomNavBar extends StatelessWidget {
+  const CartBottomNavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         height: 130,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
                   "Total :",
                   style: TextStyle(
@@ -39,7 +41,7 @@ class CartBottomNavBar extends StatelessWidget {
                 color: Colors.orange,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Text(
+              child: const Text(
                 "Check Out",
                 style: TextStyle(
                   fontSize: 20,

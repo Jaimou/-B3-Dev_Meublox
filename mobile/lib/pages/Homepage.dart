@@ -7,17 +7,19 @@ import '../widgets/HomeAppBar.dart';
 import '../widgets/ItemsWidget.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          HomeAppBar(),
+          const HomeAppBar(),
           Container(
             // Temporary height
             // height: 500,
-            padding: EdgeInsets.only(top: 15),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.only(top: 15),
+            decoration: const BoxDecoration(
               color: Color(0xFFEDECF2),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(35),
@@ -29,8 +31,8 @@ class HomePage extends StatelessWidget {
 
                 // Search Widget
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   height: 50,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -39,18 +41,18 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 5),
+                        margin: const EdgeInsets.only(left: 5),
                         height: 50,
                         width: 300,
                         child: TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Search",
+                            hintText: "Rechercher un article",
                           ),
                         ),
                       ),
-                      Spacer(),
-                      Icon(
+                      const Spacer(),
+                      const Icon(
                         Icons.search,
                         size: 27,
                         color: Colors.orange,
@@ -62,11 +64,11 @@ class HomePage extends StatelessWidget {
                 // Categories
                 Container(
                   alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 20,
                   ),
-                  child: Text(
+                  child: const Text(
                     "Catégories",
                     style: TextStyle(
                       fontSize: 25,
@@ -77,16 +79,16 @@ class HomePage extends StatelessWidget {
                 ),
 
                 // Categories Widget
-                CategoriesWidget(),
+                const CategoriesWidget(),
 
                 // Items
                 Container(
                   alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 20,
                   ),
-                  child: Text(
+                  child: const Text(
                     "Les mieux notés",
                     style: TextStyle(
                       fontSize: 25,
@@ -97,7 +99,7 @@ class HomePage extends StatelessWidget {
                 ),
 
                 // Items Widget
-                ItemsWidget(),
+                const ItemsWidget(),
               ],
             ),
           ),
@@ -120,7 +122,7 @@ class HomePage extends StatelessWidget {
         },
         height: 65,
         color: Colors.orange,
-        items: [
+        items: const [
           Icon(
             Icons.home,
             size: 30,

@@ -18,12 +18,12 @@ class ItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEDECF2),
+      backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
         children: [
-          ItemAppBar(),
+          const ItemAppBar(),
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Image.asset("assets/images/article_0.png", height: 300),
           ),
           Arc(
@@ -34,16 +34,16 @@ class ItemPage extends StatelessWidget {
               width: double.infinity,
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 48,
                         bottom: 15,
                       ),
                       child: Row(
-                        children: [
+                        children: const [
                           Text(
                             "Product Title",
                             style: TextStyle(
@@ -56,7 +56,7 @@ class ItemPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         top: 5,
                         bottom: 10,
                       ),
@@ -69,8 +69,8 @@ class ItemPage extends StatelessWidget {
                             direction: Axis.horizontal,
                             itemCount: 5,
                             itemSize: 20,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 4),
-                            itemBuilder: (context, _) => Icon(
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+                            itemBuilder: (context, _) => const Icon(
                               Icons.star,
                               color: Colors.amber,
                             ),
@@ -80,7 +80,7 @@ class ItemPage extends StatelessWidget {
                           Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -89,19 +89,19 @@ class ItemPage extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 3,
                                       blurRadius: 10,
-                                      offset: Offset(0, 3),
+                                      offset: const Offset(0, 3),
                                     ),
                                   ]
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   CupertinoIcons.minus,
                                   size: 18,
                                   color: Colors.orange,
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
+                                margin: const EdgeInsets.symmetric(horizontal: 10),
+                                child: const Text(
                                   "01",
                                   style: TextStyle(
                                     fontSize: 18,
@@ -111,7 +111,7 @@ class ItemPage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -120,11 +120,11 @@ class ItemPage extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.5),
                                       spreadRadius: 3,
                                       blurRadius: 10,
-                                      offset: Offset(0, 3),
+                                      offset: const Offset(0, 3),
                                     ),
                                   ]
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   CupertinoIcons.plus,
                                   size: 18,
                                   color: Colors.orange,
@@ -135,7 +135,7 @@ class ItemPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(
                         "Voici encore plus de texte pour décrire le produit. On peut écrire plus d'informations sur le produit",
@@ -147,10 +147,10 @@ class ItemPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             "Size : ",
                             style: TextStyle(
                               fontSize: 18,
@@ -158,7 +158,7 @@ class ItemPage extends StatelessWidget {
                               color: Colors.orange,
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Row(
                             children: [
                               for (int i = 5; i < 10; i++)
@@ -166,7 +166,7 @@ class ItemPage extends StatelessWidget {
                                   height: 30,
                                   width: 30,
                                   alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                  margin: const EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(30),
@@ -180,7 +180,7 @@ class ItemPage extends StatelessWidget {
                                   ),
                                   child: Text(
                                     i.toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.orange,
@@ -193,10 +193,10 @@ class ItemPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             "Color : ",
                             style: TextStyle(
                               fontSize: 18,
@@ -204,7 +204,7 @@ class ItemPage extends StatelessWidget {
                               color: Colors.orange,
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Row(
                             children: [
                               for (int i = 0; i < 5; i++)
@@ -212,7 +212,7 @@ class ItemPage extends StatelessWidget {
                                   height: 30,
                                   width: 30,
                                   alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                  margin: const EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Clrs[i],
                                     borderRadius: BorderRadius.circular(30),
@@ -237,7 +237,7 @@ class ItemPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: ItemBottomNavBar(),
+      bottomNavigationBar: const ItemBottomNavBar(),
     );
   }
 }

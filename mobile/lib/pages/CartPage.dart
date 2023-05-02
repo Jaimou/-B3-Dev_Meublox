@@ -5,18 +5,19 @@ import '../widgets/CartBottomNavBar.dart';
 import '../widgets/CartItemSamples.dart';
 
 class CartPage extends StatelessWidget {
+  const CartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          CartAppBar(),
-
+          const CartAppBar(),
           Container(
             // Temporary height
             height: 700,
-            padding: EdgeInsets.only(top: 15),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.only(top: 15),
+            decoration: const BoxDecoration(
               color: Color(0xFFEDECF2),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(35),
@@ -25,13 +26,13 @@ class CartPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CartItemSamples(),
+                const CartItemSamples(),
                 Container(
                   // decoration: BoxDecoration(
                   //   borderRadius: BorderRadius.circular(10),
                   // ),
-                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  padding: EdgeInsets.all(10),
+                  margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                     children: [
                       Container(
@@ -39,12 +40,12 @@ class CartPage extends StatelessWidget {
                           color: Colors.orange,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.add,
                           color: Colors.white,
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
                           "Add Coupon Code",
@@ -63,7 +64,7 @@ class CartPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: CartBottomNavBar(),
+      bottomNavigationBar: const CartBottomNavBar(),
     );
   }
 }
