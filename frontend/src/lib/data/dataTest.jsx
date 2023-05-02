@@ -11,7 +11,9 @@ const data = [
         Name: 'canapé blueStock',
         Gallery: ['https://media.adeo.com/marketplace/MKP/86149296/ca079d21f229f7f9a4e9711bff4619f6.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
             'https://media.adeo.com/marketplace/MKP/86149296/73687ea2387123ca3cfe7dbfb68b5272.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
-            'https://media.adeo.com/marketplace/MKP/86149296/4dff38019d1532cd4e5123b83eb9f24d.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds']
+            'https://media.adeo.com/marketplace/MKP/86149296/4dff38019d1532cd4e5123b83eb9f24d.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds'],
+        Stock: 10,
+
     },
     {
         Id: 2,
@@ -25,7 +27,9 @@ const data = [
         Name: 'canapé lariza',
         Gallery: ['https://media.adeo.com/marketplace/MKP/86722220/ab97ddd59165879fb9427b1170b3b0e1.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
             'https://media.adeo.com/marketplace/MKP/86722220/c56c51b6788b8e60aa9922adf7c4b198.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
-            'https://media.adeo.com/marketplace/MKP/86722220/f72d682bb5eee0f802ffe51abd952d4c.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds']
+            'https://media.adeo.com/marketplace/MKP/86722220/f72d682bb5eee0f802ffe51abd952d4c.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds'],
+        Stock: 10,
+
     },
     {
         Id: 3,
@@ -39,7 +43,9 @@ const data = [
         Name: 'bureau jake',
         Gallery: ['https://media.adeo.com/marketplace/MKP/86304894/091432662029e30a322d1a7137ff0794.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
             'https://media.adeo.com/marketplace/MKP/86304894/05bd84b2517a8bd53cf6561bd25da5c2.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
-            'https://media.adeo.com/marketplace/MKP/86304894/024c7b3f5878fc418ee373d775604a23.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds']
+            'https://media.adeo.com/marketplace/MKP/86304894/024c7b3f5878fc418ee373d775604a23.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds'],
+        Stock: 0,
+
 
     },
     {
@@ -54,7 +60,8 @@ const data = [
         Name: 'buffet marty',
         Gallery: ['https://media.adeo.com/marketplace/MKP/86677710/2da78e3d8f451e65162fa1855d95320a.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
             'https://media.adeo.com/marketplace/MKP/86677710/bc1b3ee1a24b37dccd89c7409dc49eb9.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
-            'https://media.adeo.com/marketplace/MKP/86677710/a1b01489fc641807186c022d8ba6c5cb.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds']
+            'https://media.adeo.com/marketplace/MKP/86677710/a1b01489fc641807186c022d8ba6c5cb.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds'],
+        Stock: 10,
     },
     {
         Id: 5,
@@ -68,7 +75,9 @@ const data = [
         Name: 'chariot desserte karl',
         Gallery: ['https://media.adeo.com/marketplace/MKP/84694729/d059a3c1925e709f8ff37accb871d1ac.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
             'https://media.adeo.com/marketplace/MKP/84694729/7f3c3e7c11d7e06f2a6399e1ed2cab6c.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds',
-            'https://media.adeo.com/marketplace/MKP/84694729/a9c6344d34f82eec8702a3605450480c.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds']
+            'https://media.adeo.com/marketplace/MKP/84694729/a9c6344d34f82eec8702a3605450480c.jpeg?width=750&height=750&format=jpg&quality=80&fit=bounds'],
+        Stock: 10,
+
     }
 ];
 

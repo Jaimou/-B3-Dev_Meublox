@@ -11,16 +11,18 @@ import ProductPage from './components/ProductPage/ProductPage';
 import Products from './components/Products/Products';
 import Type from './components/Products/Type';
 import Recherche from './components/Recherche/Recherche';
+import Panier from './components/Panier/Panier';
+import Paiement from './components/Panier/Paiement/Paiement';
+import Livraison from './components/Panier/Livraison/Livraison';
 
 
 function App() {
 
+
   
-
-
   return (
     <BrowserRouter>
-    <Header />
+    <Header/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element = {<Login/>}/>
@@ -31,6 +33,11 @@ function App() {
         <Route path="products/category/:type" element={<Type/>}/>
         <Route path="products/:productId" element={<ProductPage/>}/>
         <Route path="/products/search/:research" element={<Recherche/>} />
+        <Route path="/panier" element={<Panier/>} />
+        <Route path="/livraison" element={<Livraison/>} />
+        <Route path="/paiement" element={<Paiement/>} />
+
+
       </Routes>
       <Footer />
     </BrowserRouter>

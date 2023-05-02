@@ -9,6 +9,8 @@
         text-decoration: none;
         color: black;
         max-width: 650px;
+        width: -webkit-fill-available;
+
     }
 
 }
@@ -17,6 +19,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    justify-items: center;
     grid-auto-rows: minmax(100px, auto);
     width: 80%;
     margin: auto;
@@ -45,10 +48,5 @@
         width: 100%;
         display: flex;
         justify-content: center;
-
     }
-}
-
-.page {
-    height: inherit !important;
 }

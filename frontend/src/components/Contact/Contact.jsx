@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+
 
 import './Contact.scss';
 
@@ -39,17 +40,19 @@ const Contact = () => {
         return errors;
     };
 
+    const form = useRef();
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        // generate a five digit number for the contact_number variable
-        this.contact_number.value = Math.random() * 100000 | 0;
-        // these IDs from the previous steps
-        emailjs.sendForm('service_i1xw8yu', 'template_meublox', '#contact')
-            .then(function () {
-                console.log('SUCCESS!');
-            }, function (error) {
-                console.log('FAILED...', error);
-            });
+
+        emailjs.sendForm("service_i1xw8yu", "template_meublox", form.current, "faOwZjoyYAE0l3C-f").then(
+            (result) => {
+                console.log(result.text);
+            },
+            (error) => {
+                console.log(error.text);
+            }
+        );
     };
 
 
@@ -58,7 +61,7 @@ const Contact = () => {
             <h1>Contactez-nous !</h1>
             <div className='trait'></div>
 
-            <form className="contact" onSubmit={handleSubmit}>
+            <form ref={form} className="contact" onSubmit={handleSubmit}>
                 <div className="form-div">
                     <label htmlFor="name">Nom: </label>
                     <input

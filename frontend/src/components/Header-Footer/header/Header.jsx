@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './meubloxLogo.svg';
 import Searchbar from './searchbar/Searchbar';
@@ -6,6 +6,21 @@ import Searchbar from './searchbar/Searchbar';
 const Header = (props) => {
 
     const login = props.login
+    let currentCart = JSON.parse(localStorage.getItem("cart"));
+
+
+    const [cartProducts, setCartProducts] = useState();
+    console.log(cartProducts)
+
+    useEffect(() => {
+        console.log(currentCart)
+        if (currentCart == null) {
+            setCartProducts(0)
+        }
+        else {
+            setCartProducts(currentCart.length)
+        }
+    })
 
 
     return (
@@ -20,8 +35,8 @@ const Header = (props) => {
                     <a href="/login" className="login">Se connecter</a>
 
                 }
-                <a href="/cart" className="cart">
-                    <div className='articles-number'>0</div>Panier</a>
+                <a href="/panier" className="cart">
+                    <div className='articles-number'>{cartProducts}</div>Panier</a>
             </div>
         </header>
     );

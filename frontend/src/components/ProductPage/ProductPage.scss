@@ -45,9 +45,7 @@ h3 {
         .image-first {
             width: 70%;
             overflow: hidden;
-
         }
-
     }
 
     .product {
@@ -74,6 +72,10 @@ h3 {
             justify-content: space-between;
             height: 90%;
 
+            .long-description {
+                height: 50%;
+            }
+
             .toCart {
                 display: flex;
                 justify-content: space-around;
@@ -84,11 +86,7 @@ h3 {
                     margin-left: 10px;
                 }
             }
-
         }
-
-
-
-
     }
+
 }

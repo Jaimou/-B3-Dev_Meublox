@@ -1,4 +1,4 @@
-import SideNav from "../../routes/SideNav"
+import SideNav from "../Sidenav/SideNav"
 import "./Profil.scss"
 
 const Profil = () => {
