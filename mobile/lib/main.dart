@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meublox/pages/CartPage.dart';
 import 'package:meublox/pages/Homepage.dart';
 import 'package:meublox/pages/ItemPage.dart';
+import 'package:meublox/pages/SearchPage.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,9 +17,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       routes: {
-        "/": (context) => HomePage(),
-        "cartPage":(context) => CartPage(),
+        "/": (context) => const HomePage(),
+        "cartPage":(context) => const CartPage(),
         "itemPage":(context) => ItemPage(),
+        "searchPage":(context) => const SearchPage(),
 
       },
     );
