@@ -1,43 +1,40 @@
-import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './meubloxLogo.svg';
 import Searchbar from './searchbar/Searchbar';
+import { useUserStatus } from '../../../hooks/useUserStatus';
+import { useUserCartQuantity } from '../../../hooks/Cart/useUserCart';
 
-const Header = (props) => {
+const Header = () => {
 
-    const login = props.login
-    let currentCart = JSON.parse(localStorage.getItem("cart"));
-
-
-    const [cartProducts, setCartProducts] = useState();
-    console.log(cartProducts)
-
-    useEffect(() => {
-        console.log(currentCart)
-        if (currentCart == null) {
-            setCartProducts(0)
-        }
-        else {
-            setCartProducts(currentCart.length)
-        }
-    })
+    const log = useUserStatus()
+    const userCartQuantity = useUserCartQuantity()
+    const cartQuantity = use
 
 
+    //let currentCart = JSON.parse(localStorage.getItem("cart"));
+    
     return (
         <header>
             <a href='/'>
                 <img alt='logo' src={logo}></img>
             </a>
             <Searchbar />
-            <div className="login-profil-cart">
-                {login ?
-                    <a href="/profile">Profil</a> :
+            
+                {log ?
+                <div className="login-profil-cart">
+                    <a href="/profile">Profil</a>
+                    <a href="/panier" className="cart">
+                    <div className='articles-number'>{userCartQuantity}</div>Panier</a> 
+                </div>
+:
+                <div className="login-profil-cart">
                     <a href="/login" className="login">Se connecter</a>
+                    <a href="/panier" className="cart">
+                    <div className='articles-number'>{cartQuantity}</div>Panier</a> 
+                </div>
 
                 }
-                <a href="/panier" className="cart">
-                    <div className='articles-number'>{cartProducts}</div>Panier</a>
-            </div>
+                
         </header>
     );
 }

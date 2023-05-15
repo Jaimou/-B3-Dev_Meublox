@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-export function useGetAllProductsData() {
+export function useGetProduct() {
 
-    const [allProductsData, setAllProductsData] = useState();
+    const [product, setProduct] = useState();
 
     const callAPI = async() => {
         try{
             const response = await fetch("/adresse html de l'api");
             const responseInJSON = await response.json();
-            setAllProductsData(responseInJSON)
+            setProduct(responseInJSON)
         }catch(error) {
-            return [];
+            return {};
         }
     }
 
@@ -19,4 +19,5 @@ export function useGetAllProductsData() {
             callAPI()
         }, []
     )
+    return product
 }

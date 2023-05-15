@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-export function useGetProfile() {
+export function useGetAllProductsData() {
 
-    const [profileData, setProfileData] = useState();
+    const [allProductsData, setAllProductsData] = useState();
 
     const callAPI = async() => {
         try{
             const response = await fetch("/adresse html de l'api");
             const responseInJSON = await response.json();
-            setProfileData(responseInJSON)
+            setAllProductsData(responseInJSON)
         }catch(error) {
             return [];
         }
@@ -19,7 +19,5 @@ export function useGetProfile() {
             callAPI()
         }, []
     )
-
-    return profileData
+    return allProductsData
 }
-

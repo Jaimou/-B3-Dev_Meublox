@@ -1,21 +1,27 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './ProductPage.scss'
 import { useState } from 'react';
-import data from '../../lib/data/dataTest.jsx'
+// import data from '../../lib/data/dataTest.jsx'
 import StarRating from '../starRating/StarRating';
+import { useCart } from '../../hooks/Cart/useCart';
+import { useGetProduct } from '../../hooks/Products/useGetProduct';
+import { useUserStatus } from '../../hooks/useUserStatus';
+import { useUserCart } from '../../hooks/Cart/useUserCart';
 
-const ProductPage = ({ cartProducts, setCartProducts }) => {
+const ProductPage = () => {
 
 
-    const allData = data
+    // const allData = data
 
     const navigate = useNavigate()
     const { productId } = useParams()
+    const log = useUserStatus()
 
-    let product = allData.find((product) => {
-        return product.Id == productId
-    })
-    let productImages = product.Gallery;
+    const product = useGetProduct()
+    // let product = allData.find((product) => {
+    //     return product.Id == productId
+    // })
+    // let productImages = product.Gallery;
 
 
     const [quantity, setQuantity] = useState(1)
@@ -35,44 +41,53 @@ const ProductPage = ({ cartProducts, setCartProducts }) => {
     const addToCart = () => {
 
         let newProduct = { id: productId, productQuantity: quantity };
-        let currentCart = JSON.parse(localStorage.getItem("cart"));
 
-        if (currentCart == null) {
-            currentCart = [];
-            currentCart.push(newProduct);
-            localStorage.setItem("cart", JSON.stringify(currentCart));
-        }
+        if (log){
+        useUserCart(newProduct);
+    }
         else {
-
-            if (currentCart.some(product => product.id === newProduct.id)) {
-                product = currentCart.find(product => product.id === newProduct.id)
-                product.productQuantity += quantity;
-
-                if (newProduct.productQuantity > 10) {
-                    newProduct.productQuantity = 10;
-                }
-                localStorage.setItem("cart", JSON.stringify(currentCart));
-
-            }
-
-            else {
-                currentCart.push(newProduct);
-                localStorage.setItem("cart", JSON.stringify(currentCart));
-            }
+            useCart(newProduct);
         }
-        window.location.reload(true)
+        
+
+        // let currentCart = JSON.parse(localStorage.getItem("cart"));
+
+        // if (currentCart == null) {
+        //     currentCart = [];
+        //     currentCart.push(newProduct);
+        //     localStorage.setItem("cart", JSON.stringify(currentCart));
+        // }
+        // else {
+
+        //     if (currentCart.some(product => product.id === newProduct.id)) {
+        //         product = currentCart.find(product => product.id === newProduct.id)
+        //         product.productQuantity += quantity;
+
+        //         if (newProduct.productQuantity > 10) {
+        //             newProduct.productQuantity = 10;
+        //         }
+        //         localStorage.setItem("cart", JSON.stringify(currentCart));
+
+        //     }
+
+        //     else {
+        //         currentCart.push(newProduct);
+        //         localStorage.setItem("cart", JSON.stringify(currentCart));
+        //     }
+        // }
+        // window.location.reload(true)
     }
 
     return (
         <div className='page'>
-            <h3><a href='/products'>Produits</a> &gt; <a id='productType' href={'/products/category/' + product.Type}>{product.Type}</a> </h3>
-            <h1>{product.Name}</h1>
+            <h3><a href='/products'>Produits</a> &gt; <a id='productType' href={'/products/category/' + product.type}>{product.type}</a> </h3>
+            <h1>{product.name}</h1>
             <div className='trait'></div>
             <div className='product-page'>
 
                 <div className='images-gallery'>
                     <div className='images-collumn'>
-                        {productImages.map((imgUrl) => {
+                        {product.gallery.map((imgUrl) => {
                             return (
                                 <img className='image-gallery' src={imgUrl} alt='image de gallerie' />
                             )
@@ -80,18 +95,18 @@ const ProductPage = ({ cartProducts, setCartProducts }) => {
                         )}
 
                     </div>
-                    <img className='image-first' src={product.ImageThumbnailUrl} alt={product.ShortDescription} />
+                    <img className='image-first' src={product.gallery[0]} alt={product.shortDescription} />
                 </div>
 
                 <div className='product'>
                     <div className='details'>
-                        <h1>{product.Name}</h1>
-                        <h2>{product.Price} €</h2>
+                        <h1>{product.name}</h1>
+                        <h2>{product.price} €</h2>
                     </div>
                     <div className='description'>
-                        <p className='long-description'>{product.ShortDescription}</p>
+                        <p className='long-description'>{product.shortDescription}</p>
                         <div className='rate'>
-                            <StarRating rate={product.Rate} /><p>({product.Rates.length})</p>
+                            <StarRating rate={product.rate} /><p>({product.rates.length})</p>
                         </div>
                         <div className='trait'></div>
                         {product.Stock == 0
