@@ -31,7 +31,7 @@ const Header = (props) => {
             <Searchbar />
             <div className="login-profil-cart">
                 {login ?
-                    <a href="/profil">Profil</a> :
+                    <a href="/profile">Profil</a> :
                     <a href="/login" className="login">Se connecter</a>
 
                 }

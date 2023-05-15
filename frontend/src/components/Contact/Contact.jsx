@@ -12,6 +12,7 @@ const Contact = () => {
         name: '',
         email: '',
         message: '',
+        subject: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -37,6 +38,9 @@ const Contact = () => {
         if (!inputs.message) {
             errors.message = 'Le message est obligatoire';
         }
+        if (!inputs.subject) {
+            errors.message = 'Le Sujet du message est obligatoire';
+        }
         return errors;
     };
 
@@ -45,7 +49,7 @@ const Contact = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        emailjs.sendForm("service_i1xw8yu", "template_meublox", form.current, "faOwZjoyYAE0l3C-f").then(
+        emailjs.sendForm("service_i1xw8yu", "template_meublox", form, "faOwZjoyYAE0l3C-f").then(
             (result) => {
                 console.log(result.text);
             },
@@ -74,6 +78,7 @@ const Contact = () => {
                     />
                     {errors.name && <span className="error">{errors.name}</span>}
                 </div>
+
                 <div className="form-div">
                     <label htmlFor="email">Email: </label>
                     <input
@@ -86,6 +91,20 @@ const Contact = () => {
                     />
                     {errors.email && <span className="error">{errors.email}</span>}
                 </div>
+
+                <div className="form-div">
+                    <label htmlFor="subject">Sujet: </label>
+                    <input
+                        className="contact-input"
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={inputs.subject}
+                        onChange={handleInputChange}
+                    />
+                    {errors.name && <span className="error">{errors.subject}</span>}
+                </div>
+
                 <div className="form-div">
                     <label htmlFor="message">Message: </label>
                     <textarea

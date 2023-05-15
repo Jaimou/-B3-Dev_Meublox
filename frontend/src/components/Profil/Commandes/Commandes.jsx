@@ -12,6 +12,7 @@ const Commandes = () => {
             {orders.map((order) => {
                 <Commandes order={order} />
             })}
+            <h2>Commandes</h2>
         </div>
     )
 }

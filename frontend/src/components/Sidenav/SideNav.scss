@@ -1,6 +1,6 @@
 @import '../../lib/colors/colors.scss';
 
-#sidebar {
+.sidebar {
     height: 100%;
     width: 30%;
     background-color: $primary-color;
@@ -13,6 +13,10 @@
 
     li {
         list-style: none;
+
+        p:hover {
+            cursor: pointer;
+        }
     }
 
     .profil-onglet {

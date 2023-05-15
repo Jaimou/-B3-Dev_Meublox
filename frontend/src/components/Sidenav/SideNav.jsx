@@ -1,38 +1,78 @@
+import { useNavigate } from 'react-router-dom';
 import './SideNav.scss';
 
 export default function SideNav(props) {
 
-    let profil = props.profil
+    let profil = props.profil;
+    let myOrders = props.myOrders;
+    let setMyOrders = props.setMyOrders;
+    let myInfos = props.myInfos;
+    let setMyInfos = props.setMyInfos;
+    let changePassword = props.changePassword;
+    let setChangePassword = props.setChangePassword;
+    let myCards = props.myCards;
+    let setMyCards = props.setMyCards;
 
+    const navigate = useNavigate()
+
+
+    const logOut = () => {
+        // Déconnexion
+        console.log("déconnexion")
+        navigate("/")
+    }
     return (
         <>
-            <div id="sidebar">
+            <div class="sidebar" id="sidebar">
                 <h1>{profil.firstname + ' ' + profil.lastname}</h1>
                 <nav>
                     <ul className='profil-onglet'>
                         <li>
-                            <p id="commandes">Mes Commandes</p>
+                            <p href='' id="commandes" onClick={() => {
+                                setMyOrders(true)
+                                setMyInfos(false)
+                                setChangePassword(false)
+                                setMyCards(false)
+                            }}>Mes Commandes</p>
                         </li>
                         <li>
-                            <p id="profil">Mes Informations</p>
+                            <p id="profil" onClick={() => {
+                                setMyOrders(false)
+                                setMyInfos(true)
+                                setChangePassword(false)
+                                setMyCards(false)
+                            }}>Mes Informations</p>
                         </li>
 
                         <li>
-                            <p id="mdp">Mot de passe</p>
+                            <p id="mdp" onClick={() => {
+                                setMyOrders(false)
+                                setMyInfos(false)
+                                setChangePassword(true)
+                                setMyCards(false)
+                            }}>Mot de passe</p>
                         </li>
                         <li>
-                            <p id="cartes">Mes cartes de Paiement</p>
+                            <p id="cartes" onClick={() => {
+                                setMyOrders(false)
+                                setMyInfos(false)
+                                setChangePassword(false)
+                                setMyCards(true)
+                            }}>Mes cartes de Paiement </p>
                         </li>
                         <li>
-                            <p id="administration">Administration</p>
+                            <p id="administration" onClick={() => {
+                                navigate("/profile/administation")
+                            }}>Administration</p>
                         </li>
                         <li>
-                            <p id="deconnexion">Se déconnecter</p>
+                            <p id="deconnexion" onClick={() => {
+                                logOut()
+                            }}>Se déconnecter</p>
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div id="detail"></div>
         </>
     );
 }

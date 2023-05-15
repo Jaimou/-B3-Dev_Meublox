@@ -1,24 +1,46 @@
 import './SideNav.scss';
 
-export default function SideNavAdmin() {
+const SideNavAdmin = (props) => {
+
+    let users = props.ursers;
+    let setUsers = props.setUsers;
+    let products = props.products;
+    let setProducts = props.setProducts;
+    let orders = props.orders;
+    let setOrders = props.setOrders;
 
 
 
     return (
         <>
-            <div id="sidebar-admin">
+            <div className='sidebar' id="sidebar-admin">
 
                 <nav>
                     <ul className='profil-onglet'>
                         <li>
-                            <p id="users-gestion">Utilisateurs</p>
+                            <p id="users-gestion" onClick={
+                                () => {
+                                    setUsers(true);
+                                    setProducts(false);
+                                    setOrders(false);
+                                }}>Utilisateurs</p>
                         </li>
                         <li>
-                            <p id="products-gestion">Articles</p>
+                            <p id="products-gestion" onClick={
+                                () => {
+                                    setUsers(false);
+                                    setProducts(true);
+                                    setOrders(false);
+                                }}>Articles</p>
                         </li>
 
                         <li>
-                            <p id="commandes-gestion">Commandes</p>
+                            <p id="commandes-gestion" onClick={
+                                () => {
+                                    setUsers(false);
+                                    setProducts(false);
+                                    setOrders(true);
+                                }}>Commandes</p>
                         </li>
                     </ul>
                 </nav>
@@ -27,3 +49,5 @@ export default function SideNavAdmin() {
         </>
     );
 }
+
+export default SideNavAdmin

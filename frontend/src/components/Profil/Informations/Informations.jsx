@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Informations = (props) => {
     let profil = props.profil;
@@ -17,7 +17,7 @@ const Informations = (props) => {
 
     const [modify, setModify] = useState(false)
 
-    const form = useRef();
+    const profilForm = useRef();
 
 
 

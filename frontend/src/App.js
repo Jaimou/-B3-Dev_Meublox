@@ -14,6 +14,7 @@ import Recherche from './components/Recherche/Recherche';
 import Panier from './components/Panier/Panier';
 import Paiement from './components/Panier/Paiement/Paiement';
 import Livraison from './components/Panier/Livraison/Livraison';
+import ProfilAdmin from './components/Profil/ProfilAdmin';
 
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
         <Route path="/login" element = {<Login/>}/>
         <Route path="/signin" element = {<Signin/>}/>
         <Route path="contact" element={<Contact/>} /> 
-        <Route path="profil" element={<Profil/>} /> 
+        <Route path="profile" element={<Profil/>} />
+        <Route path="profile/administation" element={<ProfilAdmin/>} /> 
         <Route path="products" element={<Products/>}/>
         <Route path="products/category/:type" element={<Type/>}/>
         <Route path="products/:productId" element={<ProductPage/>}/>
