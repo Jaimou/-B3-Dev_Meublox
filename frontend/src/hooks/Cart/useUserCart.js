@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useGetToken } from '../useGetToken';
 
 export function useUserCart(newProduct) {
 
     const [userCart, setUserCart] = useState();
-    const token = useConnect()
+    const token = useGetToken()
 
     // GET METHOD
     const requestGetOptions = {
@@ -12,7 +13,7 @@ export function useUserCart(newProduct) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({userId: id})
+        body: JSON.stringify({message:"test"})
     };
 
     const getUserCart = async() => {
@@ -38,7 +39,7 @@ export function useUserCart(newProduct) {
         else {
 
             if (newCart.some(product => product.id === newProduct.id)) {
-                product = cart.find(product => product.id === newProduct.id)
+                product = newCart.find(product => product.id === newProduct.id)
                 product.productQuantity += quantity;
 
                 if (newProduct.productQuantity > 10) {
