@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/SearchAppBar.dart';
+import '../widgets/SearchDelegate.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -45,6 +46,12 @@ class SearchPage extends StatelessWidget {
                             border: InputBorder.none,
                             hintText: "Rechercher un article",
                           ),
+                          onTap: (){
+                            showSearch(
+                              context: context,
+                              delegate: MySearchDelegate(),
+                            );
+                          },
                         ),
                       ),
                       const Spacer(),
