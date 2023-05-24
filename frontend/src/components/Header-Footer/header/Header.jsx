@@ -2,14 +2,13 @@ import './Header.scss';
 import logo from './meubloxLogo.svg';
 import Searchbar from './searchbar/Searchbar';
 import { useUserStatus } from '../../../hooks/useUserStatus';
-import { useUserCartQuantity } from '../../../hooks/Cart/useUserCart';
-import { useCartQuantity } from '../../../hooks/Cart/useCart';
+import { useCartQuantity } from '../../../hooks/Cart/useCartQuantity';
 
 const Header = () => {
 
-    const log = useUserStatus()
-    const userCartQuantity = useUserCartQuantity()
-    const cartQuantity = useCartQuantity()
+    //const log = useUserStatus()
+    const log = false;
+    const cartQuantity = useCartQuantity(log);
 
 
     //let currentCart = JSON.parse(localStorage.getItem("cart"));
@@ -21,21 +20,18 @@ const Header = () => {
             </a>
             <Searchbar />
 
-            {log ?
-                <div className="login-profil-cart">
+
+            <div className="login-profil-cart">
+                {log ?
                     <a href="/profile">Profil</a>
-                    <a href="/panier" className="cart">
-                        <div className='articles-number'>{userCartQuantity}</div>Panier</a>
-                </div>
-                :
-                <div className="login-profil-cart">
+                    :
                     <a href="/login" className="login">Se connecter</a>
-                    <a href="/panier" className="cart">
-                        <div className='articles-number'>{cartQuantity}</div>Panier</a>
-                </div>
 
-            }
+                }
+                <a href="/panier" className="cart">
+                    <div className='articles-number'>{cartQuantity}</div>Panier</a>
 
+            </div>
         </header>
     );
 }

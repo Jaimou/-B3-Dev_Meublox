@@ -13,5 +13,4 @@ export function usePostNewUser(form) {
         .then(response => response.json())
         .then(data => this.setState({ orderId: data.id }));
 
-    console.log(response)
 }

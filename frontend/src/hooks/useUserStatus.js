@@ -3,7 +3,8 @@ import { useGetToken } from './useGetToken';
 
 export function useUserStatus() {
 
-    const token = useGetToken();
+    //const token = useGetToken();
+    const token = null;
 
     const [log, setlog] = useState(false)
 

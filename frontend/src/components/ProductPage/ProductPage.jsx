@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './ProductPage.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import data from '../../lib/data/dataTest.jsx'
 import StarRating from '../starRating/StarRating';
-import { useCart } from '../../hooks/Cart/useCart';
+import { useGetCart } from '../../hooks/Cart/useGetCart';
 import { useGetProduct } from '../../hooks/Products/useGetProduct';
 import { useUserStatus } from '../../hooks/useUserStatus';
-import { useUserCart } from '../../hooks/Cart/useUserCart';
 
 const ProductPage = () => {
 
@@ -15,14 +14,16 @@ const ProductPage = () => {
 
     const navigate = useNavigate()
     const { productId } = useParams()
-    const log = useUserStatus()
+    // const log = useUserStatus()
+    const cart = useGetCart()
 
-    const product = useGetProduct()
+    const product = useGetProduct(productId)
+    console.log("product = ")
+    console.log(product)
     // let product = allData.find((product) => {
     //     return product.Id == productId
     // })
     // let productImages = product.Gallery;
-
 
     const [quantity, setQuantity] = useState(1)
 
@@ -40,43 +41,49 @@ const ProductPage = () => {
 
     const addToCart = () => {
 
-        let newProduct = { id: productId, productQuantity: quantity };
-
-        if (log){
-        useUserCart(newProduct);
     }
-        else {
-            useCart(newProduct);
-        }
-        
 
-        // let currentCart = JSON.parse(localStorage.getItem("cart"));
+    // useEffect(() => {
+    //     let newProduct = { id: productId, productQuantity: quantity };
+    //     let cart = null;
+    //     if (log) {
+    //         cart = useCart(newProduct);
+    //         return cart
+    //     }
+    //     else {
+    //         cart = useCart(newProduct);
+    //         return cart
+    //     }
+    // }, [addToCart])
 
-        // if (currentCart == null) {
-        //     currentCart = [];
-        //     currentCart.push(newProduct);
-        //     localStorage.setItem("cart", JSON.stringify(currentCart));
-        // }
-        // else {
 
-        //     if (currentCart.some(product => product.id === newProduct.id)) {
-        //         product = currentCart.find(product => product.id === newProduct.id)
-        //         product.productQuantity += quantity;
+    // let currentCart = JSON.parse(localStorage.getItem("cart"));
 
-        //         if (newProduct.productQuantity > 10) {
-        //             newProduct.productQuantity = 10;
-        //         }
-        //         localStorage.setItem("cart", JSON.stringify(currentCart));
+    // if (currentCart == null) {
+    //     currentCart = [];
+    //     currentCart.push(newProduct);
+    //     localStorage.setItem("cart", JSON.stringify(currentCart));
+    // }
+    // else {
 
-        //     }
+    //     if (currentCart.some(product => product.id === newProduct.id)) {
+    //         product = currentCart.find(product => product.id === newProduct.id)
+    //         product.productQuantity += quantity;
 
-        //     else {
-        //         currentCart.push(newProduct);
-        //         localStorage.setItem("cart", JSON.stringify(currentCart));
-        //     }
-        // }
-        // window.location.reload(true)
-    }
+    //         if (newProduct.productQuantity > 10) {
+    //             newProduct.productQuantity = 10;
+    //         }
+    //         localStorage.setItem("cart", JSON.stringify(currentCart));
+
+    //     }
+
+    //     else {
+    //         currentCart.push(newProduct);
+    //         localStorage.setItem("cart", JSON.stringify(currentCart));
+    //     }
+    // }
+    // window.location.reload(true)
+
 
     return (
         <div className='page'>
@@ -95,7 +102,7 @@ const ProductPage = () => {
                         )}
 
                     </div>
-                    <img className='image-first' src={product.gallery[0]} alt={product.shortDescription} />
+                    <img className='image-first' src={product.imageThumbnailUrl} alt={product.shortDescription} />
                 </div>
 
                 <div className='product'>
@@ -109,13 +116,13 @@ const ProductPage = () => {
                             <StarRating rate={product.rate} /><p>({product.rates.length})</p>
                         </div>
                         <div className='trait'></div>
-                        {product.Stock == 0
+                        {product.stock == 0
                             ? <p>Le produit n'est plus en stock</p>
-                            : <p>Nombre de produits en stock : {product.Stock}</p>
+                            : <p>Nombre de produits en stock : {product.stock}</p>
 
                         }
                         <div className='trait'></div>
-                        {product.Stock == 0
+                        {product.stock == 0
                             ? <button type='button' onClick={() => { navigate('/') }} >Aller à la page d'accueil</button>
 
                             : <div className='toCart'>

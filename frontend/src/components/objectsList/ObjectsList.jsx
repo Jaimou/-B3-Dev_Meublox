@@ -15,13 +15,11 @@ const ObjectsList = (props) => {
 
     useEffect(() => {
         let currentUrl = window.location.href
-        console.log(currentUrl)
         if (currentUrl == "http://localhost:3000/") {
 
             const objectsData = allData.sort((a, b) => b.Rate - a.Rate);
 
             const objectsDataPopular = objectsData.slice(0, 4)
-            console.log(objectsDataPopular)
             setData(objectsDataPopular)
         }
         if (currentUrl.includes("http://localhost:3000/products/category/")) {
@@ -38,7 +36,6 @@ const ObjectsList = (props) => {
         if (currentUrl == "http://localhost:3000/products") {
 
             const objectsDataPopular = allData.sort((a, b) => b.Rate - a.Rate);
-            console.log(objectsDataPopular)
             setData(objectsDataPopular)
         }
 
@@ -67,7 +64,7 @@ const ObjectsList = (props) => {
 
                     {data.map((object) => {
                         return (
-                            <a href={'/products/' + object.Id}>
+                            <a href={'/products/' + object.id}>
                                 <Object object={object} />
                             </a>
                         )

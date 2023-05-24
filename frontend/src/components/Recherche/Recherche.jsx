@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 const Recherche = () => {
     const allData = data
     let { research } = useParams()
-    console.log(research)
 
 
     return (

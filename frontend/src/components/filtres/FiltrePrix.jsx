@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Object from "../Object/Object";
 import './Filtres.scss';
 
@@ -19,46 +19,50 @@ const FiltrePrix = (props) => {
     }
 
     const getMinPriceProduct = () => {
-        let minPrice = 1000000000;
+        let minPrice = 10000;
 
         data.map((product) => {
-            if (product.Price < minPrice) {
-                minPrice = product.Price;
+            if (product.price < minPrice) {
+                minPrice = product.price;
             }
 
             return minPrice;
         })
 
-        return minPrice;
+        setObjectMinPrice(minPrice);
     }
 
     const getMaxPriceProduct = () => {
         let maxPrice = 0;
 
         data.map((product) => {
-            if (product.Price > maxPrice) {
-                maxPrice = product.Price;
+            if (product.price > maxPrice) {
+                maxPrice = product.price;
             }
 
             return maxPrice;
         })
 
-        return maxPrice;
+        setObjectMaxPrice(maxPrice);
     }
 
-    const getMin = getMinPriceProduct();
-    const getMax = getMaxPriceProduct();
+    useEffect(() => {
+        getMinPriceProduct()
+        getMaxPriceProduct()
+    })
+
+
 
     return (
         <div className="filtre">
             <div className="range">
                 <div className="range-value">
                     <h3>min</h3>
-                    <input className="filtre-input" id="min" type="text" defaultValue={getMin} placeholder={getMin} onInput={((e) => { minPrice(e) })} />
+                    <input className="filtre-input" id="min" type="text" defaultValue={objectMinPrice} placeholder={objectMinPrice} onInput={((e) => { minPrice(e) })} />
                 </div>
                 <div className="range-value">
                     <h3>max</h3>
-                    <input className="filtre-input" id="max" type="text" defaultValue={getMax} placeholder={getMax} onInput={((e) => { maxPrice(e) })} />
+                    <input className="filtre-input" id="max" type="text" defaultValue={objectMaxPrice} placeholder={objectMaxPrice} onInput={((e) => { maxPrice(e) })} />
                 </div>
             </div>
         </div>

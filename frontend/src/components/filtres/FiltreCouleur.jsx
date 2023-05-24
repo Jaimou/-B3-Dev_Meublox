@@ -11,7 +11,6 @@ const FiltreCouleur = (props) => {
 
     const selectColor = (e) => {
         const colorValue = e.value
-        console.log(colorValue)
     }
 
     useEffect(() => {

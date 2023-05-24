@@ -91,7 +91,6 @@ const Panier = () => {
     createCart()
     productValues()
 
-    console.log(optionsProductValues[1])
 
     useEffect(() => {
         totalValue = 0;
