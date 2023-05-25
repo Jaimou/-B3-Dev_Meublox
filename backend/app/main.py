@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from email.message import EmailMessage
 import smtplib
+import secrets
 from typing import Optional
 
 from app.database.db import db
@@ -48,30 +49,31 @@ class ResetPasswordForm(BaseModel):
 
 @app.post("/reset-password", tags=['Auth'])
 async def reset_password(request: ResetPasswordRequest):
-    # Vérifier si l'utilisateur existe avec l'email donné dans la base de données
     user = db.get_user_by_email(request.email)
     if not user:
         raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
 
-    # Générer un lien de réinitialisation unique
-    reset_link = generate_reset_link(user["_id"])  # Utiliser user["_id"] au lieu de user["id"]
+    token = generate_reset_token()  # Génération du jeton de réinitialisation
 
-    # Envoyer un e-mail de réinitialisation contenant le lien
+    reset_link = generate_reset_link(user["_id"], token) 
+    
     send_reset_email(request.email, reset_link)
+    
+    return {"message": "Email de réinitialisation envoyé avec succès"}
 
-    # Répondre avec un message de succès
-    return {"message": "Email de réinitialisation envoyé"}
+def generate_reset_token() -> str:
+    token = secrets.token_urlsafe(32)  # Génération d'un jeton aléatoire
+    return token
 
-
-def generate_reset_link(user_id: int) -> str:
-    reset_link = f"http://localhost:8000/reset-password?user_id={user_id}"
+def generate_reset_link(user_id: int, token: str) -> str:
+    reset_link = f"http://localhost:8000/reset-password?user_id={user_id}&token={token}"
     return reset_link
 
 def send_reset_email(email: str, reset_link: str):
     # Configurer les informations de l'e-mail (expéditeur, destinataire, sujet, contenu)
     msg = EmailMessage()
     msg.set_content(f"Cliquez sur le lien suivant pour réinitialiser votre mot de passe : {reset_link}")
-    msg['Subject'] = "Réinitialisation de mot de passe"
+    msg['Subject'] = "MEUBLOX : Réinitialisation de mot de passe"
     msg['From'] = "Meublox@noreply.com"
     msg['To'] = email
 
@@ -80,10 +82,20 @@ def send_reset_email(email: str, reset_link: str):
         smtp.login("soso8amine@gmail.com", "zogkisyuvbwuhsjq")
         smtp.send_message(msg)
 
+@app.get("/reset-password", tags=['Auth'])
+async def reset_password_get(user_id: str, token: str):
+    if validate_reset_token(user_id, token):
+        return {"message": "Page de réinitialisation du mot de passe"}
+
+    raise HTTPException(status_code=400, detail="Demande de réinitialisation invalide")
+
+def validate_reset_token(user_id: str, token: str) -> bool:
+
+    return True  
+
 app.include_router(auth.router)
 app.include_router(product.router, prefix="/products", tags=['Products'])
 app.include_router(user.router, prefix="/users", tags=['Users'])
 app.include_router(cart.router, prefix="/cart", tags=['Cart'])
 app.include_router(vote.router, prefix="/votes", tags=['Votes'])
 app.include_router(favorite.router, prefix="/favorites", tags=['Favorites'])
-
