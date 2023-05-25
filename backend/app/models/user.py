@@ -37,3 +37,7 @@ class UserUpdate(UserBase):
     telephone: Optional[str] = None
     email: Optional[str] = None
     date_naissance: Optional[str] = None
+
+class UserIn(UserBase):
+    password: Optional[str]
+    is_admin: bool  # Champ pour définir le statut d'administrateur

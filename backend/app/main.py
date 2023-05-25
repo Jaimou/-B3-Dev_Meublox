@@ -53,7 +53,7 @@ async def reset_password(request: ResetPasswordRequest):
     if not user:
         raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
 
-    token = generate_reset_token()  # Génération du jeton de réinitialisation
+    token = generate_reset_token() 
 
     reset_link = generate_reset_link(user["_id"], token) 
     
@@ -62,7 +62,7 @@ async def reset_password(request: ResetPasswordRequest):
     return {"message": "Email de réinitialisation envoyé avec succès"}
 
 def generate_reset_token() -> str:
-    token = secrets.token_urlsafe(32)  # Génération d'un jeton aléatoire
+    token = secrets.token_urlsafe(32) 
     return token
 
 def generate_reset_link(user_id: int, token: str) -> str:
