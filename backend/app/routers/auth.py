@@ -14,9 +14,9 @@ router = APIRouter(tags=['Authentication'])
 
 @router.post('/login', response_model=Token)
 def login(user_credentials: OAuth2PasswordRequestForm = Depends()):
-    #motdepasse123
+
     user = db.get_collection("users").find_one({"email": {"$eq":user_credentials.username}}) # email $eq 
-    #print(user)
+    print(user)
 
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Invalid Credentials")
@@ -29,13 +29,5 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends()):
 
     # return token
     return {"access_token": access_token, "token_type": "bearer"}
-
-@router.post('/register', response_model=Token)
-def register(user_credentials: OAuth2PasswordRequestForm = Depends()):
-    #motdepasse123
-    user = db.get_collection("users").find_one({"email": {"$eq":user_credentials.username}})
-
-    if user:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"User already exists")
     
-    
+

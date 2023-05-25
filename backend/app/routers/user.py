@@ -3,6 +3,7 @@ from bson import ObjectId
 from typing import List
 from ..database.db import get_database
 from ..models.user import User, UserIn, UserUpdate
+from app.utils import passwd_utils 
 import hashlib
 
 router = APIRouter()
@@ -12,6 +13,8 @@ from typing import Dict, Any
 @router.post("/", response_model=Dict[str, Any])
 def create_new_user(user: UserIn, db=Depends(get_database)):
     collection = db.get_collection("users")
+    hashed_pwd = passwd_utils.hash_pwd(user.password)
+    user.password = hashed_pwd
     result = collection.insert_one(user.dict())
     user_id = result.inserted_id
     return {**user.dict(), "_id": str(user_id)}
