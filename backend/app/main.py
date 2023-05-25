@@ -70,7 +70,6 @@ def generate_reset_link(user_id: int, token: str) -> str:
     return reset_link
 
 def send_reset_email(email: str, reset_link: str):
-    # Configurer les informations de l'e-mail (expéditeur, destinataire, sujet, contenu)
     msg = EmailMessage()
     msg.set_content(f"Cliquez sur le lien suivant pour réinitialiser votre mot de passe : {reset_link}")
     msg['Subject'] = "MEUBLOX : Réinitialisation de mot de passe"
