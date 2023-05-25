@@ -23,8 +23,6 @@ const Login = () => {
         navigate(path);
     }
 
-
-
     return (
         <div className='login-page'>
             <h1>Authentification</h1>
