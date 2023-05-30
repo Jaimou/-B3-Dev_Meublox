@@ -70,9 +70,92 @@ def generate_reset_link(user_id: int, token: str) -> str:
     return reset_link
 
 def send_reset_email(email: str, reset_link: str):
+    subject = "Réinitialisation de mot de passe"
+    message = f"""<html>
+    <head>
+        <style>
+            body {{
+                background-color: #f4f4f4;
+                font-family: Arial, sans-serif;
+                color: #333333;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }}
+            .logo-container {{
+                text-align: center;
+            }}
+            .logo {{
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+            }}
+            h2 {{
+                font-size: 28px;
+                margin-bottom: 20px;
+                text-align: center;
+            }}
+            .word1 {{
+                color: #0077B6;
+                font-weight: bold;
+            }}
+            .word2 {{
+                color: #0077B6;
+                font-weight: bold;
+            }}
+            .word3 {{
+                color: #0077B6;
+                font-weight: bold;
+            }}
+            .word4 {{
+                color: #0077B6;
+                font-weight: bold;
+            }}
+            p {{
+                font-size: 16px;
+                margin-bottom: 10px;
+            }}
+            .button {{
+                display: inline-block;
+                background: linear-gradient(to right, #FF512F, #F09819, #FF512F, #F09819);
+                color: #ffffff;
+                padding: 12px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }}
+            .button:hover {{
+                background: linear-gradient(to right, #FF512F, #F09819, #FF512F, #F09819);
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo-container">
+                <img src="https://img.freepik.com/premium-vector/dragon-tribal-tattoo-vector-illustration-isolated-white-background_97231-2441.jpg?w=2000" alt="Logo Meublox" class="logo">
+            </div>
+            <h2><span class="word1">Réinitialisation</span> <span class="word2">de</span> <span class="word3">mot</span> <span class="word4">de passe</span></h2>
+            <p>Cher Membre,</p>
+            <p>Vous avez demandé la réinitialisation de votre mot de passe. Veuillez cliquer sur le bouton ci-dessous pour procéder à la réinitialisation :</p>
+            <p><a href="{reset_link}" class="button">Réinitialiser mon mot de passe</a></p>
+            <p>Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail.</p>
+            <p>Cordialement,</p>
+            <p>L'équipe de Meublox</p>
+        </div>
+    </body>
+    </html>"""
+
     msg = EmailMessage()
-    msg.set_content(f"Cliquez sur le lien suivant pour réinitialiser votre mot de passe : {reset_link}")
-    msg['Subject'] = "MEUBLOX : Réinitialisation de mot de passe"
+    msg.add_alternative(message, subtype='html')
+    msg['Subject'] = subject
     msg['From'] = "Meublox@noreply.com"
     msg['To'] = email
 
@@ -80,6 +163,22 @@ def send_reset_email(email: str, reset_link: str):
         smtp.starttls()
         smtp.login("soso8amine@gmail.com", "zogkisyuvbwuhsjq")
         smtp.send_message(msg)
+
+
+
+    msg = EmailMessage()
+    msg.add_alternative(message, subtype='html')
+    msg['Subject'] = subject
+    msg['From'] = "Meublox@noreply.com"
+    msg['To'] = email
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
+        smtp.starttls()
+        smtp.login("soso8amine@gmail.com", "zogkisyuvbwuhsjq")
+        smtp.send_message(msg)
+
+
+
 
 @app.get("/reset-password", tags=['Auth'])
 async def reset_password_get(user_id: str, token: str):
@@ -95,6 +194,6 @@ def validate_reset_token(user_id: str, token: str) -> bool:
 app.include_router(auth.router)
 app.include_router(product.router, prefix="/products", tags=['Products'])
 app.include_router(user.router, prefix="/users", tags=['Users'])
-app.include_router(cart.router, prefix="/cart", tags=['Cart'])
+app.include_router(cart.router, prefix="", tags=['Cart'])
 app.include_router(vote.router, prefix="/votes", tags=['Votes'])
 app.include_router(favorite.router, prefix="/favorites", tags=['Favorites'])

@@ -3,26 +3,55 @@ from app.database.db import db
 from bson import ObjectId
 from app.models.cart import Cart, CartItem
 from ..models.cart import Cart, CartItem
+from ..database.db import Database, get_database
+from ..schemas.cart import CartCreate, CartItemCreate, CartUpdate
+import asyncio
+
 
 router = APIRouter() 
 
+
 @router.post("/cart")
-async def add_to_cart(user_id: int, product_id: int, quantity: int):
-    product = await db.products.find_one({"_id": ObjectId(product_id)})
+async def add_to_cart(cart_create: CartCreate):
+    user_id = cart_create.user_id
+    product_id = cart_create.items[0].product_id
+    quantity = cart_create.items[0].quantity
+
+    product_collection = db.get_collection("products")
+    cart_collection = db.get_collection("carts")
+
+    product = product_collection.find_one({"_id": ObjectId(str(product_id))})
 
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    cart = await db.carts.find_one({"user_id": user_id})
+    if "prix" not in product:
+        raise HTTPException(status_code=500, detail="Product price not available")
+
+    cart = cart_collection.find_one({"user_id": user_id})
 
     if not cart:
         new_cart = Cart(user_id=user_id, items=[])
-        cart_id = await db.carts.insert_one(new_cart.dict())
-        cart = await db.carts.find_one({"_id": cart_id.inserted_id})
+        result = cart_collection.insert_one(new_cart.dict())
+        cart = cart_collection.find_one({"_id": result.inserted_id})
 
-    cart_item = CartItem(product_id=product_id, quantity=quantity, total_price=product["price"] * quantity)
-    
-    await db.carts.update_one({"_id": cart["_id"]}, {"$push": {"items": cart_item.dict()}})
+    cart_item = CartItem(
+        id=str(ObjectId()),
+        product_id=str(product_id),
+        quantity=quantity,
+        total_price=product["prix"] * quantity
+    )
+
+    cart_collection.update_one(
+        {"_id": cart["_id"]},
+        {"$push": {"items": cart_item.dict()}}
+    )
+
+    # Décrémente le stock du produit
+    product_collection.update_one(
+        {"_id": ObjectId(str(product_id))},
+        {"$inc": {"stock": -quantity}}
+    )
 
     return cart
 
@@ -42,20 +71,30 @@ async def delete_cart(user_id: int):
     if not cart:
         raise HTTPException(status_code=404, detail="Cart not found")
 
-    await db.carts.delete_one({"_id": cart["_id"]})
+    # Récupérer les articles du panier
+    items = cart.get("items", [])
 
-    return cart
+    # Rétablir les quantités des articles supprimés dans le stock
+    for item in items:
+        product_id = item.get("product_id")
+        quantity = item.get("quantity")
+        product = await db.products.find_one({"_id": ObjectId(product_id)})
 
-@router.delete("/cart/{user_id}/{product_id}")
-async def delete_cart_item(user_id: int, product_id: int):
-    cart = await db.carts.find_one({"user_id": user_id})
+        if product:
+            current_stock = product.get("stock", 0)
+            new_stock = current_stock + quantity
 
-    if not cart:
-        raise HTTPException(status_code=404, detail="Cart not found")
+            # Mettre à jour le stock du produit
+            await db.products.update_one(
+                {"_id": ObjectId(product_id)},
+                {"$set": {"stock": new_stock}}
+            )
 
-    await db.carts.update_one({"_id": cart["_id"]}, {"$pull": {"items": {"product_id": product_id}}})
+    # Supprimer le panier
+    await db.carts.delete_one({"user_id": user_id})
 
-    return cart
+    return {"message": "Cart deleted"}
+
 
 @router.put("/cart/{user_id}/{product_id}")
 async def update_cart_item(user_id: int, product_id: int, quantity: int):
@@ -162,27 +201,6 @@ async def get_cart_item_product(user_id: int, product_id: int):
 
     return product
 
-@router.get("/cart/{user_id}/items/{product_id}/product/{field}")
-async def get_cart_item_product_field(user_id: int, product_id: int, field: str):
-    cart = await db.carts.find_one({"user_id": user_id})
-
-    if not cart:
-        raise HTTPException(status_code=404, detail="Cart not found")
-
-    cart_item = await db.carts.find_one({"user_id": user_id, "items.product_id": product_id})
-
-    if not cart_item:
-        raise HTTPException(status_code=404, detail="Cart item not found")
-
-    product = await db.products.find_one({"_id": ObjectId(product_id)})
-
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
-
-    return product[field]
-
-
-
 @router.delete("/cart/{user_id}")
 async def delete_cart(user_id: int):
     cart = await db.carts.find_one({"user_id": user_id})
@@ -205,20 +223,4 @@ async def delete_cart_items(user_id: int):
 
     return {"message": "Cart items deleted"}
 
-@router.delete("/cart/{user_id}/items/{product_id}")
-async def delete_cart_item(user_id: int, product_id: int):
-    cart = await db.carts.find_one({"user_id": user_id})
 
-    if not cart:
-        raise HTTPException(status_code=404, detail="Cart not found")
-
-    cart_item = await db.carts.find_one({"user_id": user_id, "items.product_id": product_id})
-
-    if not cart_item:
-        raise HTTPException(status_code=404, detail="Cart item not found")
-
-    await db.carts.update_one({"user_id": user_id}, {"$pull": {"items": {"product_id": product_id}}})
-
-    return {"message": "Cart item deleted"}
-
-# Ajoutez d'autres routes pour mettre à jour ou supprimer des éléments du panier si nécessaire

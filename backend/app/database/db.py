@@ -8,7 +8,6 @@ from ..models.favorite import FavoriteInDB
 from typing import Dict, Any, List
 from typing import Optional
 
-
 DATABASE_URL = f"mongodb://{settings.db_hostname}:{settings.db_port}"
 
 class Database:
@@ -22,6 +21,12 @@ class Database:
     def get_user_by_email(self, email: str) -> Dict[str, Any]:
         user = self.db.get_collection("users").find_one({"email": email})
         return user
+
+    def get_carts_collection(self):
+        return self.db["carts"]
+
+    def get_products_collection(self):
+        return self.db["products"]
 
 db = Database(DATABASE_URL)
 
@@ -92,3 +97,4 @@ def get_favorites_by_user(user_id: str) -> List[Dict[str, Any]]:
 def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
     user = db.get_collection("users").find_one({"email": email})
     return user
+
