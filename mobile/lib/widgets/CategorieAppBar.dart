@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CartAppBar extends StatelessWidget {
-  const CartAppBar({super.key});
+class CategorieAppBar extends StatelessWidget {
+  const CategorieAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CartAppBar extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
-              "Panier",
+              "Categorie Title",
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,

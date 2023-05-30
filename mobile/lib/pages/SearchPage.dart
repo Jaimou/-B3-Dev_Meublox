@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:meublox/pages/CategoriePage.dart';
 
 import '../widgets/SearchAppBar.dart';
 import '../widgets/SearchDelegate.dart';
@@ -72,35 +73,60 @@ class SearchPage extends StatelessWidget {
                       CategoryButton(
                         category: 'Bureau',
                         onPressed: () {
-                          // Action lorsque le bouton Bureau est cliqué
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CategoriePage(category: 'Bureau'),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
                       CategoryButton(
                         category: 'Canapé',
                         onPressed: () {
-                          // Action lorsque le bouton Canapé est cliqué
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CategoriePage(category: 'Canapé'),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
                       CategoryButton(
                         category: 'Chaise',
                         onPressed: () {
-                          // Action lorsque le bouton Chaise est cliqué
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CategoriePage(category: 'Chaise'),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
                       CategoryButton(
                         category: 'Meuble',
                         onPressed: () {
-                          // Action lorsque le bouton Meuble est cliqué
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CategoriePage(category: 'Meuble'),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
                       CategoryButton(
                         category: 'Table',
                         onPressed: () {
-                          // Action lorsque le bouton Table est cliqué
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CategoriePage(category: 'Table'),
+                            ),
+                          );
                         },
                       ),
                     ],
