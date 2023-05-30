@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meublox/pages/CartPage.dart';
-import 'package:meublox/pages/Homepage.dart';
+import 'package:meublox/pages/HomePage.dart';
 import 'package:meublox/pages/ItemPage.dart';
 import 'package:meublox/pages/SearchPage.dart';
 import 'package:meublox/pages/FavoritePage.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const HomePage(),
         "cartPage":(context) => const CartPage(),
-        "itemPage":(context) => ItemPage(),
+        "itemPage":(context) => const ItemPage(),
         "searchPage":(context) => const SearchPage(),
         "favoritePage":(context) => const FavoritePage(),
       },

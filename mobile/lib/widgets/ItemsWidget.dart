@@ -42,7 +42,7 @@ class ItemsWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 10),
                   alignment: Alignment.centerLeft,
                   child: const Text(
                     "Product Title",
@@ -64,22 +64,18 @@ class ItemsWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
                         "45 €",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Icon(
-                        Icons.add_shopping_cart,
-                        color: Colors.orange,
-                      )
                     ],
                   ),
                 ),

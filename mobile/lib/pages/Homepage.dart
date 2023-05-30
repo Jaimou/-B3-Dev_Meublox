@@ -1,8 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/CategoriesWidget.dart';
 import '../widgets/HomeAppBar.dart';
 import '../widgets/ItemsWidget.dart';
 
@@ -16,8 +14,6 @@ class HomePage extends StatelessWidget {
         children: [
           const HomeAppBar(),
           Container(
-            // Temporary height
-            // height: 500,
             decoration: const BoxDecoration(
               color: Color(0xFFEDECF2),
               borderRadius: BorderRadius.only(
@@ -27,35 +23,15 @@ class HomePage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // Categories
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 20,
-                  ),
-                  child: const Text(
-                    "Catégories",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                ),
-
-                // Categories Widget
-                const CategoriesWidget(),
-
                 // Items
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 10,
+                    horizontal: 20,
                     vertical: 20,
                   ),
                   child: const Text(
-                    "Les mieux notés",
+                    "Produits populaires",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,

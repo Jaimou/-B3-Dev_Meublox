@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/CartAppBar.dart';
@@ -14,7 +15,7 @@ class CartPage extends StatelessWidget {
         children: [
           const CartAppBar(),
           Container(
-            // Temporary height
+            // Temporary height à retirer quand on aura les données
             height: 700,
             padding: const EdgeInsets.only(top: 15),
             decoration: const BoxDecoration(
@@ -59,12 +60,108 @@ class CartPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  height: 130,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Total :",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ),
+                          ),
+                          Text(
+                            "135 €",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          "Check Out",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
+        ], 
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pushNamed(context, "/");
+          } else if (index == 1) {
+            Navigator.pushNamed(context, "searchPage");
+          } else if (index == 2) {
+            Navigator.pushNamed(context, "favoritePage");
+          } else if (index == 3) {
+            Navigator.pushNamed(context, "cartPage");
+          } else if (index == 4) {
+            Navigator.pushNamed(context, "profilePage");
+          }
+        },
+        height: 65,
+        color: Colors.orange,
+        index: 3,
+        items: const [
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.search,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.shopping_cart,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.person,
+            size: 30,
+            color: Colors.white,
+          ),
         ],
       ),
-      bottomNavigationBar: const CartBottomNavBar(),
     );
   }
 }
