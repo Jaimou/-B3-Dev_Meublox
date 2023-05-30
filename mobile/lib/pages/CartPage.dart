@@ -2,7 +2,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/CartAppBar.dart';
-import '../widgets/CartBottomNavBar.dart';
 import '../widgets/CartItemSamples.dart';
 
 class CartPage extends StatelessWidget {
@@ -38,7 +37,7 @@ class CartPage extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.orange,
+                          color: const Color.fromARGB(255, 80, 39, 118),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Icon(
@@ -53,7 +52,7 @@ class CartPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.orange,
+                            color: Color.fromARGB(255, 80, 39, 118),
                           ),
                         ),
                       ),
@@ -78,7 +77,7 @@ class CartPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.orange,
+                              color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
                           Text(
@@ -86,7 +85,7 @@ class CartPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Colors.orange,
+                              color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
                         ],
@@ -96,7 +95,7 @@ class CartPage extends StatelessWidget {
                         alignment: Alignment.center,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.orange,
+                          color: const Color.fromARGB(255, 80, 39, 118),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
@@ -132,7 +131,7 @@ class CartPage extends StatelessWidget {
           }
         },
         height: 65,
-        color: Colors.orange,
+        color: const Color.fromARGB(255, 80, 39, 118),
         index: 3,
         items: const [
           Icon(

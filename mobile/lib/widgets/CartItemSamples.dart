@@ -1,8 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CartItemSamples extends StatelessWidget {
+class CartItemSamples extends StatefulWidget {
   const CartItemSamples({super.key});
+
+  @override
+  _CartItemSamplesState createState() => _CartItemSamplesState();
+}
+
+int _quantity = 1;
+
+class _CartItemSamplesState extends State<CartItemSamples> {
+  void _decreaseQuantity() {
+    setState(() {
+      if (_quantity > 1) {
+        _quantity--;
+      }
+    });
+  }
+
+  void _increaseQuantity() {
+    setState(() {
+      _quantity++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +43,7 @@ class CartItemSamples extends StatelessWidget {
                 Radio(
                   value: "",
                   groupValue: "",
-                  activeColor: Colors.orange,
+                  activeColor: const Color.fromARGB(255, 80, 39, 118),
                   onChanged: (index) {},
                 ),
                 Container(
@@ -36,14 +57,13 @@ class CartItemSamples extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: const [
                       Text(
                         "Product Title",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.orange,
+                          color: Color.fromARGB(255, 80, 39, 118),
                         ),
                       ),
                       Text(
@@ -51,7 +71,7 @@ class CartItemSamples extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.orange,
+                          color: Color.fromARGB(255, 80, 39, 118),
                         ),
                       ),
                     ],
@@ -70,57 +90,65 @@ class CartItemSamples extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 10,
-                                ),
-                              ]
-                            ),
-                            child: const Icon(
-                              CupertinoIcons.minus,
-                              size: 18,
-                              color: Colors.orange,
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: const Text(
-                              "01",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.orange,
+                          GestureDetector(
+                            onTap: _decreaseQuantity,
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.minus,
+                                size: 18,
+                                color: Color.fromARGB(255, 80, 39, 118),
                               ),
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 10,
-                                ),
-                              ]
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              _quantity.toString().padLeft(2, '0'),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 80, 39, 118),
+                              ),
                             ),
-                            child: const Icon(
-                              CupertinoIcons.plus,
-                              size: 18,
-                              color: Colors.orange,
+                          ),
+                          GestureDetector(
+                            onTap: _increaseQuantity,
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.plus,
+                                size: 18,
+                                color: Color.fromARGB(255, 80, 39, 118),
+                              ),
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CartAppBar extends StatelessWidget {
-  const CartAppBar({super.key});
+class FilterAppBar extends StatelessWidget {
+  const FilterAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class CartAppBar extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
             child: const Icon(
@@ -23,19 +23,22 @@ class CartAppBar extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
-              "Panier",
+              "Filtrer",
               style: TextStyle(
+                color: Color.fromARGB(255, 80, 39, 118),
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 80, 39, 118),
               ),
             ),
           ),
           const Spacer(),
-          const Icon(
-            Icons.more_vert,
-            size: 30,
-            color: Color.fromARGB(255, 80, 39, 118),
+          const Text(
+            "Réinitialiser",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 80, 39, 118),
+            ),
           )
         ],
       ),

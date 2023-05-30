@@ -1,50 +1,20 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/HomeAppBar.dart';
-import '../widgets/ItemsWidget.dart';
+import '../widgets/FilterAppBar.dart';
+import '../widgets/FilterWidget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class FilterPage extends StatelessWidget {
+  const FilterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
-        children: [
-          const HomeAppBar(),
-          Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFFEDECF2),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(35),
-                topRight: Radius.circular(35),
-              ),
-            ),
-            child: Column(
-              children: [
-                // Items
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  child: const Text(
-                    "Produits populaires",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 80, 39, 118),
-                    ),
-                  ),
-                ),
-
-                // Items Widget
-                const ItemsWidget(),
-              ],
-            ),
-          ),
+        children: const [
+          FilterAppBar(),
+          FilterWidget(),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -64,6 +34,7 @@ class HomePage extends StatelessWidget {
         },
         height: 65,
         color: const Color.fromARGB(255, 80, 39, 118),
+        index: 1,
         items: const [
           Icon(
             Icons.home,
@@ -91,7 +62,7 @@ class HomePage extends StatelessWidget {
             color: Colors.white,
           ),
         ],
-      )
+      ),
     );
   }
 }

@@ -32,7 +32,7 @@ class FavoritePage extends StatelessWidget {
           }
         },
         height: 65,
-        color: Colors.orange,
+        color: const Color.fromARGB(255, 80, 39, 118),
         index: 2,
         items: const [
           Icon(

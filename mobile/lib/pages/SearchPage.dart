@@ -59,7 +59,7 @@ class SearchPage extends StatelessWidget {
                       const Icon(
                         Icons.search,
                         size: 27,
-                        color: Colors.orange,
+                        color: Color.fromARGB(255, 80, 39, 118),
                       ),
                     ],
                   ),
@@ -152,7 +152,7 @@ class SearchPage extends StatelessWidget {
           }
         },
         height: 65,
-        color: Colors.orange,
+        color: const Color.fromARGB(255, 80, 39, 118),
         index: 1,
         items: const [
           Icon(

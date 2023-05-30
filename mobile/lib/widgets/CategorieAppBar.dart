@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/FilterPage.dart';
+
 class CategorieAppBar extends StatelessWidget {
   const CategorieAppBar({super.key});
 
@@ -17,7 +19,7 @@ class CategorieAppBar extends StatelessWidget {
             child: const Icon(
               Icons.arrow_back,
               size: 30,
-              color: Colors.orange,
+              color: Color.fromARGB(255, 80, 39, 118),
             ),
           ),
           const Padding(
@@ -27,16 +29,29 @@ class CategorieAppBar extends StatelessWidget {
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
-                color: Colors.orange,
+                color: Color.fromARGB(255, 80, 39, 118),
               ),
             ),
           ),
           const Spacer(),
-          const Icon(
-            Icons.more_vert,
-            size: 30,
-            color: Colors.orange,
-          )
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FilterPage(),
+                ),
+              );
+            },
+            child: const Text(
+              "Filtrer",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 80, 39, 118),
+              ),
+            ),
+          ),
         ],
       ),
     );

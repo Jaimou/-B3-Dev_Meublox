@@ -17,7 +17,7 @@ class ItemAppBar extends StatelessWidget {
             child: const Icon(
               Icons.arrow_back,
               size: 30,
-              color: Colors.orange,
+              color: Color.fromARGB(255, 80, 39, 118),
             ),
           ),
           const Padding(
@@ -27,7 +27,7 @@ class ItemAppBar extends StatelessWidget {
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
-                color: Colors.orange,
+                color: Color.fromARGB(255, 80, 39, 118),
               ),
             ),
           ),

@@ -48,7 +48,7 @@ class ItemsWidget extends StatelessWidget {
                     "Product Title",
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.orange,
+                      color: Color.fromARGB(255, 80, 39, 118),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -72,7 +72,7 @@ class ItemsWidget extends StatelessWidget {
                         "45 €",
                         style: TextStyle(
                           fontSize: 20,
-                          color: Colors.orange,
+                          color: Color.fromARGB(255, 80, 39, 118),
                           fontWeight: FontWeight.bold,
                         ),
                       ),

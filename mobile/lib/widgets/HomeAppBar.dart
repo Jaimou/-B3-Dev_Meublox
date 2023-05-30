@@ -14,7 +14,7 @@ class HomeAppBar extends StatelessWidget {
           const Icon(
             Icons.sort,
             size: 30,
-            color: Colors.orange,
+            color: Color.fromARGB(255, 80, 39, 118),
           ),
           const Spacer(),
           InkWell(
@@ -29,7 +29,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           const Spacer(),
           badges.Badge(
-            badgeColor: Colors.orange,
+            badgeColor: const Color.fromARGB(255, 80, 39, 118),
             padding: const EdgeInsets.all(7),
             badgeContent: const Text(
               "3",
@@ -44,7 +44,7 @@ class HomeAppBar extends StatelessWidget {
               child: const Icon(
                 Icons.shopping_bag_outlined,
                 size: 32,
-                color: Colors.orange,
+                color: Color.fromARGB(255, 80, 39, 118),
               ),
             )
           ),

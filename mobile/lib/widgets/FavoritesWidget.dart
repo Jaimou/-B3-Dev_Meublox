@@ -68,7 +68,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                       "Product Title",
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.orange,
+                        color: Color.fromARGB(255, 80, 39, 118),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -92,7 +92,7 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                           "45 €",
                           style: TextStyle(
                             fontSize: 18,
-                            color: Colors.orange,
+                            color: Color.fromARGB(255, 80, 39, 118),
                             fontWeight: FontWeight.bold,
                           ),
                         ),

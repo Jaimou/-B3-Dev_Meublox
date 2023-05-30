@@ -16,7 +16,7 @@ class SearchAppBar extends StatelessWidget {
           child: const Icon(
             Icons.arrow_back,
             size: 30,
-            color: Colors.orange,
+            color: Color.fromARGB(255, 80, 39, 118),
           ),
         ),
         const Padding(
@@ -24,7 +24,7 @@ class SearchAppBar extends StatelessWidget {
           child: Text(
             "Rechercher un article",
             style: TextStyle(
-              color: Colors.orange,
+              color: Color.fromARGB(255, 80, 39, 118),
               fontSize: 23,
               fontWeight: FontWeight.bold,
             ),
@@ -34,7 +34,7 @@ class SearchAppBar extends StatelessWidget {
         const Icon(
           Icons.more_vert,
           size: 30,
-          color: Colors.orange,
+          color: Color.fromARGB(255, 80, 39, 118),
         ),
       ]),
     );

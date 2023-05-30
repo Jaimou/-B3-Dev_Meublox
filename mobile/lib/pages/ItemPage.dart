@@ -21,13 +21,13 @@ double basePrice = 45.0;
   
 class _ItemPageState extends State<ItemPage> {
 
-  List<Color> Clrs = [
-    Colors.orange,
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-  ];
+  // List<Color> Clrs = [
+  //   Colors.orange,
+  //   Colors.red,
+  //   Colors.blue,
+  //   Colors.green,
+  //   Colors.yellow,
+  // ];
 
   final List<String> imageUrls = [
     "assets/images/article_0.png",
@@ -121,7 +121,7 @@ class _ItemPageState extends State<ItemPage> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: _currentImageIndex == index
-                              ? Colors.orange
+                              ? const Color.fromARGB(255, 80, 39, 118)
                               : Colors.grey.withOpacity(0.5),
                         ),
                       );
@@ -154,7 +154,7 @@ class _ItemPageState extends State<ItemPage> {
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
-                              color: Colors.orange,
+                              color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
                           Spacer(),
@@ -164,7 +164,7 @@ class _ItemPageState extends State<ItemPage> {
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Colors.orange,
+                              color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
                         ],
@@ -177,7 +177,7 @@ class _ItemPageState extends State<ItemPage> {
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontSize: 17,
-                          color: Colors.orange,
+                          color: Color.fromARGB(255, 80, 39, 118),
                         ),
                       ),
                     ),
@@ -206,7 +206,7 @@ class _ItemPageState extends State<ItemPage> {
                             "(17)",
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.orange
+                              color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
                           const Spacer(),
@@ -231,7 +231,7 @@ class _ItemPageState extends State<ItemPage> {
                                   child: const Icon(
                                     CupertinoIcons.minus,
                                     size: 18,
-                                    color: Colors.orange,
+                                    color: Color.fromARGB(255, 80, 39, 118),
                                   ),
                                 ),
                               ),
@@ -242,7 +242,7 @@ class _ItemPageState extends State<ItemPage> {
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.orange,
+                                    color: Color.fromARGB(255, 80, 39, 118),
                                   ),
                                 ),
                               ),
@@ -265,12 +265,12 @@ class _ItemPageState extends State<ItemPage> {
                                   child: const Icon(
                                     CupertinoIcons.plus,
                                     size: 18,
-                                    color: Colors.orange,
+                                    color: Color.fromARGB(255, 80, 39, 118),
                                   ),
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -293,7 +293,7 @@ class _ItemPageState extends State<ItemPage> {
                                 )
                               ),
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(Colors.orange),
+                                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 80, 39, 118)),
                                 padding: MaterialStateProperty.all(
                                   const EdgeInsets.symmetric(
                                     horizontal: 20,
@@ -423,7 +423,7 @@ class _ItemPageState extends State<ItemPage> {
           }
         },
         height: 65,
-        color: Colors.orange,
+        color: const Color.fromARGB(255, 80, 39, 118),
         index: 1,
         items: const [
           Icon(

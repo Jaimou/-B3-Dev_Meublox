@@ -34,8 +34,8 @@ class CategoriePage extends StatelessWidget {
           }
         },
         height: 65,
-        color: Colors.orange,
-        index: 2,
+        color: const Color.fromARGB(255, 80, 39, 118),
+        index: 1,
         items: const [
           Icon(
             Icons.home,
