@@ -12,3 +12,4 @@ class UpdateCartItem(BaseModel):
 class Cart(BaseModel):
     user_id: str
     items: List[CartItem] = []
+

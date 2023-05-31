@@ -46,7 +46,6 @@ async def add_to_cart(cart_create: CartCreate):
         {"$push": {"items": cart_item.dict()}}
     )
 
-    # Décrémente le stock du produit
     product_collection.update_one(
         {"_id": ObjectId(str(product_id))},
         {"$inc": {"stock": -quantity}}
@@ -108,7 +107,6 @@ async def delete_cart_item(user_id: str, product_id: str):
 
     return cart
 
-
 @router.put("/cart/{user_id}/{product_id}")
 async def update_cart_item(user_id: str, product_id: str, update_item: UpdateCartItem, db: Database = Depends(get_database)):
     cart = db.get_carts_collection().find_one({"user_id": user_id})
@@ -144,25 +142,11 @@ async def delete_cart(cart_id: str):
     if not cart:
         raise HTTPException(status_code=404, detail="Cart not found")
 
-    items = cart.get("items", [])
-
-    for item in items:
-        product_id = item.get("product_id")
-        quantity = item.get("quantity")
-        product = db.get_products_collection().find_one({"_id": ObjectId(product_id)})
-
-        if product:
-            current_stock = product.get("stock", 0)
-            new_stock = current_stock + quantity
-
-            db.get_products_collection().update_one(
-                {"_id": ObjectId(product_id)},
-                {"$set": {"stock": new_stock}}
-            )
-
     cart_collection.delete_one({"_id": ObjectId(cart_id)})
 
     return {"message": "Cart deleted"}
+
+
 
 
 

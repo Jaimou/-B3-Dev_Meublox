@@ -178,8 +178,6 @@ def send_reset_email(email: str, reset_link: str):
         smtp.send_message(msg)
 
 
-
-
 @app.get("/reset-password", tags=['Auth'])
 async def reset_password_get(user_id: str, token: str):
     if validate_reset_token(user_id, token):

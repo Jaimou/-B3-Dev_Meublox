@@ -28,6 +28,3 @@ class ProductCreate(ProductBase):
 
 class Product(ProductBase):
     pass
-
-    #class Config:
-        #orm_mode = True
