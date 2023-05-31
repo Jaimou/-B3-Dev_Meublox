@@ -6,6 +6,9 @@ class CartItem(BaseModel):
     quantity: int
     total_price: float
 
+class UpdateCartItem(BaseModel):
+    quantity: int
+
 class Cart(BaseModel):
     user_id: str
     items: List[CartItem] = []

@@ -27,6 +27,7 @@ class Database:
 
     def get_products_collection(self):
         return self.db["products"]
+    
 
 db = Database(DATABASE_URL)
 
