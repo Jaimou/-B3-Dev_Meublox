@@ -46,7 +46,7 @@ class CategorieAppBar extends StatelessWidget {
             child: const Text(
               "Filtrer",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 80, 39, 118),
               ),

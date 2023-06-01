@@ -35,7 +35,7 @@ class FilterAppBar extends StatelessWidget {
           const Text(
             "Réinitialiser",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 80, 39, 118),
             ),

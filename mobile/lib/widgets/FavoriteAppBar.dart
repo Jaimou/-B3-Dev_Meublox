@@ -31,11 +31,19 @@ class FavoriteAppBar extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        const Icon(
-          Icons.more_vert,
-          size: 30,
-          color: Color.fromARGB(255, 80, 39, 118),
-        ),
+        InkWell(
+            onTap: () {
+              
+            },
+            child: const Text(
+              "Modifier",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 80, 39, 118),
+              ),
+            ),
+          ),
       ]),
     );
   }
