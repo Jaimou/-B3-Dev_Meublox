@@ -43,3 +43,8 @@ class UserIn(UserBase):
     is_admin: bool  # Champ supplémentaire pour l'admin
 
 
+class Card(BaseModel):
+    card_number: str = Field(...)
+    card_holder: str = Field(...)
+    expiration_date: str = Field(...)
+    cvv: str = Field(...)
