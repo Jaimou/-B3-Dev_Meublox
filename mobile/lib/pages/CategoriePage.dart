@@ -6,7 +6,7 @@ import '../widgets/CategorieWidget.dart';
 
 class CategoriePage extends StatelessWidget {
   final String category;
-  const CategoriePage({super.key, required this.category});
+  const CategoriePage({super.key, required this.category,});
 
   @override
   Widget build(BuildContext context) {

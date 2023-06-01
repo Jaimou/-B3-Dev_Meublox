@@ -69,10 +69,10 @@ class CategorieWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
-                        "45 €",
-                        style: TextStyle(
+                        "45$i€",
+                        style: const TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(255, 80, 39, 118),
                           fontWeight: FontWeight.bold,

@@ -309,7 +309,6 @@ class _ItemPageState extends State<ItemPage> {
                             ),
                           ),
                         ],
-                        
                       ),
                     ),
                     // Padding(
