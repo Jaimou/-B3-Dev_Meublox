@@ -6,6 +6,7 @@ from app.utils.pyobjectid import PyObjectId
 class Product(BaseModel):
     nom: str #
     description: str
+    short_description: str #
     prix: float #
     images: Optional[List[str]]
     couleurs: Optional[List[str]] #

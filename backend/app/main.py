@@ -103,19 +103,19 @@ def send_reset_email(email: str, reset_link: str):
             }}
             .word1 {{
                 color: #0077B6;
-                font-weight: bold;
+                font-weight: black;
             }}
             .word2 {{
                 color: #0077B6;
-                font-weight: bold;
+                font-weight: black;
             }}
             .word3 {{
                 color: #0077B6;
-                font-weight: bold;
+                font-weight: black;
             }}
             .word4 {{
                 color: #0077B6;
-                font-weight: bold;
+                font-weight: black;
             }}
             p {{
                 font-size: 16px;
