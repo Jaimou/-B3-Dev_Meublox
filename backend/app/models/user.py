@@ -40,4 +40,6 @@ class UserUpdate(UserBase):
 
 class UserIn(UserBase):
     password: Optional[str]
-    is_admin: bool  # Champ pour définir le statut d'administrateur
+    is_admin: bool  # Champ supplémentaire pour l'admin
+
+

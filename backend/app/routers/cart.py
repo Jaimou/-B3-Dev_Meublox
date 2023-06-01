@@ -133,23 +133,5 @@ async def update_cart_item(user_id: str, product_id: str, update_item: UpdateCar
 
     return cart
 
-@router.delete("/cart/{cart_id}")
-async def delete_cart(cart_id: str):
-    cart_collection = db.get_carts_collection()
-
-    cart = cart_collection.find_one({"_id": ObjectId(cart_id)})
-
-    if not cart:
-        raise HTTPException(status_code=404, detail="Cart not found")
-
-    cart_collection.delete_one({"_id": ObjectId(cart_id)})
-
-    return {"message": "Cart deleted"}
-
-
-
-
-
-
 
 

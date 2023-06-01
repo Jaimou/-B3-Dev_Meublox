@@ -61,40 +61,6 @@ def delete_user_by_id(user_id: str, db=Depends(get_database)):
     collection.delete_one({"_id": ObjectId(user_id)})
     return User(**user)
 
-@router.get("/email/{email}", response_model=User)
-def read_user_by_email(email: str, db=Depends(get_database)):
-    collection = db.get_collection("users")
-    user = collection.find_one({"email": email})
-    if user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return User(**user)
-
-@router.get("/username/{username}", response_model=User)
-def read_user_by_username(username: str, db=Depends(get_database)):
-    collection = db.get_collection("users")
-    user = collection.find_one({"username": username})
-    if user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return User(**user)
-
-@router.get("/username/{username}/password/{password}", response_model=User)
-def read_user_by_username_and_password(username: str, password: str, db=Depends(get_database)):
-    collection = db.get_collection("users")
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    user = collection.find_one({"username": username, "hashed_password": hashed_password})
-    if user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return User(**user)
-
-@router.get("/email/{email}/password/{password}", response_model=User)
-def read_user_by_email_and_password(email: str, password: str, db=Depends(get_database)):
-    collection = db.get_collection("users")
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    user = collection.find_one({"email": email, "hashed_password": hashed_password})
-    if user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return User(**user)
-
 @router.post("/admin", response_model=User)
 def create_new_admin(user: UserIn, db=Depends(get_database)):
     collection = db.get_collection("users")

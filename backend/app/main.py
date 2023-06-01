@@ -92,9 +92,8 @@ def send_reset_email(email: str, reset_link: str):
             }}
             .logo {{
                 display: inline-block;
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
+                width: 100px;
+                height: 100px;
                 object-fit: cover;
             }}
             h2 {{
@@ -140,7 +139,7 @@ def send_reset_email(email: str, reset_link: str):
     <body>
         <div class="container">
             <div class="logo-container">
-                <img src="https://img.freepik.com/premium-vector/dragon-tribal-tattoo-vector-illustration-isolated-white-background_97231-2441.jpg?w=2000" alt="Logo Meublox" class="logo">
+                <img src="https://cdn.discordapp.com/attachments/1039460903067856908/1113744278888403026/meubloxLogo.png" alt="Logo Meublox" class="logo">
             </div>
             <h2><span class="word1">Réinitialisation</span> <span class="word2">de</span> <span class="word3">mot</span> <span class="word4">de passe</span></h2>
             <p>Cher Membre,</p>
@@ -152,19 +151,6 @@ def send_reset_email(email: str, reset_link: str):
         </div>
     </body>
     </html>"""
-
-    msg = EmailMessage()
-    msg.add_alternative(message, subtype='html')
-    msg['Subject'] = subject
-    msg['From'] = "Meublox@noreply.com"
-    msg['To'] = email
-
-    with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
-        smtp.starttls()
-        smtp.login("soso8amine@gmail.com", "zogkisyuvbwuhsjq")
-        smtp.send_message(msg)
-
-
 
     msg = EmailMessage()
     msg.add_alternative(message, subtype='html')

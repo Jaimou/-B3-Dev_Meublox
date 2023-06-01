@@ -7,6 +7,7 @@ class ProductBase(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id") #"_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
     nom: str = Field(...)
     description: str = Field(...)
+    short_description: str = Field(...)
     prix: float = Field(...)
     images: Optional[List[str]]
     couleurs: Optional[List[str]]
