@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:meublox/providers/favorites_provider.dart';
 import 'package:meublox/providers/items_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class FavoritesWidget extends StatelessWidget {
   const FavoritesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final favoritesProvider = Provider.of<FavoritesProvider>(context, listen: false);
     final itemsProvider = Provider.of<ItemsProvider>(context, listen: false);
-
-    final favoriteIndices = favoritesProvider.favoriteIndices;
-    final favoriteItems = itemsProvider.getFavoriteItems(favoriteIndices);
 
     return Consumer<FavoritesProvider>(
       builder: (context, favoritesProvider, _) {
+        final favoriteIndices = favoritesProvider.favoriteIndices;
+        final favoriteItems = itemsProvider.getFavoriteItems(favoriteIndices);
+
         return GridView.count(
           childAspectRatio: 2.8,
           physics: const NeverScrollableScrollPhysics(),
@@ -36,7 +36,7 @@ class FavoritesWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 10),
                     height: 120,
                     width: 120,
-                    child: Image.asset("assets/images/article_0.png"),
+                    child: Image.asset(item.imagePath),
                   ),
                   Expanded(
                     child: Column(
@@ -44,14 +44,15 @@ class FavoritesWidget extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
+                            favoritesProvider.setSelectedItem(item);
                             Navigator.pushNamed(context, "itemPage");
                           },
                           child: Container(
                             padding: const EdgeInsets.only(bottom: 8),
                             alignment: Alignment.centerLeft,
-                            child: const Text(
-                              "Product Title",
-                              style: TextStyle(
+                            child: Text(
+                              item.title,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 80, 39, 118),
                                 fontWeight: FontWeight.bold,
@@ -67,9 +68,9 @@ class FavoritesWidget extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 constraints:
                                     const BoxConstraints(maxWidth: 200),
-                                child: const Text(
-                                  "Product Description",
-                                  style: TextStyle(
+                                child: Text(
+                                  item.description,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
                                   ),
@@ -86,12 +87,12 @@ class FavoritesWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 15),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "45 €",
-                              style: TextStyle(
+                              "${NumberFormat.decimalPattern().format(item.price)} €",
+                              style: const TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 80, 39, 118),
                                 fontWeight: FontWeight.bold,

@@ -5,7 +5,7 @@ class ItemsProvider extends ChangeNotifier {
   List<Item> items = [
     Item(
       title: "Product Title 1",
-      price: 40,
+      price: 40.98,
       description: "Product Description 1",
       imagePath: "assets/images/article_0.png",
     ),

@@ -3,6 +3,7 @@ import 'package:meublox/models/item.dart';
 import 'package:meublox/providers/favorites_provider.dart';
 import 'package:meublox/providers/items_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ItemsWidget extends StatelessWidget {
   const ItemsWidget({super.key});
@@ -48,6 +49,7 @@ class ItemsWidget extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        favoritesProvider.setSelectedItem(items[i]);
                         Navigator.pushNamed(context, "itemPage");
                       },
                       child: Container(
@@ -90,7 +92,7 @@ class ItemsWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "${items[i].price} €",
+                            "${NumberFormat.decimalPattern().format(items[i].price)} €",
                             style: const TextStyle(
                               fontSize: 20,
                               color: Color.fromARGB(255, 80, 39, 118),
