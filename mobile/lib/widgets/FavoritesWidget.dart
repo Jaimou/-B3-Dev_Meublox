@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meublox/providers/FavoritesProvider.dart';
+import 'package:meublox/providers/ItemsProvider.dart';
 import 'package:provider/provider.dart';
 
 class FavoritesWidget extends StatelessWidget {
@@ -7,10 +8,14 @@ class FavoritesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider = Provider.of<FavoritesProvider>(context, listen: false);
+    final itemsProvider = Provider.of<ItemsProvider>(context, listen: false);
+
+    final favoriteIndices = favoritesProvider.favoriteIndices;
+    final favoriteItems = itemsProvider.getFavoriteItems(favoriteIndices);
+
     return Consumer<FavoritesProvider>(
       builder: (context, favoritesProvider, _) {
-        final favoriteItems = favoritesProvider.favoriteIndices;
-
         return GridView.count(
           childAspectRatio: 2.8,
           physics: const NeverScrollableScrollPhysics(),

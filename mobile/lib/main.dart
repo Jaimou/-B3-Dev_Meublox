@@ -5,10 +5,19 @@ import 'package:meublox/pages/ItemPage.dart';
 import 'package:meublox/pages/SearchPage.dart';
 import 'package:meublox/pages/FavoritePage.dart';
 import 'package:meublox/providers/FavoritesProvider.dart';
+import 'package:meublox/providers/ItemsProvider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (_) => ItemsProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

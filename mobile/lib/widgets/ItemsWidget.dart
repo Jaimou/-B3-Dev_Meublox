@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meublox/models/Item.dart';
 import 'package:meublox/providers/FavoritesProvider.dart';
+import 'package:meublox/providers/ItemsProvider.dart';
 import 'package:provider/provider.dart';
 
 class ItemsWidget extends StatelessWidget {
@@ -8,56 +9,8 @@ class ItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Item> items = [
-      Item(
-        title: "Product Title 1",
-        price: 40,
-        description: "Product Description 1",
-        imagePath: "assets/images/article_0.png",
-      ),
-      Item(
-        title: "Product Title 2",
-        price: 45,
-        description: "Product Description 2",
-        imagePath: "assets/images/article_1.png",
-      ),
-      Item(
-        title: "Product Title 3",
-        price: 50,
-        description: "Product Description 3",
-        imagePath: "assets/images/article_2.png",
-      ),
-      Item(
-        title: "Product Title 4",
-        price: 55,
-        description: "Product Description 4",
-        imagePath: "assets/images/article_3.png",
-      ),
-      Item(
-        title: "Product Title 5",
-        price: 60,
-        description: "Product Description 5",
-        imagePath: "assets/images/article_4.png",
-      ),
-      Item(
-        title: "Product Title 6",
-        price: 65,
-        description: "Product Description 6",
-        imagePath: "assets/images/article_5.png",
-      ),
-      Item(
-        title: "Product Title 7",
-        price: 70,
-        description: "Product Description 7",
-        imagePath: "assets/images/article_6.png",
-      ),
-      Item(
-        title: "Product Title 8",
-        price: 75,
-        description: "Product Description 8",
-        imagePath: "assets/images/article_7.png",
-      ),
-    ];
+    final itemsProvider = Provider.of<ItemsProvider>(context, listen: false);
+    final List<Item> items = itemsProvider.items;
 
     return Consumer<FavoritesProvider>(
       builder: (context, favoritesProvider, _) {
