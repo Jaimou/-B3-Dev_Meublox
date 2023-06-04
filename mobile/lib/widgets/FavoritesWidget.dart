@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:meublox/providers/FavoritesProvider.dart';
+import 'package:provider/provider.dart';
 
-class FavoritesWidget extends StatefulWidget {
-  const FavoritesWidget({Key? key}) : super(key: key);
-
-  @override
-  _FavoritesWidgetState createState() => _FavoritesWidgetState();
-}
-
-class _FavoritesWidgetState extends State<FavoritesWidget> {
-  List<bool> favoriteStates = List.generate(8, (index) => false);
+class FavoritesWidget extends StatelessWidget {
+  const FavoritesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      childAspectRatio: 2.8,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 1,
-      shrinkWrap: true,
-      children: List.generate(8, (index) {
-        final isFavorite = favoriteStates[index];
-        if (isFavorite) {
-          return Container();
-        } else {
-          return Container(
+    return Consumer<FavoritesProvider>(
+      builder: (context, favoritesProvider, _) {
+        final favoriteItems = favoritesProvider.favoriteIndices;
+
+        return GridView.count(
+          childAspectRatio: 2.8,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisCount: 1,
+          shrinkWrap: true,
+          children: favoriteItems.map((item) {
+            return Container(
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               decoration: BoxDecoration(
@@ -36,14 +31,14 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                     margin: const EdgeInsets.only(right: 10),
                     height: 120,
                     width: 120,
-                    child: Image.asset("assets/images/article_$index.png"),
+                    child: Image.asset("assets/images/article_0.png"),
                   ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.pushNamed(context, "itemPage");
                           },
                           child: Container(
@@ -64,7 +59,9 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                           children: [
                             Flexible(
                               child: Container(
-                                constraints: const BoxConstraints(maxWidth: 200),
+                                alignment: Alignment.centerLeft,
+                                constraints:
+                                    const BoxConstraints(maxWidth: 200),
                                 child: const Text(
                                   "Product Description",
                                   style: TextStyle(
@@ -84,9 +81,9 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                           ],
                         ),
                         const SizedBox(height: 15),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "45 €",
                               style: TextStyle(
@@ -103,8 +100,9 @@ class _FavoritesWidgetState extends State<FavoritesWidget> {
                 ],
               ),
             );
-        }
-      }),
+          }).toList(),
+        );
+      },
     );
   }
 }

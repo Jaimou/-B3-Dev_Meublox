@@ -23,8 +23,6 @@ class FavoritePage extends StatelessWidget {
             Navigator.pushNamed(context, "/");
           } else if (index == 1) {
             Navigator.pushNamed(context, "searchPage");
-          } else if (index == 2) {
-            Navigator.pushNamed(context, "favoritePage");
           } else if (index == 3) {
             Navigator.pushNamed(context, "cartPage");
           } else if (index == 4) {

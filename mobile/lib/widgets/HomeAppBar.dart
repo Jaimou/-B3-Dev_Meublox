@@ -11,10 +11,8 @@ class HomeAppBar extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Row(
         children: [
-          const Icon(
-            Icons.sort,
-            size: 30,
-            color: Color.fromARGB(255, 80, 39, 118),
+          const SizedBox(
+            width: 35,
           ),
           const Spacer(),
           InkWell(

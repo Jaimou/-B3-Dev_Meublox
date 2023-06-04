@@ -39,9 +39,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Items Widget
-                const ItemsWidget(),
+                ItemsWidget(),
               ],
             ),
           ),
@@ -50,9 +48,7 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         onTap: (index) {
-          if (index == 0) {
-            Navigator.pushNamed(context, "/");
-          } else if (index == 1) {
+          if (index == 1) {
             Navigator.pushNamed(context, "searchPage");
           } else if (index == 2) {
             Navigator.pushNamed(context, "favoritePage");

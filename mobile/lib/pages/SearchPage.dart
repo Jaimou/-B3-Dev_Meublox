@@ -142,7 +142,6 @@ class SearchPage extends StatelessWidget {
         onTap: (index) {
           if (index == 0) {
             Navigator.pushNamed(context, "/");
-          } else if (index == 1) {
           } else if (index == 2) {
             Navigator.pushNamed(context, "favoritePage");
           } else if (index == 3) {

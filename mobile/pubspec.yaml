@@ -38,7 +38,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   carousel_slider: ^4.0.0
   http: ^1.0.0
-  provider: ^4.3.3
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:

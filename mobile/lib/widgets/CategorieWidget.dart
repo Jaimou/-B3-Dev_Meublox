@@ -55,13 +55,18 @@ class CategorieWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Product Description",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
+                Flexible(
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: const Text(
+                      "Product Description",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
                   ),
                 ),

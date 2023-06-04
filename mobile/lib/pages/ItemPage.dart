@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../models/Item.dart';
+import '../models/CartItem.dart';
 import '../widgets/ItemAppBar.dart';
 
 class ItemPage extends StatefulWidget {
@@ -51,7 +51,7 @@ class _ItemPageState extends State<ItemPage> {
   }
 
   void _addToCart() {
-    Item(
+    CartItem(
       title: "Product Title",
       price: basePrice,
       quantity: _quantity,
@@ -142,13 +142,13 @@ class _ItemPageState extends State<ItemPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    const Padding(
+                      padding: EdgeInsets.only(
                         top: 48,
                         bottom: 15,
                       ),
                       child: Row(
-                        children: const [
+                        children: [
                           Text(
                             "Product Title",
                             style: TextStyle(
