@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
+import { decodeToken } from "react-jwt";
 
-const Password = () => {
+const Password = (props) => {
+
+    let profil = props.profil;
+    let token = props.token;
+    const myDecodedToken = decodeToken(token);
+    const userId = myDecodedToken.user_id
 
     const [errors, setErrors] = useState({});
 
@@ -44,14 +50,32 @@ const Password = () => {
 
 
     const modifySubmit = () => {
-
         // methode put pour modifier le user
 
+        if (inputs.newPassword == inputs.newPasswordConfirmation) {
+
+            const requestOptions = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    password: inputs.newPassword
+                })
+            };
+            fetch(`http://localhost:8000/users/${userId}`, requestOptions)
+                .then(response => {
+                    response.json();
+                })
+        }
+
     }
+
+
     return (
         <div>
             <h3>Modifier mon mot de passe</h3>
-            <form ref={passwordForm} className="password-form" onSubmit={modifySubmit}>
+            <form ref={passwordForm} className="password-form">
                 <div className="form-div">
                     <label htmlFor="actual-password">Mot de passe actuel: </label>
                     <input
@@ -61,7 +85,7 @@ const Password = () => {
                         id="actual-password"
                         name="actual-password"
                         value={inputs.email}
-                        onChange={handleInputChange}
+                        onChange={(e) => { handleInputChange(e); validate() }}
                     />
                     {errors.email && <span className="error">{errors.password}</span>}
                 </div>
@@ -74,7 +98,7 @@ const Password = () => {
                         id="new-password"
                         name="new-password"
                         value={inputs.email}
-                        onChange={handleInputChange}
+                        onChange={(e) => { handleInputChange(e); validate() }}
                     />
                     {errors.email && <span className="error">{errors.newPassword}</span>}
                 </div><div className="form-div">
@@ -86,13 +110,13 @@ const Password = () => {
                         id="new-password-confirmation"
                         name="new-password-confirmation"
                         value={inputs.email}
-                        onChange={handleInputChange}
+                        onChange={(e) => { handleInputChange(e); validate() }}
                     />
                     {errors.email && <span className="error">{errors.newPasswordConfirmation}</span>}
                 </div>
 
 
-                <button type="submit">Valider</button>
+                <button type="button" onClick={modifySubmit}>Valider</button>
             </form>
         </div>
     )

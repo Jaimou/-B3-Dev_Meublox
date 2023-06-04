@@ -1,3 +1,6 @@
+@import '../../lib/colors/colors.scss';
+
+
 .object {
     display: flex;
     flex-direction: column;
@@ -33,4 +36,15 @@
 
 .object:last-child {
     justify-self: flex-start;
+}
+
+.name,
+.description,
+.price {
+    margin-bottom: 0px;
+}
+
+.name {
+    color: $primary-color ;
+    margin-left: 0px;
 }

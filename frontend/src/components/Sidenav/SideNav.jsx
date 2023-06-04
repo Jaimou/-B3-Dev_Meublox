@@ -23,8 +23,8 @@ export default function SideNav(props) {
     }
     return (
         <>
-            <div class="sidebar" id="sidebar">
-                <h1>{profil.firstname + ' ' + profil.lastname}</h1>
+            <div className="sidebar" id="sidebar">
+                <h1>{profil.prenom + ' ' + profil.nom}</h1>
                 <nav>
                     <ul className='profil-onglet'>
                         <li>

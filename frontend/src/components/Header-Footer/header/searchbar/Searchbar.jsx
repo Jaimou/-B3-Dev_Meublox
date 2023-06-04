@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
 import './Searchbar.scss'
-import data from '../../../../lib/data/dataTest.jsx'
 import { useNavigate } from "react-router-dom";
 
 
 const Searchbar = () => {
 
     const [searchInput, setSearchInput] = useState("");
+    const [products, setProducts] = useState([])
+    const [isLoad, setIsLoad] = useState(false)
 
-    const db = data;
+    useEffect(() => {
+
+        const callAPI = async () => {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+            let response = await fetch("http://localhost:8000/products", requestOptions);
+            const responseInJSON = await response.json();
+            setProducts(responseInJSON)
+            setIsLoad(true)
+        }
+
+        callAPI()
+    }, [])
+
+
+
     let allFilteredDataType = []
     const navigate = useNavigate()
 
@@ -22,14 +40,20 @@ const Searchbar = () => {
         navigate(`products/search/${searchInput}`)
     }
 
-    const filteredData = db.filter((item) => {
+    const filteredData = products.filter((item) => {
         if (searchInput === '') {
             return item;
         }
         else {
-            const itemNames = item.Name.includes(searchInput)
-            if (itemNames) {
-                allFilteredDataType.push(item.Type)
+            const itemNames = item.nom.includes(searchInput)
+            const categories = item.categorie.includes(searchInput)
+            if (itemNames || categories) {
+
+                item.categorie.map((categorie) => {
+                    if (categorie.includes(searchInput)) {
+                        allFilteredDataType.push(categorie)
+                    }
+                })
             }
             return itemNames
         }
@@ -66,7 +90,7 @@ const Searchbar = () => {
                 <h3>Produits :</h3>
 
                 {filteredData.map((item) => (
-                    <a className="itemName-searchbar" href={'/products/' + item.Id}>{item.Name}</a>
+                    <a className="itemName-searchbar" href={'/products/' + item._id}>{item.nom}</a>
                 ))}
             </div>
         </div>

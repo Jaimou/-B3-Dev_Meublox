@@ -4,18 +4,19 @@ import './Object.scss';
 const Object = (props) => {
 
     const object = props.object;
-    const rates = object.rates.length;
+    const rates = object.note;
 
 
     return (
         <div className="object">
             <div className="img-div">
-                <img alt="object-img" src={object.imageThumbnailUrl} className="principal-object-image" />
+                <img alt="object-img" src={object.images[0]} className="principal-object-image" />
             </div>
-            <p className="description">{object.shortDescription}</p>
-            <p className="price">{object.price.toFixed(2)} €</p>
+            <h3 className="name">{object.nom}</h3>
+            <p className="description">{object.short_description}</p>
+            <p className="price">{object.prix.toFixed(2)} €</p>
             <div className="rate">
-                <StarRating rate={object.rate} />
+                <StarRating rate={object.note} />
                 <p>({rates})</p>
             </div>
         </div>

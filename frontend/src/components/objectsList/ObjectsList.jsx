@@ -22,15 +22,15 @@ const ObjectsList = (props) => {
             const objectsDataPopular = objectsData.slice(0, 4)
             setData(objectsDataPopular)
         }
-        if (currentUrl.includes("http://localhost:3000/products/category/")) {
+        if (currentUrl.includes("products/category/")) {
 
-            const objectsDataPopular = allData.filter((product) => product.Type == type);
+            const objectsDataPopular = allData.filter((product) => product.categorie.includes(type));
 
             setData(objectsDataPopular)
         }
-        if (currentUrl.includes("http://localhost:3000/products/search/")) {
+        if (currentUrl.includes("products/search/")) {
 
-            const objectsDataPopular = allData.filter((product) => product.Type == type);
+            const objectsDataPopular = allData.filter((product) => product.nom.includes(type));
             setData(objectsDataPopular)
         }
         if (currentUrl == "http://localhost:3000/products") {
@@ -64,7 +64,7 @@ const ObjectsList = (props) => {
 
                     {data.map((object) => {
                         return (
-                            <a href={'/products/' + object.id}>
+                            <a href={'/products/' + object._id}>
                                 <Object object={object} />
                             </a>
                         )

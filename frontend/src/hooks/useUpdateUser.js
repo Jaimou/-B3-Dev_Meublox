@@ -1,11 +1,10 @@
-import { useConnect } from "./useGetToken";
 
-export function useUpdateUser(form) {
+export function useUpdateUser(form, userId) {
 
-    const token = useConnect()
+    const token = sessionStorage.getItem("token")
 
     const requestOptions = {
-        method: 'PATCH',
+        method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -23,9 +22,8 @@ export function useUpdateUser(form) {
             role:form.role
         })
     };
-    fetch('requete api post order', requestOptions)
+    fetch(`http://localhost/users/${userId}`, requestOptions)
         .then(response => response.json())
         .then(data => this.setState({ userId: data.id }));
 
-    console.log(response)
 }

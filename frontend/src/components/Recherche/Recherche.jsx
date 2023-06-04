@@ -1,20 +1,44 @@
+import { useEffect, useState } from "react";
 import ObjectsList from "../objectsList/ObjectsList";
-import data from '../../lib/data/dataTest.jsx'
 import { useParams } from "react-router-dom";
 
 const Recherche = () => {
-    const allData = data
+    const [allData, setAllData] = useState([])
+    const [isLoad, setIsLoad] = useState(false)
+
+
+    useEffect(() => {
+
+        const callAPI = async () => {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+            let response = await fetch("http://localhost:8000/products", requestOptions);
+            const responseInJSON = await response.json();
+            setAllData(responseInJSON)
+            setIsLoad(true)
+        }
+
+        callAPI()
+    }, [])
     let { research } = useParams()
 
 
     return (
         <div className='page'>
-            <h3><a href='/'>Home</a></h3>
-            <h1>{research}</h1>
-            <div className='trait'></div>
-            <div className='all-products-page'>
-                <ObjectsList allData={allData} type={research} />
-            </div>
+            {isLoad ?
+                <>
+                    <h3><a href='/'>Home</a></h3>
+                    <h1>{research}</h1>
+                    <div className='trait'></div>
+                    <div className='all-products-page'>
+                        <ObjectsList allData={allData} type={research} />
+                    </div>
+                </>
+                :
+                <h2>Loading</h2>
+            }
         </div>
     )
 }

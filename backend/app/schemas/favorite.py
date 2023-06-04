@@ -11,7 +11,7 @@ class FavoriteBase(BaseModel):
     def validate_ids(cls, id):
         if not ObjectId.is_valid(id):
             raise ValueError('Invalid objectid')
-        return str(id)  # Convert ObjectId to string
+        return str(id)
 
 class FavoriteCreate(FavoriteBase):
     pass

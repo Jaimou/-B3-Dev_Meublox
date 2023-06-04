@@ -1,31 +1,54 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './ProductPage.scss'
 import { useEffect, useState } from 'react';
-// import data from '../../lib/data/dataTest.jsx'
 import StarRating from '../starRating/StarRating';
-import { useGetCart } from '../../hooks/Cart/useGetCart';
-import { useGetProduct } from '../../hooks/Products/useGetProduct';
-import { useUserStatus } from '../../hooks/useUserStatus';
+import { decodeToken } from 'react-jwt';
+
 
 const ProductPage = () => {
 
 
-    // const allData = data
-
     const navigate = useNavigate()
     const { productId } = useParams()
-    // const log = useUserStatus()
-    const cart = useGetCart()
-
-    const product = useGetProduct(productId)
-    console.log("product = ")
-    console.log(product)
-    // let product = allData.find((product) => {
-    //     return product.Id == productId
-    // })
-    // let productImages = product.Gallery;
-
     const [quantity, setQuantity] = useState(1)
+    const [actualCart, setActualCart] = useState([""])
+
+    const [product, setProduct] = useState()
+    const [isLoad, setIsLoad] = useState(false)
+
+    const token = sessionStorage.getItem("token");
+    const myDecodedToken = decodeToken(token);
+    const userId = myDecodedToken.user_id
+
+
+
+    useEffect(() => {
+        callAPI()
+        callAPIForCart()
+    }, [])
+
+    const callAPI = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        let response = await fetch(`http://127.0.0.1:8000/products/${productId}`, requestOptions);
+        const responseInJSON = await response.json();
+        setProduct(responseInJSON)
+        setIsLoad(true)
+
+    }
+
+    const callAPIForCart = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        let response = await fetch(`http://127.0.0.1:8000/cart/${userId}`, requestOptions);
+        const responseInJSON = await response.json();
+        setActualCart(responseInJSON)
+
+    }
 
     const handleQuantityChange = (e) => {
         const target = e.target;
@@ -39,108 +62,176 @@ const ProductPage = () => {
         setQuantity(value);
     }
 
-    const addToCart = () => {
+    const addToLocalCart = (newProduct) => {
+        let currentCart = JSON.parse(sessionStorage.getItem("cart"));
+        if (currentCart == null) {
+            currentCart = [];
+            currentCart.push(newProduct);
+            localStorage.setItem("cart", JSON.stringify(currentCart));
+        }
+        else {
+            checkIsInLocalCart(newProduct, currentCart)
 
+        }
     }
 
-    // useEffect(() => {
-    //     let newProduct = { id: productId, productQuantity: quantity };
-    //     let cart = null;
-    //     if (log) {
-    //         cart = useCart(newProduct);
-    //         return cart
-    //     }
-    //     else {
-    //         cart = useCart(newProduct);
-    //         return cart
-    //     }
-    // }, [addToCart])
+    const checkIsInLocalCart = (newProduct, currentCart) => {
+        if (currentCart.some(productFound => productFound.id === newProduct.id)) {
+            let productFound = currentCart.find(product => product.id === newProduct.id)
+            productFound.productQuantity += quantity;
+
+            checkProductQuantity(productFound, currentCart)
+        }
+        else {
+            currentCart.push(newProduct);
+            sessionStorage.setItem("cart", JSON.stringify(currentCart));
+        }
+    }
+
+    const checkProductQuantity = (productFound, currentCart) => {
+        if (productFound.productQuantity > 10) {
+            productFound.productQuantity = 10;
+        }
+        sessionStorage.setItem("cart", JSON.stringify(currentCart));
+    }
+
+    const addToCartApi = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                items: [
+                    {
+                        product_id: productId,
+                        quantity: quantity
+                    }
+                ]
+            })
+        };
+        await fetch(`http://127.0.0.1:8000/cart`, requestOptions);
+    }
+
+    const addMoreProduct = async (quant) => {
+        let newQuantity = quant + quantity
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ quantity: newQuantity })
+        };
+        await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+    }
 
 
-    // let currentCart = JSON.parse(localStorage.getItem("cart"));
+    const addToCart = () => {
+        console.log("test 2")
+        if (token != null) {
+            if (actualCart.detail != "Cart not found") {
+                isCartExisting()
+            }
+            else {
+                addToCartApi()
+            }
 
-    // if (currentCart == null) {
-    //     currentCart = [];
-    //     currentCart.push(newProduct);
-    //     localStorage.setItem("cart", JSON.stringify(currentCart));
-    // }
-    // else {
+        }
+        else {
+            let newProduct = { id: productId, productQuantity: quantity };
+            addToLocalCart(newProduct)
+        }
+    };
 
-    //     if (currentCart.some(product => product.id === newProduct.id)) {
-    //         product = currentCart.find(product => product.id === newProduct.id)
-    //         product.productQuantity += quantity;
+    const isCartExisting = () => {
+        let i = 0
+        actualCart.items.map(
+            (item) => {
+                if (item.product_id == productId) {
+                    addMoreProduct(item.quantity)
+                }
+                else {
+                    i++
+                }
+            })
 
-    //         if (newProduct.productQuantity > 10) {
-    //             newProduct.productQuantity = 10;
-    //         }
-    //         localStorage.setItem("cart", JSON.stringify(currentCart));
+        if (i == actualCart.items.length) {
 
-    //     }
-
-    //     else {
-    //         currentCart.push(newProduct);
-    //         localStorage.setItem("cart", JSON.stringify(currentCart));
-    //     }
-    // }
-    // window.location.reload(true)
-
+            addToCartApi()
+        }
+    }
 
     return (
         <div className='page'>
-            <h3><a href='/products'>Produits</a> &gt; <a id='productType' href={'/products/category/' + product.type}>{product.type}</a> </h3>
-            <h1>{product.name}</h1>
-            <div className='trait'></div>
-            <div className='product-page'>
-
-                <div className='images-gallery'>
-                    <div className='images-collumn'>
-                        {product.gallery.map((imgUrl) => {
-                            return (
-                                <img className='image-gallery' src={imgUrl} alt='image de gallerie' />
+            {isLoad ?
+                <>
+                    <h3> <a href='/products'>Produits</a>
+                        {product.categorie.map((categorie) => {
+                            return (<>
+                                &nbsp; &gt; &nbsp;
+                                <a id='productType' href={'/products/category/' + categorie}>{categorie}</a>
+                            </>
                             )
-                        }
-                        )}
+                        })}</h3>
+                    <h1>{product.nom}</h1>
+                    <div className='trait'></div>
+                    <div className='product-page'>
 
-                    </div>
-                    <img className='image-first' src={product.imageThumbnailUrl} alt={product.shortDescription} />
-                </div>
+                        <div className='images-gallery'>
+                            <div className='images-collumn'>
+                                {product.images.map((imgUrl) => {
+                                    return (
+                                        <img className='image-gallery' src={imgUrl} alt='image de gallerie' />
+                                    )
+                                }
+                                )}
 
-                <div className='product'>
-                    <div className='details'>
-                        <h1>{product.name}</h1>
-                        <h2>{product.price} €</h2>
-                    </div>
-                    <div className='description'>
-                        <p className='long-description'>{product.shortDescription}</p>
-                        <div className='rate'>
-                            <StarRating rate={product.rate} /><p>({product.rates.length})</p>
-                        </div>
-                        <div className='trait'></div>
-                        {product.stock == 0
-                            ? <p>Le produit n'est plus en stock</p>
-                            : <p>Nombre de produits en stock : {product.stock}</p>
-
-                        }
-                        <div className='trait'></div>
-                        {product.stock == 0
-                            ? <button type='button' onClick={() => { navigate('/') }} >Aller à la page d'accueil</button>
-
-                            : <div className='toCart'>
-                                <p>Quantité :
-                                    <input
-                                        id="quantity"
-                                        type="number"
-                                        min={1}
-                                        max={10}
-                                        value={quantity}
-                                        onChange={handleQuantityChange} /></p>
-                                <button className='addToCart' type='button' onClick={addToCart}>Ajouter au panier</button>
                             </div>
-                        }
+                            <img className='image-first' src={product.images[0]} alt={product.short_description} />
+                        </div>
 
+                        <div className='product'>
+                            <div className='details'>
+                                <h2>{product.short_description} - {product.prix}&nbsp;€</h2>
+
+                            </div>
+                            <div className='description'>
+                                <p className='long-description'>{product.description}</p>
+                                <div className='rate'>
+                                    <StarRating rate={product.note} /><p>({product.note})</p>
+                                </div>
+                                <div className='trait'></div>
+                                {product.stock == 0
+                                    ? <p>Le produit n'est plus en stock</p>
+                                    : <p>Nombre de produits en stock : {product.stock}</p>
+
+                                }
+                                <div className='trait'></div>
+                                {product.stock == 0
+                                    ? <button type='button' onClick={() => { navigate('/') }} >Aller à la page d'accueil</button>
+
+                                    : <div className='toCart'>
+                                        <p>Quantité :
+                                            <input
+                                                id="quantity"
+                                                type="number"
+                                                min={1}
+                                                max={10}
+                                                value={quantity}
+                                                onChange={handleQuantityChange} /></p>
+                                        <button className='addToCart' type='button' onClick={addToCart}>Ajouter au panier</button>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </> :
+                <h2>Loading</h2>
+            }
         </div>
     )
 }

@@ -1,19 +1,23 @@
-import { useState } from 'react';
-import { useGetToken } from './useGetToken';
+import { useEffect, useState } from 'react';
 
 export function useUserStatus() {
-
-    //const token = useGetToken();
-    const token = null;
-
     const [log, setlog] = useState(false)
 
-    if (token != null){
-        setlog(true)
-    }
-    else {
-        setlog(false)
-    }
+
+    useEffect(()=> {
+        const token = sessionStorage.getItem("token")
+    
+    
+        if (token == null || token == "undefined"){
+            setlog(false)
+        }
+
+        else {
+            setlog(true)
+        }
+    })
+
+   
 
     return log
 }

@@ -22,8 +22,8 @@ const FiltrePrix = (props) => {
         let minPrice = 10000;
 
         data.map((product) => {
-            if (product.price < minPrice) {
-                minPrice = product.price;
+            if (product.prix < minPrice) {
+                minPrice = product.prix;
             }
 
             return minPrice;
@@ -36,8 +36,8 @@ const FiltrePrix = (props) => {
         let maxPrice = 0;
 
         data.map((product) => {
-            if (product.price > maxPrice) {
-                maxPrice = product.price;
+            if (product.prix > maxPrice) {
+                maxPrice = product.prix;
             }
 
             return maxPrice;

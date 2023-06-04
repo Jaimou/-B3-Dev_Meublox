@@ -40,4 +40,11 @@ class UserUpdate(UserBase):
 
 class UserIn(UserBase):
     password: Optional[str]
-    is_admin: bool  # Champ pour définir le statut d'administrateur
+    is_admin: bool  # Champ supplémentaire pour l'admin
+
+
+class Card(BaseModel):
+    card_number: str = Field(...)
+    card_holder: str = Field(...)
+    expiration_date: str = Field(...)
+    cvv: str = Field(...)
