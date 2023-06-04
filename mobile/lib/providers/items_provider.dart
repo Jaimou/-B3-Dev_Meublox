@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:meublox/models/Item.dart';
+import 'package:meublox/models/item.dart';
 
 class ItemsProvider extends ChangeNotifier {
   List<Item> items = [

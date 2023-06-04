@@ -1,11 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/FilterAppBar.dart';
-import '../widgets/FilterWidget.dart';
+import '../widgets/categorie_app_bar.dart';
+import '../widgets/categorie_widget.dart';
 
-class FilterPage extends StatelessWidget {
-  const FilterPage({Key? key}) : super(key: key);
+class CategoriePage extends StatelessWidget {
+  final String category;
+  const CategoriePage({super.key, required this.category,});
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,8 @@ class FilterPage extends StatelessWidget {
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
         children: const [
-          FilterAppBar(),
-          FilterWidget(),
+          CategorieAppBar(),
+          CategorieWidget(category: '',),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(

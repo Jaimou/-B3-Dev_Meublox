@@ -5,8 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../models/CartItem.dart';
-import '../widgets/ItemAppBar.dart';
+import '../models/cart_item.dart';
+import '../widgets/item_app_bar.dart';
 
 class ItemPage extends StatefulWidget {
   const ItemPage({super.key});

@@ -52,12 +52,12 @@ class _CartItemSamplesState extends State<CartItemSamples> {
                   margin: const EdgeInsets.only(right: 15),
                   child: Image.asset("assets/images/article_$i.png"),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         "Product Title",
                         style: TextStyle(

@@ -23,9 +23,9 @@ class CategorieWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.favorite_border,
                       color: Colors.red,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meublox/models/Item.dart';
-import 'package:meublox/providers/FavoritesProvider.dart';
-import 'package:meublox/providers/ItemsProvider.dart';
+import 'package:meublox/models/item.dart';
+import 'package:meublox/providers/favorites_provider.dart';
+import 'package:meublox/providers/items_provider.dart';
 import 'package:provider/provider.dart';
 
 class ItemsWidget extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/CartAppBar.dart';
-import '../widgets/CartItemSamples.dart';
+import '../widgets/cart_app_bar.dart';
+import '../widgets/cart_item_samples.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -69,9 +69,9 @@ class CartPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             "Total :",
                             style: TextStyle(

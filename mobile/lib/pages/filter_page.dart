@@ -1,19 +1,20 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:meublox/widgets/FavoritesWidget.dart';
-import '../widgets/FavoriteAppBar.dart';
 
-class FavoritePage extends StatelessWidget {
-  const FavoritePage({super.key});
-  
+import '../widgets/filter_app_bar.dart';
+import '../widgets/filter_widget.dart';
+
+class FilterPage extends StatelessWidget {
+  const FilterPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
         children: const [
-          FavoriteAppBar(),
-          FavoritesWidget(),
+          FilterAppBar(),
+          FilterWidget(),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -23,6 +24,8 @@ class FavoritePage extends StatelessWidget {
             Navigator.pushNamed(context, "/");
           } else if (index == 1) {
             Navigator.pushNamed(context, "searchPage");
+          } else if (index == 2) {
+            Navigator.pushNamed(context, "favoritePage");
           } else if (index == 3) {
             Navigator.pushNamed(context, "cartPage");
           } else if (index == 4) {
@@ -31,7 +34,7 @@ class FavoritePage extends StatelessWidget {
         },
         height: 65,
         color: const Color.fromARGB(255, 80, 39, 118),
-        index: 2,
+        index: 1,
         items: const [
           Icon(
             Icons.home,

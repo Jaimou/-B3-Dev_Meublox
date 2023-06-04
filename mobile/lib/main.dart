@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meublox/pages/CartPage.dart';
-import 'package:meublox/pages/HomePage.dart';
-import 'package:meublox/pages/ItemPage.dart';
-import 'package:meublox/pages/SearchPage.dart';
-import 'package:meublox/pages/FavoritePage.dart';
-import 'package:meublox/providers/FavoritesProvider.dart';
-import 'package:meublox/providers/ItemsProvider.dart';
+import 'package:meublox/pages/cart_page.dart';
+import 'package:meublox/pages/home_page.dart';
+import 'package:meublox/pages/item_page.dart';
+import 'package:meublox/pages/search_page.dart';
+import 'package:meublox/pages/favorite_page.dart';
+import 'package:meublox/providers/favorites_provider.dart';
+import 'package:meublox/providers/items_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {

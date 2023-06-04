@@ -1,8 +1,8 @@
 class Item {
-  final String title;
-  final String description;
-  final String imagePath;
-  final double price;
+  String title;
+  String description;
+  String imagePath;
+  double price;
 
   Item({
     required this.title,

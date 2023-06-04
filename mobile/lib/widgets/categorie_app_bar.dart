@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/FilterPage.dart';
+import '../pages/filter_page.dart';
 
 class CategorieAppBar extends StatelessWidget {
   const CategorieAppBar({super.key});
