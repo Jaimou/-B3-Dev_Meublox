@@ -16,6 +16,31 @@ class FavoritesWidget extends StatelessWidget {
         final favoriteIndices = favoritesProvider.favoriteIndices;
         final favoriteItems = itemsProvider.getFavoriteItems(favoriteIndices);
 
+        if (favoriteItems.isEmpty) {
+          return const SizedBox(
+            height: 600,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.favorite_border,
+                  size: 80,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Aucun produit dans les favoris",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color.fromARGB(255, 80, 39, 118),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
         return GridView.count(
           childAspectRatio: 2.8,
           physics: const NeverScrollableScrollPhysics(),
