@@ -19,7 +19,12 @@ class FavoritesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Item> getFavoriteItems(List<int> favoriteIndices, List<Item> allItems) {
+  List<Item> getFavoriteItems(List<Item> allItems) {
     return favoriteIndices.map((index) => allItems[index]).toList();
+  }
+  
+  void clearFavorites() {
+    favoriteIndices.clear();
+    notifyListeners();
   }
 }
