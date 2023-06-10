@@ -4,30 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:meublox/models/item.dart';
 
-import '../models/cart_item.dart';
 import '../widgets/item_app_bar.dart';
 
 class ItemPage extends StatefulWidget {
+  // final Item item;
+
   const ItemPage({super.key});
 
   @override
   _ItemPageState createState() => _ItemPageState();
 }
-
-int _currentImageIndex = 0;
-int _quantity = 1;
-double basePrice = 45.0;
   
 class _ItemPageState extends State<ItemPage> {
-
-  // List<Color> Clrs = [
-  //   Colors.orange,
-  //   Colors.red,
-  //   Colors.blue,
-  //   Colors.green,
-  //   Colors.yellow,
-  // ];
+  int _currentImageIndex = 0;
+  int _quantity = 1;
+  double basePrice = 45.0;
 
   final List<String> imageUrls = [
     "assets/images/article_0.png",
@@ -50,33 +43,9 @@ class _ItemPageState extends State<ItemPage> {
     });
   }
 
-  void _addToCart() {
-    CartItem(
-      title: "Product Title",
-      price: basePrice,
-      quantity: _quantity,
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Produit ajouté au panier"),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    // final Item item = widget.item;
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
@@ -150,7 +119,8 @@ class _ItemPageState extends State<ItemPage> {
                       child: Row(
                         children: [
                           Text(
-                            "Product Title",
+                            // item.title,
+                            "Product title",
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -158,8 +128,8 @@ class _ItemPageState extends State<ItemPage> {
                             ),
                           ),
                           Spacer(),
-                          // Récupérer le prix de l'article avec l'API
                           Text(
+                            // "${item.price.toStringAsFixed(2)} €",
                             "45 €",
                             style: TextStyle(
                               fontSize: 25,
@@ -173,7 +143,8 @@ class _ItemPageState extends State<ItemPage> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(
-                        "Voici encore plus de texte pour décrire le produit. On peut écrire plus d'informations sur le produit comme par exemple les dimensions et les informations sur les matières.",
+                        // item.description,
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl vitae nisl. Donec euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl vitae nisl.",
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontSize: 17,
@@ -282,7 +253,7 @@ class _ItemPageState extends State<ItemPage> {
                         children: [
                           Expanded(
                             child: ElevatedButton.icon(
-                              onPressed: _addToCart,
+                              onPressed: () {},
                               icon: const Icon(CupertinoIcons.cart_badge_plus),
                               label: const Text(
                                 "Ajouter au panier",
@@ -311,94 +282,6 @@ class _ItemPageState extends State<ItemPage> {
                         ],
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 8),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text(
-                    //         "Size : ",
-                    //         style: TextStyle(
-                    //           fontSize: 18,
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Colors.orange,
-                    //         ),
-                    //       ),
-                    //       const SizedBox(
-                    //         width: 10,
-                    //       ),
-                    //       Row(
-                    //         children: [
-                    //           for (int i = 5; i < 10; i++)
-                    //             Container(
-                    //               height: 30,
-                    //               width: 30,
-                    //               alignment: Alignment.center,
-                    //               margin:
-                    //                   const EdgeInsets.symmetric(horizontal: 5),
-                    //               decoration: BoxDecoration(
-                    //                   color: Colors.white,
-                    //                   borderRadius: BorderRadius.circular(30),
-                    //                   boxShadow: [
-                    //                     BoxShadow(
-                    //                       color: Colors.grey.withOpacity(0.5),
-                    //                       spreadRadius: 2,
-                    //                       blurRadius: 8,
-                    //                     ),
-                    //                   ]),
-                    //               child: Text(
-                    //                 i.toString(),
-                    //                 style: const TextStyle(
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.bold,
-                    //                   color: Colors.orange,
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //         ],
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 8),
-                    //   child: Row(
-                    //     children: [
-                    //       const Text(
-                    //         "Color : ",
-                    //         style: TextStyle(
-                    //           fontSize: 18,
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Colors.orange,
-                    //         ),
-                    //       ),
-                    //       const SizedBox(
-                    //         width: 10,
-                    //       ),
-                    //       Row(
-                    //         children: [
-                    //           for (int i = 0; i < 5; i++)
-                    //             Container(
-                    //               height: 30,
-                    //               width: 30,
-                    //               alignment: Alignment.center,
-                    //               margin:
-                    //                   const EdgeInsets.symmetric(horizontal: 5),
-                    //               decoration: BoxDecoration(
-                    //                   color: Clrs[i],
-                    //                   borderRadius: BorderRadius.circular(30),
-                    //                   boxShadow: [
-                    //                     BoxShadow(
-                    //                       color: Colors.grey.withOpacity(0.5),
-                    //                       spreadRadius: 2,
-                    //                       blurRadius: 8,
-                    //                     ),
-                    //                   ]),
-                    //             ),
-                    //         ],
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

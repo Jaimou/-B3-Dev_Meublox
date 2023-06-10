@@ -50,7 +50,11 @@ class ItemsWidget extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         favoritesProvider.setSelectedItem(items[i]);
-                        Navigator.pushNamed(context, "itemPage");
+                        Navigator.pushNamed(
+                          context,
+                          "itemPage",
+                          arguments: items[i],
+                        );
                       },
                       child: Container(
                         margin: const EdgeInsets.all(10),
