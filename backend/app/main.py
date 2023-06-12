@@ -4,14 +4,12 @@ from pydantic import BaseModel
 from email.message import EmailMessage
 import smtplib
 import secrets
-from typing import Optional
-
 from app.database.db import db
-from app.config import settings
 from fastapi.logger import logger
-from app.models.cart import Cart, CartItem
 from app.routers import auth, product, user
-from app.routers import cart, vote, favorite
+from app.routers import cart, vote, favorite, order
+from bson import ObjectId
+
 
 
 app = FastAPI(title="e-commerce", version="1.0.0")
@@ -147,7 +145,9 @@ def send_reset_email(email: str, reset_link: str):
             <p><a href="{reset_link}" class="button">Réinitialiser mon mot de passe</a></p>
             <p>Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail.</p>
             <p>Cordialement,</p>
-            <p>L'équipe de Meublox</p>
+            <p>L'équipe de Meublox  <a href="https://meublox.com" class="button1">Visiter notre site</a></p>
+            <p></p>
+            <p>Merci de ne pas répondre sur cette adresse mail car nous serons dans l'impossibilité de lire votre message.</p>
         </div>
     </body>
     </html>"""
@@ -181,3 +181,4 @@ app.include_router(user.router, prefix="/users", tags=['Users'])
 app.include_router(cart.router, prefix="", tags=['Cart'])
 app.include_router(vote.router, prefix="/votes", tags=['Votes'])
 app.include_router(favorite.router, prefix="", tags=['Favorites'])
+app.include_router(order.router, prefix="/orders", tags=['Orders'])

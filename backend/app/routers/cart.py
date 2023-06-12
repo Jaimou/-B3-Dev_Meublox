@@ -134,4 +134,3 @@ async def update_cart_item(user_id: str, product_id: str, update_item: UpdateCar
     return cart
 
 
-

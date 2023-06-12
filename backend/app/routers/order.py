@@ -1,105 +1,64 @@
-from fastapi import APIRouter, Body, HTTPException
+from fastapi import APIRouter, Body, HTTPException, Request, status, Response
 from fastapi.encoders import jsonable_encoder
 from bson import ObjectId
-from app.database.db import add_order,delete_order,retrieve_order,\
-    retrieve_orders,update_order
-    
-from app.models.order import ErrorResponseModel,OrderBaseModel,OrderInDBModel,\
-    OrderUpdateModel,MultipleOrderResponseModel,SingleOrderResponseModel
-
+from app.database.db import db
+from app.models.order import Order, OrderIn
+from app.schemas.order import OrderUpdate, Order as OrderSchema
+from typing import List
 
 router = APIRouter()
 
 
-@router.post("/", response_description="Order data added into the database")
-async def add_order_data(order: OrderBaseModel = Body(...)):
+@router.post("", response_description="Order data added into the database")
+async def add_order_data(request: Request, order: OrderIn = Body(...)):
     order = jsonable_encoder(order)
-    new_order = await add_order(order)
-    return SingleOrderResponseModel(new_order, "Order added successfully.")
 
+    new_order = request.app.database["orders"].insert_one(order)
 
-@router.get("/{id}", response_description="Order data retrieved")
+    created_product = request.app.database["orders"].find_one(
+
+        {"_id": new_order.inserted_id}
+
+    )
+
+    return created_product
+
+@router.get("/{id}", response_model=OrderSchema, response_description="Order data retrieved")
 async def get_order_data(id):
-    if (order := await retrieve_order(id)) :
-        return SingleOrderResponseModel(order, "Order retrieved successfully.")
-    raise HTTPException(status_code=404, detail="Order not found")
+    if (order := db.get_collection("orders").find_one({"_id": ObjectId(id)})) is not None:
+        return order
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"order with ID {id} not found")
 
-
-@router.get("/", response_description="Orders data retrieved")
-async def get_orders_data():
-    orders = await retrieve_orders()
+@router.get("",response_model=List[Order], response_description="Orders data retrieved")
+def get_orders_data():
+    orders =   list(db.get_collection("orders").find())
     if orders:
-        return MultipleOrderResponseModel(orders, "Orders data retrieved successfully.")
-    return MultipleOrderResponseModel([], "No orders available to retrieve.")
-
+        return orders
 
 @router.put("/{id}")
-async def update_order_data(id: str, req: OrderUpdateModel = Body(...)):
-    req = {k: v for k, v in req.dict().items() if v is not None}
-    if len(req) >= 1:
-        order = await retrieve_order(id)
-        if order:
-            updated_order = await update_order(id, req)
-            return SingleOrderResponseModel(
-                updated_order, "Order updated successfully."
-            )
-        raise HTTPException(status_code=404, detail="Order not found")
-    raise HTTPException(status_code=400, detail="Invalid request body")
+async def update_order_data(id: str,request: Request, order: OrderUpdate = Body(...)):
+    order = {k: v for k, v in order.dict().items() if v is not None}
+    if len(order) >= 1:
+        update_result = request.app.database["orders"].update_one(
+            {"_id":  ObjectId(id)}, {"$set": order}
+        )
 
+        if update_result.modified_count == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Order with ID {id} not found")
+
+    if (
+        existing_order := request.app.database["orders"].find_one({"_id": ObjectId(id)})
+    ) is not None:
+        return existing_order
+
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Order with ID {id} not found")
 
 @router.delete("/{id}", response_description="Order data deleted from the database")
-async def delete_order_data(id: str):
-    deleted_order = await delete_order(id)
-    if deleted_order:
-        return SingleOrderResponseModel(
-            deleted_order, "Order deleted successfully."
-        )
-    raise HTTPException(status_code=404, detail="Order not found")
+async def delete_order_data(id: str, request: Request, response: Response):
+    delete_result = request.app.database["orders"].delete_one({"_id": ObjectId(id)})
 
+    if delete_result.deleted_count == 1:
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return response
 
-@router.put("/{id}/delivery")
-async def update_delivery_data(
-    id: str,
-    delivery_address: str = Body(...),
-    delivery_mode: str = Body(...),
-    delivery_fees: float = Body(...),
-):
-    order = await retrieve_order(id)
-    if order:
-        order_id = {"_id": ObjectId(id)}
-        delivery_info = {
-            "delivery_address": delivery_address,
-            "delivery_mode": delivery_mode,
-            "delivery_fees": delivery_fees,
-        }
-        updated_order = await update_order(id, delivery_info)
-        return SingleOrderResponseModel(
-            updated_order, "Delivery information updated successfully."
-        )
-    raise HTTPException(status_code=404, detail="Order not found")
-@router.put("/{id}/payment")
-async def update_payment_data(
-    id: str,
-    payment_method: str = Body(...),
-    payment_status: str = Body(...),
-    payment_amount: float = Body(...),
-    card_number: str = Body(...),
-    card_expiry_date: str = Body(...),
-    card_security_code: str = Body(...),
-):
-    order = await retrieve_order(id)
-    if order:
-        order_id = {"_id": ObjectId(id)}
-        payment_info = {
-            "payment_method": payment_method,
-            "payment_status": payment_status,
-            "payment_amount": payment_amount,
-            "card_number": card_number,
-            "card_expiry_date": card_expiry_date,
-            "card_security_code": card_security_code,
-        }
-        updated_order = await update_order(id, payment_info)
-        return SingleOrderResponseModel(
-            updated_order, "Payment information updated successfully."
-        )
-    raise HTTPException(status_code=404, detail="Order not found")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Order with ID {id} not found")
