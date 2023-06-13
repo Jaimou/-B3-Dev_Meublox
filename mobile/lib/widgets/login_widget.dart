@@ -1,15 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meublox/components/login_sign_in_button.dart';
 import 'package:meublox/components/login_textfield.dart';
 import 'package:meublox/components/square_tile.dart';
 
-class ProfileGuestWidget extends StatelessWidget {
-  ProfileGuestWidget({super.key});
+class LoginWidget extends StatelessWidget {
+  LoginWidget({super.key});
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signUserIn() {}
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

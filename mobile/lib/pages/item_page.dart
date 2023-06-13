@@ -301,7 +301,7 @@ class _ItemPageState extends State<ItemPage> {
           } else if (index == 3) {
             Navigator.pushNamed(context, "cartPage");
           } else if (index == 4) {
-            Navigator.pushNamed(context, "profilePage");
+            Navigator.pushNamed(context, "loginPage");
           }
         },
         height: 65,

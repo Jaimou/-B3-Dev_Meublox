@@ -125,7 +125,7 @@ class CartPage extends StatelessWidget {
           } else if (index == 2) {
             Navigator.pushNamed(context, "favoritePage");
           } else if (index == 4) {
-            Navigator.pushNamed(context, "profilePage");
+            Navigator.pushNamed(context, "loginPage");
           }
         },
         height: 65,

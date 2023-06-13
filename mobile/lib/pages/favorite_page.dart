@@ -26,7 +26,7 @@ class FavoritePage extends StatelessWidget {
           } else if (index == 3) {
             Navigator.pushNamed(context, "cartPage");
           } else if (index == 4) {
-            Navigator.pushNamed(context, "profilePage");
+            Navigator.pushNamed(context, "loginPage");
           }
         },
         height: 65,

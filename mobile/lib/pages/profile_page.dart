@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:meublox/widgets/profile_app_bar.dart';
-import 'package:meublox/widgets/profile_guest_widget.dart';
+import 'package:meublox/widgets/profile_connected_widget.dart';
 // import 'package:meublox/widgets/profile_connected_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -12,9 +12,9 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
-        children: [
-          const ProfileAppBar(),
-          ProfileGuestWidget(),
+        children: const [
+          ProfileAppBar(),
+          ProfileConnectedWidget(),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
