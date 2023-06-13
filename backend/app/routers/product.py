@@ -23,7 +23,7 @@ def create_product(request: Request, product: Product):
     return created_product
 
 
-@router.get("", response_model=List[ProductResponse],response_description="Fetch all product")
+@router.get("",response_description="Fetch all product")
 def fetch_products(nom: Optional[str] = Query(None, alias="nom"),
     prix_min: Optional[float] = Query(None,alias="prix_min"),
     prix_max: Optional[float] = Query(None,alias="prix_max"),

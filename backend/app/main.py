@@ -63,7 +63,7 @@ def generate_reset_token() -> str:
     return token
 
 def generate_reset_link(user_id: int, token: str) -> str:
-    reset_link = f"http://localhost:8000/reset-password?user_id={user_id}&token={token}"
+    reset_link = f"http://localhost:3000/forgot/userId?user_id={user_id}&token={token}"
     return reset_link
 
 def send_reset_email(email: str, reset_link: str):
