@@ -8,7 +8,6 @@ from app.database.db import db
 from fastapi.logger import logger
 from app.routers import auth, product, user
 from app.routers import cart, vote, favorite, order
-from bson import ObjectId
 
 
 

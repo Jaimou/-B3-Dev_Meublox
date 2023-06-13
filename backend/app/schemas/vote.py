@@ -1,4 +1,3 @@
-from typing import Optional
 from bson import ObjectId
 from pydantic import BaseModel, Field
 from app.utils.pyobjectid import PyObjectId

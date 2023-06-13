@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 from app.utils.pyobjectid import PyObjectId
-from typing import List
 
 class UserBase(BaseModel):
     email: EmailStr = Field(...)

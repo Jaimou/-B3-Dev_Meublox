@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from ..schemas.vote import Vote
-from ..models.vote import VoteInDB
 from ..database.db import get_vote, add_vote, update_vote, delete_vote, get_average_rating
 
 router = APIRouter()

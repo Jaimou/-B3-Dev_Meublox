@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from ..schemas.favorite import FavoriteBase
 from ..database.db import get_favorite, add_favorite, delete_favorite, get_favorites_by_user
-from ..models.favorite import FavoriteInDB  # Import from models
 import logging
 
 

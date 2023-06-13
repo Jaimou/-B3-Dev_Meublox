@@ -1,16 +1,15 @@
 from fastapi import APIRouter, Body, Depends, Query, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder 
-from typing import List, Optional, Union
-
+from typing import List, Optional
 from bson import ObjectId
 import pymongo
 import pydantic
 pydantic.json.ENCODERS_BY_TYPE[ObjectId]=str
-
 from app.schemas.product import Product, ProductResponse
 from app.utils import oauth2
 from app.models import user
 from app.database.db import db
+
 
 router = APIRouter()
 

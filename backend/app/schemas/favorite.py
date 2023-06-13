@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field, validator
-from typing import Optional
 from bson import ObjectId
 from app.utils.pyobjectid import PyObjectId
 
