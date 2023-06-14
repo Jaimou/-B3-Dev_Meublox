@@ -1,0 +1,34 @@
+[
+  {
+    "_id": {
+      "$oid": "63fab61ec973b63bba821dc1"
+    },
+    "nom": "Chaise",
+    "description": "fabriquée à la main",
+    "prix": 150,
+    "images": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "couleurs": ["brun", "noir"],
+    "stock": 10,
+    "categorie": ["Meubles", "Tables basses"],
+    "note": 4
+  },
+  {
+    "_id": {
+      "$oid": "63fab62ac973b63bba821dc2"
+    },
+    "nom": "Table basse en bois",
+    "description": "fabriquée à la main",
+    "prix": 1500,
+    "images": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "couleurs": ["brun", "noir"],
+    "stock": 10,
+    "categorie": ["Meubles", "Tables basses"],
+    "note": 3
+  }
+]
