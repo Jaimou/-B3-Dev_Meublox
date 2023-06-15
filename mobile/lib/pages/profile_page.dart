@@ -1,8 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:meublox/widgets/profile_app_bar.dart';
-import 'package:meublox/widgets/profile_connected_widget.dart';
-// import 'package:meublox/widgets/profile_connected_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({ Key? key }) : super(key: key);
@@ -12,9 +10,107 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
-        children: const [
-          ProfileAppBar(),
-          ProfileConnectedWidget(),
+        children: [
+          const ProfileAppBar(),
+          Container(
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
+            child: const Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Mes commandes",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Mes adresses",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Mes informations",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Mes paramètres",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Déconnexion",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Backend Amine server -->
+	<key>SERVER_CLIENT_ID</key>
+	<string>[YOUR SERVER CLIENT ID]</string>
+
 	<key>CLIENT_ID</key>
 	<string>423641214315-bt61ek6pv2skk4q1r218dnqubdj6hb2k.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>

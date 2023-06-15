@@ -7,19 +7,20 @@ import 'package:meublox/components/square_tile.dart';
 import 'package:meublox/services/auth_service.dart';
 import 'package:meublox/widgets/login_app_bar.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  void signUserIn() async {
+  void signUserUp() async {
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -28,10 +29,16 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      if(passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        Navigator.pop(context);
+        showErrorMessage('Les mots de passe ne correspondent pas');
+      }
+      
 
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
@@ -70,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
       body: ListView(
         children: [
           const LoginAppBar(),
+
           Container(
             padding: const EdgeInsets.all(25),
             child: SingleChildScrollView(
@@ -77,46 +85,47 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Connexion',
+                    'Créer un compte',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 80, 39, 118),
                     ),
                   ),
+
                   const SizedBox(height: 20),
+
                   LoginTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                   ),
+
                   const SizedBox(height: 10),
+
                   LoginTextField(
                     controller: passwordController,
                     hintText: 'Mot de passe',
                     obscureText: true,
                   ),
+
                   const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          // Action lorsque "Mot de passe oublié" est cliqué
-                        },
-                        child: Text(
-                          'Mot de passe oublié ?',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                      ),
-                    ],
+
+                  LoginTextField(
+                    controller: confirmPasswordController,
+                    hintText: 'Confirmer le mot de passe',
+                    obscureText: true,
                   ),
+
                   const SizedBox(height: 20),
+
                   LoginSignInButton(
-                    onTap: signUserIn,
-                    text: 'Se connecter'
+                    onTap: signUserUp,
+                    text: 'S\'inscrire',
                   ),
+
                   const SizedBox(height: 35),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Row(
@@ -143,7 +152,9 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
+
                   const SizedBox(height: 35),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -160,19 +171,21 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 35),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Vous n\'avez pas de compte ?',
+                        'Vous possédez déjà un compte ?',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: widget.onTap,
                         child: const Text(
-                          'S\'inscrire',
+                          'Se connecter',
                           style: TextStyle(
                             color: Color.fromARGB(255, 80, 39, 118),
                             fontWeight: FontWeight.bold,
@@ -187,6 +200,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
+
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         onTap: (index) {

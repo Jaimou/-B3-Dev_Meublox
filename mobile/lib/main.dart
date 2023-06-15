@@ -3,7 +3,7 @@ import 'package:meublox/pages/auth_page.dart';
 import 'package:meublox/pages/cart_page.dart';
 import 'package:meublox/pages/home_page.dart';
 import 'package:meublox/pages/item_page.dart';
-import 'package:meublox/pages/login_page.dart';
+import 'package:meublox/pages/login_or_register_page.dart';
 import 'package:meublox/pages/search_page.dart';
 import 'package:meublox/pages/favorite_page.dart';
 import 'package:meublox/providers/favorites_provider.dart';
@@ -40,13 +40,13 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         routes: {
-          "/": (context) => const AuthPage(),
+          "/": (context) => const HomePage(),
           "cartPage": (context) => const CartPage(),
           "itemPage": (context) => const ItemPage(),
           "searchPage": (context) => const SearchPage(),
           "favoritePage": (context) => const FavoritePage(),
-          "loginPage": (context) => const LoginPage(),
-          "homePage": (context) => const HomePage(),
+          "loginOrRegisterPage": (context) => const LoginOrRegisterPage(),
+          "authPage": (context) => const AuthPage(),
         },
       ),
     );
