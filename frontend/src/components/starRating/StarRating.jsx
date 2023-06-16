@@ -1,11 +1,10 @@
 import './StarRating.scss'
-import { useState } from 'react';
 import StarOn from './StarOn';
 import StarOff from './StarOff';
 
 const StarRating = (props) => {
 
-    const rate = props.rate;
+    const rate = props.note;
 
     const getRate = (rate) => {
         if (rate < 0.75) {
@@ -59,7 +58,7 @@ const StarRating = (props) => {
                     <StarOn />
                     <StarOn />
                     <StarOn />
-                    <StarOn />
+                    <StarOff />
                 </div>
             )
         }
@@ -75,8 +74,6 @@ const StarRating = (props) => {
             )
         }
     };
-
-
 
 
     return (

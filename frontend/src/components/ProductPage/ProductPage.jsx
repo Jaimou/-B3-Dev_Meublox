@@ -3,6 +3,7 @@ import './ProductPage.scss'
 import { useEffect, useState } from 'react';
 import StarRating from '../starRating/StarRating';
 import { decodeToken } from 'react-jwt';
+import Vote from '../starRating/Vote';
 
 
 const ProductPage = () => {
@@ -18,7 +19,7 @@ const ProductPage = () => {
 
     const token = sessionStorage.getItem("token");
     const myDecodedToken = decodeToken(token);
-    const userId = myDecodedToken.user_id
+
 
 
 
@@ -40,14 +41,17 @@ const ProductPage = () => {
     }
 
     const callAPIForCart = async () => {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        };
-        let response = await fetch(`http://127.0.0.1:8000/cart/${userId}`, requestOptions);
-        const responseInJSON = await response.json();
-        setActualCart(responseInJSON)
+        if (myDecodedToken != "undefined" && myDecodedToken != null) {
+            const userId = myDecodedToken.user_id
 
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+            let response = await fetch(`http://127.0.0.1:8000/cart/${userId}`, requestOptions);
+            const responseInJSON = await response.json();
+            setActualCart(responseInJSON)
+        }
     }
 
     const handleQuantityChange = (e) => {
@@ -96,41 +100,47 @@ const ProductPage = () => {
     }
 
     const addToCartApi = async () => {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                user_id: userId,
-                items: [
-                    {
-                        product_id: productId,
-                        quantity: quantity
-                    }
-                ]
-            })
-        };
-        await fetch(`http://127.0.0.1:8000/cart`, requestOptions);
+        if (myDecodedToken != "undefined" && myDecodedToken != null) {
+            const userId = myDecodedToken.user_id
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    items: [
+                        {
+                            product_id: productId,
+                            quantity: quantity
+                        }
+                    ]
+                })
+            };
+            await fetch(`http://127.0.0.1:8000/cart`, requestOptions);
+        }
     }
 
     const addMoreProduct = async (quant) => {
-        let newQuantity = quant + quantity
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({ quantity: newQuantity })
-        };
-        await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+        if (myDecodedToken != "undefined" && myDecodedToken != null) {
+            const userId = myDecodedToken.user_id
+            let newQuantity = quant + quantity
+            const requestOptions = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ quantity: newQuantity })
+            };
+            await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+        }
     }
 
 
+
     const addToCart = () => {
-        console.log("test 2")
         if (token != null) {
             if (actualCart.detail != "Cart not found") {
                 isCartExisting()
@@ -201,8 +211,14 @@ const ProductPage = () => {
                             <div className='description'>
                                 <p className='long-description'>{product.description}</p>
                                 <div className='rate'>
-                                    <StarRating rate={product.note} /><p>({product.note})</p>
+                                    <StarRating note={product.note} /><p>({product.users_id.length})</p>
                                 </div>
+                                {myDecodedToken != "undefined" && myDecodedToken != null ?
+                                    <Vote note={product.note} users_notes={product.users_notes} users_id={product.users_id} />
+                                    :
+                                    <>
+                                    </>
+                                }
                                 <div className='trait'></div>
                                 {product.stock == 0
                                     ? <p>Le produit n'est plus en stock</p>
@@ -230,7 +246,7 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </> :
-                <h2>Loading</h2>
+                <h2 className='loading'>Loading</h2>
             }
         </div>
     )

@@ -1,6 +1,8 @@
 .contenu {
     height: fit-content;
     display: grid;
+    width: 100%;
+    justify-items: center;
 
     a {
         border: 1px solid lightgrey;
@@ -22,7 +24,6 @@
     justify-items: center;
     grid-auto-rows: minmax(100px, auto);
     width: 80%;
-    margin: auto;
     gap: 40px;
 }
 
@@ -49,4 +50,20 @@
         display: flex;
         justify-content: center;
     }
+
+    .trait {
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .objects-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin: 0% 10%;
+    }
+
 }

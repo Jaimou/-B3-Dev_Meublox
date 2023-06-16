@@ -1,13 +1,16 @@
 import ReactSelect from "react-select";
 
-const FiltreTri = () => {
+const FiltreTri = (props) => {
+
+    const setTri = props.setTri
+
 
 
     const options = [
-        { value: 'A-Z', label: 'ordre alphabétique' },
+        { value: 'nom', label: 'ordre alphabétique' },
         { value: 'croissant', label: 'prix croissant' },
         { value: 'decroissant', label: 'prix décroissant' },
-        { value: 'rate', label: 'popularité' },
+        { value: 'note', label: 'popularité' },
     ]
 
 
@@ -17,7 +20,7 @@ const FiltreTri = () => {
         <div className="filtre">
             <div className="tri">
                 <h3>Trier par :</h3>
-                <ReactSelect id="tri" options={options} />
+                <ReactSelect id="tri" options={options} onChange={(e) => { setTri(e.value) }} />
             </div>
         </div>
     )

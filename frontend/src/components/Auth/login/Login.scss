@@ -74,3 +74,20 @@
         }
     }
 }
+
+@media screen and (max-width: 400px) {
+
+    .login-page {
+
+        .login-block {
+            flex-direction: column;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5%;
+            border: 1px solid #c7c7c7;
+            border-radius: 20px;
+            padding: 2%;
+        }
+    }
+}

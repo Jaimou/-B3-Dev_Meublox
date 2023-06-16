@@ -27,18 +27,24 @@ const Login = () => {
         }
         formBody = formBody.join("&");
 
-        let request = await fetch('http://127.0.0.1:8000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            },
-            body: formBody
-        })
-        let responseToken = await request.json();
-        const userToken = (responseToken.access_token)
+        try {
+            let request = await fetch('http://127.0.0.1:8000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: formBody
+            })
 
-        sessionStorage.setItem("token", userToken)
-        navigate("/")
+            let responseToken = await request.json();
+            const userToken = (responseToken.access_token)
+
+            sessionStorage.setItem("token", userToken)
+            navigate("/")
+        }
+        catch (e) {
+            console.log(e.message)
+        }
     }
 
     const handleChangeEmail = () => {
@@ -64,10 +70,10 @@ const Login = () => {
                 <input id="email" className="form" type="text" value={email} aria-label="email" placeholder="email" onChange={handleChangeEmail}></input>
                 <input id="password" className="form" type="password" value={password} aria-label="password" placeholder="password" onChange={handleChangePassword}></input>
                 <div className='remember-validation'>
-                    <div className='remember'>
+                    {/* <div className='remember'>
                         <input type="checkbox" id="remember" name="remember" />
                         <label htmlFor="remember">Remember me !</label>
-                    </div>
+                    </div> */}
                     <button className='validation' type='button' onClick={() => {
                         handleLoginClick();
                     }}>Login</button>
@@ -77,6 +83,10 @@ const Login = () => {
                 <button className='validation' type='submit'>Se connecter avec Google</button> */}
                 <p>Je n'ai pas de compte ? <br />
                     <a href='/signin'>Je m'inscris</a>
+                </p>
+                <div className='trait inside'></div>
+                <p>Mot de passe oublié ? <br />
+                    <a href='/forgot'>Je clique ici</a>
                 </p>
 
             </div>

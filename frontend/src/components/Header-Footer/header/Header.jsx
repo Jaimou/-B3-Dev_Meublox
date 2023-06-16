@@ -1,33 +1,44 @@
 import './Header.scss';
-import logo from './meubloxLogo.svg';
+import logo from '../../../lib/meubloxLogo.svg';
 import Searchbar from './searchbar/Searchbar';
-import { useUserStatus } from '../../../hooks/useUserStatus';
 import { useEffect, useState } from 'react';
 import { decodeToken } from 'react-jwt';
 
 const Header = () => {
 
-    const log = useUserStatus()
+    const [log, setlog] = useState(false)
     const [cartQuantity, setCartQuantity] = useState(0);
     const userToken = sessionStorage.getItem("token")
     const myDecodedToken = decodeToken(userToken);
+    const [currentWindowLocation, setCurrentWindowLocation] = useState("")
+
+    const userStatus = () => {
+
+        if (myDecodedToken == null || myDecodedToken == "undefined") {
+            setlog(false)
+        }
+
+        else {
+            setlog(true)
+        }
+    }
 
 
-    // useEffect(() => {
-    //     if (log) {
-    //         const userId = myDecodedToken.user_id
-    //         callAPI(userId)
-    //     }
-    //     else {
-    //         const cart = localStorage.getItem("cart")
-    //         if (cart != null) {
-    //             setCartQuantity(cart.length)
-    //         }
-    //     }
-    // })
+    const verifyWindow = () => {
+        console.log(currentWindowLocation)
+
+        if (currentWindowLocation == window.location.href) {
+            return
+        }
+        else {
+            userStatus()
+            setCurrentWindowLocation(window.location.href)
+        }
+    }
 
 
     useEffect(() => {
+
 
         const callAPI = async (userId) => {
             const requestOptions = {
@@ -36,7 +47,6 @@ const Header = () => {
             };
             let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
             const responseInJSON = await response.json();
-            console.log(responseInJSON)
             if (responseInJSON.detail == "Cart not found") {
                 setCartQuantity(0)
             }
@@ -56,14 +66,14 @@ const Header = () => {
                 setCartQuantity(cart.length)
             }
         }
-    })
+    }, [currentWindowLocation])
 
 
-
+    verifyWindow()
 
     return (
         <header>
-            <a href='/'>
+            <a className='img-link' href='/'>
                 <img alt='logo' src={logo}></img>
             </a>
             <Searchbar />

@@ -33,7 +33,7 @@ const Home = () => {
                     <div className='trait'></div>
                     <ObjectsList allData={allData} />
                 </> :
-                <h2>Loading</h2>
+                <h2 className='loading'>Loading</h2>
             }
         </div>
     )

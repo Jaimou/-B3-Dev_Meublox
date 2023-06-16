@@ -19,12 +19,15 @@ export default function SideNav(props) {
     const logOut = () => {
         // Déconnexion
         console.log("déconnexion")
+        sessionStorage.clear()
         navigate("/")
     }
     return (
         <>
             <div className="sidebar" id="sidebar">
-                <h1>{profil.prenom + ' ' + profil.nom}</h1>
+                <h1>{profil.prenom}
+                    <br></br>
+                    {profil.nom}</h1>
                 <nav>
                     <ul className='profil-onglet'>
                         <li>
@@ -60,11 +63,14 @@ export default function SideNav(props) {
                                 setMyCards(true)
                             }}>Mes cartes de Paiement </p>
                         </li>
-                        <li>
-                            <p id="administration" onClick={() => {
-                                navigate("/profile/administation")
-                            }}>Administration</p>
-                        </li>
+                        {profil.role == "admin" ?
+                            <li>
+                                <p id="administration" onClick={() => {
+                                    navigate("/profile/administation")
+                                }}>Administration</p>
+                            </li> :
+                            <></>
+                        }
                         <li>
                             <p id="deconnexion" onClick={() => {
                                 logOut()

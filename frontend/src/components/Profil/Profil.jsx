@@ -14,7 +14,6 @@ const Profil = () => {
     const [myInfos, setMyInfos] = useState(false)
     const [changePassword, setChangePassword] = useState(false)
     const [myCards, setMyCards] = useState(false)
-    const [administration, setAdministration] = useState(false)
     const [profil, setProfil] = useState();
     const [isLoad, setIsLoad] = useState(false)
 
@@ -84,7 +83,7 @@ const Profil = () => {
 
                         </div>
                     </> :
-                    <h2>Loading</h2>
+                    <h2 className='loading'>Loading</h2>
                 }
 
 

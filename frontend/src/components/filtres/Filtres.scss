@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
+    width: 90%;
+    padding: 15px 0px;
+    flex-wrap: wrap;
 
     .filtrage {
         display: flex;
@@ -16,61 +19,72 @@
             height: 50px;
             align-self: flex-end;
         }
-    }
 
-    .filtre {
-        display: flex;
-        width: 300px;
-        flex-direction: column;
-
-        .filtre-input {
-            border: none;
-            box-shadow: none;
-        }
-
-        .range-value {
+        .filtre {
             display: flex;
+            width: fit-content;
             flex-direction: column;
-            align-items: center;
-        }
-
-        h3 {
-            text-align: center;
-        }
-
-        #min {
-            width: 50px;
-            box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
-        }
-
-        #max {
-            width: 50px;
-            box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
-        }
 
 
-        .range {
-            display: flex;
-            justify-content: space-around;
+            div h3 {
+                margin: 0px;
+                text-align: center;
+                font-size: 1em;
+            }
 
-
-        }
-
-
-
-        .colorChoice {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 100%;
-
-            .colorSelector {
-                width: 45%;
+            .range {
                 display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
+                gap: 10px;
+            }
+
+            .range-value {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+
+                .filtre-input {
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+
+            #min {
+                width: 50px;
+                box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
+            }
+
+            #max {
+                width: 50px;
+                box-shadow: 0 0px 1px hsl(0deg 0% 0% / 20%), 0 1px 2px hsl(0deg 0% 0% / 20%);
+            }
+
+
+
+
+            .colorChoice {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 100%;
+
+                .colorSelector {
+                    width: 45%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                }
             }
         }
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .filtrage {
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 80%;
     }
 }

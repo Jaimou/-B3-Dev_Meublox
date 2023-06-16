@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import mastercard from "../../../mastercard.svg"
 import visa from "../../../visa.svg"
 import "./Paiement.scss"
-import data from '../../../lib/data/dataTest.jsx'
+import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt";
 // import PaypalButton from "./PaypalButton";
 
 
 const Paiement = () => {
 
-    let userCart = []
-    let currentCart = JSON.parse(localStorage.getItem("cart"));
-    let totalValue;
-    const [total, setTotal] = useState(0)
+
     const [paypal, setPaypal] = useState(false)
     const [savedCard, setSavedCard] = useState(false)
 
@@ -20,48 +18,188 @@ const Paiement = () => {
     const [expiryDate, setExpiryDate] = useState("");
     const [cvv, setCvv] = useState("");
 
-    const handlePaypalSuccess = () => {
-        console.log(`Success`);
-    };
 
+    const [allData, setAllData] = useState([])
+    const [cart, setCart] = useState([])
+    const [isLoad, setIsLoad] = useState(false)
+    const [emptyCart, setEmptyCart] = useState(true)
+
+
+    let navigate = useNavigate();
+    let userCart = []
+    let currentCart = JSON.parse(sessionStorage.getItem("cart"));
+    const [total, setTotal] = useState(0)
+
+
+    const token = sessionStorage.getItem("token");
+    const myDecodedToken = decodeToken(token);
+    const userId = myDecodedToken.user_id
+
+    const livraison = JSON.parse(sessionStorage.getItem("adresse"))
+
+    const dataCall = async (requestOptions) => {
+
+        let responseData = await fetch("http://localhost:8000/products", requestOptions);
+        const responseDataInJSON = await responseData.json();
+        setAllData(responseDataInJSON)
+
+    }
+
+    const callAPI = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        await dataCall(requestOptions)
+
+        let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
+        const responseInJSON = await response.json();
+        console.log(responseInJSON)
+        if (responseInJSON.detail == "Cart not found") {
+            setCart([])
+            setEmptyCart(true)
+            setIsLoad(true)
+        }
+        else {
+            setCart(responseInJSON)
+            setEmptyCart(false)
+            setIsLoad(true)
+        }
+    }
+
+    const checkEmptyCart = () => {
+        if (token != null || token != "undefined") {
+            return
+        }
+        else {
+            if (currentCart == null || currentCart.length == 0) {
+                setEmptyCart(true)
+            }
+            else {
+                setEmptyCart(false)
+            }
+        }
+    }
 
     const createCart = () => {
-
-        currentCart.forEach(product => {
-            let userProduct = data.find((dbProduct) => {
-                return product.id == dbProduct.Id
-            })
-            let finalUserProduct = { id: userProduct.Id, name: userProduct.Name, img: userProduct.ImageThumbnailUrl, price: userProduct.Price, quantity: product.productQuantity, description: userProduct.ShortDescription }
-            userCart.push(finalUserProduct)
-
-        });
-
+        console.log(emptyCart)
+        if (!emptyCart) {
+            cart.items.forEach((product) => {
+                let userProduct = allData.find((dbProduct) => {
+                    return product.product_id == dbProduct._id
+                })
+                let finalUserProduct = { id: userProduct._id, name: userProduct.nom, img: userProduct.images[0], price: userProduct.prix, quantity: product.quantity, description: userProduct.short_description }
+                userCart.push(finalUserProduct)
+            });
+        }
     }
 
     const showTotal = () => {
-        userCart.forEach(product => {
-            totalValue += product.price * product.quantity
-            setTotal(totalValue)
-        });
+        if (!emptyCart) {
+            let total = 0
+            cart.items.forEach((product) => {
+                total += product.total_price
+            })
+            setTotal(total)
+        }
     }
 
-    createCart()
+
+    function addDaysToDate(date, days) {
+        var res = new Date(date);
+        res.setDate(res.getDate() + days);
+        return res;
+    }
+
+    const luhnTest = (cardNumber) => {
+        let somme = 0;
+        let paire = false;
+
+        // Parcourir le numéro de carte de droite à gauche
+        for (let i = cardNumber.length - 1; i >= 0; i--) {
+            const digit = parseInt(cardNumber.charAt(i), 10);
+
+            if (paire) {
+                // Doubler les chiffres des positions paires
+                let doubledDigit = digit * 2;
+
+                if (doubledDigit > 9) {
+                    // Si le double est supérieur à 9, soustraire 9
+                    doubledDigit -= 9;
+                }
+
+                somme += doubledDigit;
+            } else {
+                // Ajouter les chiffres des positions impaires
+                somme += digit;
+            }
+
+            paire = !paire;
+        }
+
+        // La somme doit être divisible par 10 pour que le numéro soit valide
+        return somme % 10 === 0;
+    }
+
+    const handleSubmit = async () => {
+        console.log(cardNumber)
+        console.log(luhnTest(cardNumber))
+
+        if (luhnTest(cardNumber) == true) {
+
+            var tmpDate = new Date();
+            let delivery_date = addDaysToDate(tmpDate, 7);
+
+            // vérifier le paiement + affichage de la facture
+            // Appel API pour enregistrer la nouvelle commande
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+
+                    delivery_date: String(delivery_date),
+                    in_delivery: true,
+                    total_price: total,
+                    delivery_address: JSON.stringify(livraison),
+                    payment_card: cardNumber,
+                    user_id: userId,
+                    details: cart.items,
+                    cart_id: cart._id,
+                    user_id: userId,
+                })
+            };
+
+            try {
+                let response = await fetch(`http://localhost:8000/orders`, requestOptions);
+                console.log(response)
+                let result = await fetch(`http://localhost:8000/cart/${userId}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                console.log(result)
+                navigate("/")
+            }
+            catch (e) {
+                console.log(e.message)
+            }
+        }
+    }
 
     useEffect(() => {
-        totalValue = 0;
-        showTotal()
+        callAPI();
+
     }, [])
 
+    useEffect(() => {
+        showTotal()
+    })
+
+    checkEmptyCart()
+    createCart()
 
 
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Envoie de la commande complète vers la BDD et le back pour validation + génération du PDF de commande
-
-    };
 
 
     return (
@@ -91,7 +229,7 @@ const Paiement = () => {
                         </div>
                         {savedCard
                             ?
-                            <h3>**** **** **** 1234</h3>
+                            <h3>**** **** **** ****</h3>
                             :
                             <></>
                         }
@@ -120,7 +258,7 @@ const Paiement = () => {
                             </div>
                         </div>
                         <div>
-                            <form onSubmit={handleSubmit}>
+                            <form >
                                 <div className="card-number">
                                     <label htmlFor="cardNumber">Numéro de carte:</label>
                                     <input
@@ -185,10 +323,6 @@ const Paiement = () => {
                             ?
                             <button type="button">PayPal
                             </button>
-                            // <div>
-                            //     <script src="https://www.paypal.com/sdk/js?client-id=AYuy588Wn5t0O_f2CgatxFkaxFf4NHDWtxtBtnAnm0617XYHa_LOxLVOMqjRV6vBNKYbwn_-9lqaP0-U"></script>
-                            //     <PaypalButton />
-                            // </div>
                             :
                             <></>
 
@@ -227,17 +361,17 @@ const Paiement = () => {
                     <div className="resume-livraison">
                         <h3>Adresse de livraison</h3>
                         <div className="adresse-livraison">
-                            <h4>Nom Prénom</h4>
-                            <p>Adresse</p>
-                            <p>Code Postal</p>
-                            <p>Ville</p>
+                            <h4>{livraison.nom} - {livraison.prenom}</h4>
+                            <p>{livraison.adresse}</p>
+                            <p>{livraison.code_postale}</p>
+                            <p>{livraison.ville}</p>
                         </div>
 
                     </div>
                 </div>
 
             </div>
-            <button className="button-paiement" type="submit">Valider le paiement</button>
+            <button className="button-paiement" type="button" onClick={handleSubmit}>Valider le paiement</button>
 
         </div >
 

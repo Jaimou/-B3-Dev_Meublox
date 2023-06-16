@@ -18,6 +18,7 @@ const Signin = () => {
             'scope': '',
             'client_id': '',
             'client_secret': '',
+            'is_admin': false
         };
 
         var formBody = [];
@@ -44,17 +45,38 @@ const Signin = () => {
 
     const SigninFunction = async (email, password) => {
 
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                role: "user",
+                civilite: "",
+                nom: "",
+                prenom: "",
+                adresse_postale: "",
+                code_postal: "",
+                ville: "",
+                pays: "",
+                telephone: "",
+                date_naissance: "",
+                password: password,
+                is_admin: false
+            })
+        };
+        let response = await fetch("http://localhost:8000/users", requestOptions);
+        const responseInJSON = await response.json();
     }
 
-    const handleSigninClick = () => {
+    const handleSigninClick = async () => {
 
         if (password != passwordVerify) {
             return
         }
 
-        SigninFunction(email, password)
+        await SigninFunction(email, password)
 
-        LoginFunction()
+        await LoginFunction()
 
     }
 

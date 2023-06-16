@@ -17,7 +17,7 @@ const ObjectsList = (props) => {
         let currentUrl = window.location.href
         if (currentUrl == "http://localhost:3000/") {
 
-            const objectsData = allData.sort((a, b) => b.Rate - a.Rate);
+            const objectsData = allData.sort((a, b) => b.note - a.note);
 
             const objectsDataPopular = objectsData.slice(0, 4)
             setData(objectsDataPopular)
@@ -46,7 +46,7 @@ const ObjectsList = (props) => {
     return (
         <div className="contenu">
 
-            <Filtres data={allData} />
+            <Filtres data={allData} setData={setData} />
             {data.length == 0 ?
                 <div className="search-error">
                     <h3>

@@ -5,25 +5,26 @@ import './Filtres.scss';
 const FiltreCouleur = (props) => {
 
     const data = props.data
+    const color = props.color
+    const setColor = props.setColor
 
     const [objectColors, setObjectColors] = useState([{ value: '', label: 'Aucune Sélection' }]);
     const [objectColor, setObjectColor] = useState('');
 
-    const selectColor = (e) => {
-        const colorValue = e.value
-    }
 
     useEffect(() => {
         let allObjectsColor = [];
-        let finalObjectsColor = [];
+        let finalObjectsColor = [{ value: '', label: 'Aucune Sélection' }];
         data.map((product) => {
-            if (allObjectsColor.includes(product.Color)) {
+            product.couleurs.map((couleur) => {
+                if (allObjectsColor.includes(couleur)) {
+                    return allObjectsColor;
+                }
+                allObjectsColor.push(couleur)
+                finalObjectsColor.push({ value: couleur, label: couleur })
+                setObjectColors(finalObjectsColor)
                 return allObjectsColor;
-            }
-            allObjectsColor.push(product.Color)
-            finalObjectsColor.push({ value: product.Color, label: product.Color })
-            setObjectColors(finalObjectsColor)
-            return allObjectsColor;
+            })
         })
     }, [data])
 
@@ -32,7 +33,9 @@ const FiltreCouleur = (props) => {
         <div className="filtre">
             <div className="colorChoice">
                 <h3>Coloris</h3>
-                <ReactSelect id="colors" options={objectColors} onChange={((e) => { selectColor(e) })} />
+                <ReactSelect id="colors" defaultValue={objectColors[0]} options={objectColors} onChange={((e) => {
+                    setColor(e.value);
+                })} />
             </div>
         </div>
     );

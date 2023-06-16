@@ -4,7 +4,7 @@ import './Object.scss';
 const Object = (props) => {
 
     const object = props.object;
-    const rates = object.note;
+    const rates = object.users_id;
 
 
     return (
@@ -16,8 +16,12 @@ const Object = (props) => {
             <p className="description">{object.short_description}</p>
             <p className="price">{object.prix.toFixed(2)} €</p>
             <div className="rate">
-                <StarRating rate={object.note} />
-                <p>({rates})</p>
+                <StarRating note={object.note} />
+                {rates == null || rates == "undefined" ?
+                    <p>(0)</p>
+                    :
+                    <p>({rates.length})</p>
+                }
             </div>
         </div>
     )

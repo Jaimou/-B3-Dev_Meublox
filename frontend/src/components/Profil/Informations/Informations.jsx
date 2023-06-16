@@ -127,7 +127,7 @@ const Informations = (props) => {
                                 />
                                 {errors.email && <span className="error">{errors.email}</span>}
                             </div>
-                            {inputs.gender == "Madame" ? <div>
+                            {inputs.gender == "Madame" ? <div className="form-div">
                                 <input className="radio"
                                     type="radio"
                                     name="gender"
@@ -140,7 +140,7 @@ const Informations = (props) => {
                                     value="Monsieur" />M
                             </div> :
                                 <></>}
-                            {inputs.gender == "Monsieur" ? <div>
+                            {inputs.gender == "Monsieur" ? <div className="form-div">
                                 <input className="radio"
                                     type="radio"
                                     name="gender"
@@ -154,7 +154,7 @@ const Informations = (props) => {
                                 />M
                             </div> :
                                 <></>}
-                            {inputs.gender == "" ? <div>
+                            {inputs.gender == "" ? <div className="form-div">
                                 <input className="radio"
                                     type="radio"
                                     name="gender"

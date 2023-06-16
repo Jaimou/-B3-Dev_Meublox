@@ -4,7 +4,7 @@ export function useUserStatus() {
     const [log, setlog] = useState(false)
 
 
-    useEffect(()=> {
+    
         const token = sessionStorage.getItem("token")
     
     
@@ -15,7 +15,7 @@ export function useUserStatus() {
         else {
             setlog(true)
         }
-    })
+    
 
    
 

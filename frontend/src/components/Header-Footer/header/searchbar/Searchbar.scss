@@ -3,7 +3,7 @@
     overflow: visible;
 
     #searchBar {
-        width: 500px;
+        width: 100%;
         color: #502776 !important;
         font-family: 'Poppins', sans-serif !important;
         border: 2px solid #502776 !important;
@@ -20,7 +20,7 @@
         background-color: white;
         border: 1px solid rgb(230, 230, 230);
         border-radius: 0 0 10px 10px;
-        width: 487px;
+        width: 48%;
         padding: 5px;
         padding-top: 10px;
         margin-top: -5px;
@@ -35,8 +35,4 @@
             width: 100%;
         }
     }
-}
-
-.trait {
-    margin-top: 15px;
 }

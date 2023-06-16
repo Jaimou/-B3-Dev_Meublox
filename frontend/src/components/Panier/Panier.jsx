@@ -1,7 +1,6 @@
 import './Panier.scss'
 import { useNavigate } from 'react-router-dom'
 import ReactSelect from "react-select";
-import data from '../../lib/data/dataTest.jsx'
 import { useEffect, useState } from 'react';
 import { decodeToken } from 'react-jwt';
 
@@ -164,9 +163,7 @@ const Panier = () => {
             window.location.reload(true)
         }
         else {
-            console.log(targetProductId)
             let product = cart.find(productData => targetProductId == productData.product_id)
-            console.log(product)
             let productId = product.product_id
             const requestOptions = {
                 method: 'DELETE',
@@ -283,11 +280,11 @@ const Panier = () => {
                         <div className='total-paiement'>
                             <h2>Total : {total}</h2>
                             <button id='paiement-button' type='button' onClick={() => {
-                                if (cart == []) {
-                                    navigate('/login')
+                                if (token != null || token != "undefined") {
+                                    navigate('/livraison')
                                 }
                                 else {
-                                    navigate('/livraison')
+                                    navigate('/login')
                                 }
                             }}>Payer</button>
                         </div>
@@ -296,7 +293,7 @@ const Panier = () => {
                     </div>
                 </>
                 :
-                <h2>Loading</h2>
+                <h2 className='loading'>Loading</h2>
             }
 
         </div>

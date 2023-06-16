@@ -10,13 +10,14 @@ const Livraison = () => {
     const [firstName, setFirstName] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
+    const [gender, setGender] = useState("");
     const [cp, setCp] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //Enregistrement des données pour envoyer la commande en BDD
-        let livraison = { lastName: lastName, firstName: firstName, address: address, cp: cp, city: city }
-        localStorage.setItem(livraison)
+        let adresse = { nom: lastName, prenom: firstName, civilite: gender, adresse: address, code_postal: cp, ville: city }
+        sessionStorage.setItem("adresse", JSON.stringify(adresse))
+        navigate("/paiement")
     };
 
     return (
@@ -43,6 +44,19 @@ const Livraison = () => {
                     required
                 />
                 <br />
+                <div >
+                    <input className="radio"
+                        type="radio"
+                        name="gender"
+                        value="Madame"
+                        onClick={(event) => setGender(event.target.value)}
+                    />Mme
+                    <input className="radio"
+                        type="radio"
+                        name="gender"
+                        value="Monsieur"
+                        onClick={(event) => setGender(event.target.value)} />M
+                </div>
 
                 <label htmlFor="address">Adresse:</label>
                 <input

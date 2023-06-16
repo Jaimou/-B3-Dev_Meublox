@@ -1,56 +1,70 @@
 import { useEffect, useState } from "react";
-import Object from "../Object/Object";
 import './Filtres.scss';
 
 const FiltrePrix = (props) => {
 
     const data = props.data
+    const minPrice = props.minPrice
+    const initialMinPrice = props.initialMinPrice
+    const setInitialMinPrice = props.setInitialMinPrice
+    const initialMaxPrice = props.initialMaxPrice
+    const setInitialMaxPrice = props.setInitialMaxPrice
 
-    const [objectMinPrice, setObjectMinPrice] = useState();
-    const [objectMaxPrice, setObjectMaxPrice] = useState();
 
 
-    const minPrice = (e) => {
-        setObjectMinPrice(e.target.value);
-    }
 
-    const maxPrice = (e) => {
-        setObjectMaxPrice(e.target.value);
-    }
+    const setMinPrice = props.setMinPrice
+    const maxPrice = props.maxPrice
+    const setMaxPrice = props.setMaxPrice
+
 
     const getMinPriceProduct = () => {
-        let minPrice = 10000;
+        let price = 10000;
 
         data.map((product) => {
-            if (product.prix < minPrice) {
-                minPrice = product.prix;
+            if (product.prix < price) {
+                price = product.prix;
             }
-
-            return minPrice;
+            return price;
         })
 
-        setObjectMinPrice(minPrice);
+        setInitialMinPrice(price)
+        setMinPrice(price)
+
     }
 
     const getMaxPriceProduct = () => {
-        let maxPrice = 0;
+        let maximalPrice = 0;
 
         data.map((product) => {
-            if (product.prix > maxPrice) {
-                maxPrice = product.prix;
+            if (product.prix > maximalPrice) {
+                maximalPrice = product.prix;
             }
 
-            return maxPrice;
+            return maximalPrice;
         })
 
-        setObjectMaxPrice(maxPrice);
+        setInitialMaxPrice(maximalPrice);
+        setMaxPrice(maximalPrice);
+
     }
+
+
+    const handleMinPriceChange = (e) => {
+
+        setMinPrice(Number(e.target.value))
+    }
+
+    const handleMaxPriceChange = (e) => {
+
+        setMaxPrice(Number(e.target.value))
+    }
+
 
     useEffect(() => {
         getMinPriceProduct()
         getMaxPriceProduct()
-    })
-
+    }, [])
 
 
     return (
@@ -58,11 +72,11 @@ const FiltrePrix = (props) => {
             <div className="range">
                 <div className="range-value">
                     <h3>min</h3>
-                    <input className="filtre-input" id="min" type="text" defaultValue={objectMinPrice} placeholder={objectMinPrice} onInput={((e) => { minPrice(e) })} />
+                    <input className="filtre-input" id="min" type="text" defaultValue={initialMinPrice} placeholder={initialMinPrice} onChange={((e) => { handleMinPriceChange(e) })} />
                 </div>
                 <div className="range-value">
                     <h3>max</h3>
-                    <input className="filtre-input" id="max" type="text" defaultValue={objectMaxPrice} placeholder={objectMaxPrice} onInput={((e) => { maxPrice(e) })} />
+                    <input className="filtre-input" id="max" type="text" defaultValue={initialMaxPrice} placeholder={initialMinPrice} onChange={((e) => { handleMaxPriceChange(e) })} />
                 </div>
             </div>
         </div>
