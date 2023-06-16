@@ -9,7 +9,10 @@ technos utilisées :
     - MongoDB
 
 **FRONTEND**
+
+cd frontend
 npm install
+nodemon start
 
 technos utilisées :
     - React
