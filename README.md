@@ -10,18 +10,18 @@ technos utilisées :
 
 **FRONTEND**
 
-installation :
-    - cd frontend
-    - npm install
-    - nodemon start
+installation :  
+    - cd frontend  
+    - npm install  
+    - nodemon start  
 
 
-technos utilisées :
-    - React
-    - Sass
+technos utilisées :  
+    - React  
+    - Sass  
 
 
 **MOBILE**
 
-techno à utiliser :
+techno à utiliser :  
     - Flutter
