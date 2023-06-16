@@ -10,9 +10,11 @@ technos utilisées :
 
 **FRONTEND**
 
-cd frontend
-npm install
-nodemon start
+installation :
+    - cd frontend
+    - npm install
+    - nodemon start
+
 
 technos utilisées :
     - React
