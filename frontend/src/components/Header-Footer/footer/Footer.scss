@@ -1,0 +1,30 @@
+footer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #502776;
+    height: 100px;
+    width: 100%;
+    padding: 30px 0px;
+    gap: 10px;
+    margin-top: 30px;
+
+
+    p {
+        margin: 0;
+    }
+
+    .legal {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}

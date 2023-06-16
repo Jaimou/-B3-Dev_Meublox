@@ -1,0 +1,43 @@
+.profile {
+    display: flex;
+    flex-grow: 2;
+
+    .profil-views {
+        margin-top: 20px;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+
+        .profil-infos {
+            width: 100%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profil-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 70%;
+        }
+
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile {
+        flex-direction: column;
+
+        .profil-views {
+            text-align: center;
+            width: fit-content;
+
+            .order {
+                margin-bottom: 5%;
+            }
+        }
+    }
+}

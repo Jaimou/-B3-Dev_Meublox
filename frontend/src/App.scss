@@ -1,0 +1,64 @@
+@import './lib/colors/colors.scss';
+
+#root {
+    min-height: 100%;
+    min-width: 100% !important;
+    position: relative;
+    justify-content: space-between;
+}
+
+html {
+    height: 100%;
+    width: 100% !important;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    margin: 0;
+    display: flex !important;
+    flex-direction: column;
+    padding: 0;
+    height: 100%;
+}
+
+
+.trait {
+    border-bottom: 2px solid $primary-color;
+    margin: 0px 100px 10px;
+    height: 0px;
+    margin-top: 15px;
+}
+
+.inside {
+    width: 80%;
+    margin-top: 5px;
+}
+
+h1 {
+    font-size: 25px;
+    color: $primary-color;
+    margin: 10px 100px 2px;
+    text-align: left;
+    text-transform: capitalize;
+
+}
+
+.page {
+    margin-top: 30px;
+    height: inherit;
+}
+
+@media screen and (max-width: 400px) {
+    .trait {
+        border-bottom: 2px solid $primary-color;
+        margin: 0px 40px 10px;
+    }
+}
