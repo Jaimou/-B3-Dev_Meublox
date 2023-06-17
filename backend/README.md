@@ -7,7 +7,10 @@
  ````
 
  ````bash
-pip install -r requirements.txt
+pip install -r requirements.txt # de préférence ouvrir le fichier requirements.txt dans le terminal (clique droit sur le ficier + open in integrated terminal) et exécuter la commande précédente
+ ````
+
+ ````bash
  ````
 
  ````bash
@@ -28,3 +31,5 @@ uvicorn app.main:app --reload
  ```
  http://localhost:8000/redoc
  ```
+
+## mon fichier test postman est présent dans le dossier dossier

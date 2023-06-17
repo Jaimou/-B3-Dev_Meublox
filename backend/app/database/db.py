@@ -6,10 +6,14 @@ from ..models.vote import VoteInDB
 from ..models.favorite import FavoriteInDB
 from typing import Dict, Any, List
 from typing import Optional
+from ..schemas.vote import Vote
 
 
-DATABASE_URL = f"mongodb://{settings.db_hostname}:{settings.db_port}"
 
+if settings.environment == "dev": 
+    DATABASE_URL = f"mongodb+srv://meublox:lOf8vaigXxPl43rg@meublox.xhnwwem.mongodb.net/"
+else:
+    DATABASE_URL = f"mongodb://{settings.db_hostname}:{settings.db_port}"
 class Database:
     def __init__(self, uri):
         self.client = MongoClient(uri)
@@ -34,7 +38,14 @@ db = Database(DATABASE_URL)
 def get_database():
     yield db
 
+
 # Functions for votes
+
+def get_all_vote(skip: int = 0, limit: int = 10) -> Dict[str, Any]:
+
+    votes = db.get_collection("votes").find().skip(skip).limit(limit)
+    votes_list = [Vote(**vote) for vote in votes]
+    return votes_list
 
 def get_vote(user_id: int, product_id: int) -> Dict[str, Any]:
     vote = db.get_collection("votes").find_one({"user_id": user_id, "product_id": product_id})

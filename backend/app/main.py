@@ -38,6 +38,8 @@ def shutdown_db_client():
 def root():
     return {"app": f"{app.title}", "version": f"{app.version}"}
 
+#reset password
+
 class ResetPasswordRequest(BaseModel):
     email: str
 
