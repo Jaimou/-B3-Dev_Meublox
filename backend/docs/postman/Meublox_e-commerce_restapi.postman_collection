@@ -1,0 +1,770 @@
+{
+	"info": {
+		"_postman_id": "50913e61-19de-41e2-b2e7-08a42e08158b",
+		"name": "e-commerce_restapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24862123"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"table haute\",\r\n    \"description\": \"fabriquée au cul\",\r\n    \"prix\": 1500,\r\n    \"images\": [\r\n        \"https://example.com/image1.jpg\",\r\n        \"https://example.com/image2.jpg\"\r\n    ],\r\n    \"couleurs\": [\r\n        \"rose\",\r\n        \"rouge\"\r\n    ],\r\n    \"stock\": 25,\r\n    \"categorie\": [\r\n        \"Meubles\",\r\n        \"Tables haute\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "procuts by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/63fab62ac973b63bba821dc2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"63fab62ac973b63bba821dc2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/63faba1486825f4b5885446d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"63faba1486825f4b5885446d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"nom\": \"Table basse en bois\",\r\n        \"description\": \"fabriquée à la main\",\r\n        \"prix\": 1500.0,\r\n        \"images\": [\r\n            \"https://example.com/image1.jpg\",\r\n            \"https://example.com/image2.jpg\"\r\n        ],\r\n        \"couleurs\": [\r\n            \"brun\",\r\n            \"noir\"\r\n        ],\r\n        \"stock\": 10,\r\n        \"categorie\": [\r\n            \"Meubles\",\r\n            \"Tables basses\"\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products/63fab62ac973b63bba821dc2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"63fab62ac973b63bba821dc2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWT\", pm.response.json().access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "decourselle.etienne@hotmail.fr",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eDMeublox2023!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET users by ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "créer un nouvel utilisateur",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"elkhattabomar@gmail.com\",\r\n    \"role\": \"user\",\r\n    \"civilite\": \"Monsieur\",\r\n    \"nom\": \"omar\",\r\n    \"prenom\": \"ELK\",\r\n    \"adresse_postale\": \"193 Avenue Carnot\",\r\n    \"code_postal\": \"33150\",\r\n    \"ville\": \"Cenon\",\r\n    \"pays\": \"France\",\r\n    \"telephone\": \"013645678\",\r\n    \"date_naissance\": \"1996-07-24\",\r\n    \"password\": \"0100123454\",\r\n    \"is_admin\": \"true\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"updated_email@example.com\",\r\n    \"role\": \"admin\",\r\n    \"civilite\": \"Mme\",\r\n    \"nom\": \"Doe\",\r\n    \"prenom\": \"Jane\",\r\n    \"adresse_postale\": \"123 Main St\",\r\n    \"code_postal\": \"12345\",\r\n    \"ville\": \"Paris\",\r\n    \"pays\": \"France\",\r\n    \"telephone\": \"0123456789\",\r\n    \"date_naissance\": \"01/01/1980\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/644e9d5cb7712c979393a22d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"644e9d5cb7712c979393a22d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Votes",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": \"644e84c9ff758124942288c9\",\r\n  \"product_id\": \"644ff33924c551dd721e3eae\",\r\n  \"rating\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/votes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favoris",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"644e878de691c0a990343085\",\r\n    \"product_id\": \"60d7e2341234567890abcdef\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/favorites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/favorites/644e878de691c0a990343085",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"favorites",
+								"644e878de691c0a990343085"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reset_password",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abeny479@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"yzx@example.com\",\r\n  \"role\": \"admin\",\r\n  \"civilite\": \"M.\",\r\n  \"nom\": \"Benyahya\",\r\n  \"prenom\": \"Med Amine\",\r\n  \"adresse_postale\": \"370 Rue de la République\",\r\n  \"code_postal\": \"37000\",\r\n  \"ville\": \"Merignac\",\r\n  \"pays\": \"France\",\r\n  \"telephone\": \"0634627648\",\r\n  \"date_naissance\": \"21/10/2000\",\r\n  \"password\": \"Amine//123\",\r\n  \"is_admin\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@example.com\",\r\n  \"role\": \"admin\",\r\n  \"civilite\": \"M.\",\r\n  \"nom\": \"Admin\",\r\n  \"prenom\": \"Super\",\r\n  \"adresse_postale\": \"123 Rue des Administrateurs\",\r\n  \"code_postal\": \"12345\",\r\n  \"ville\": \"Adminville\",\r\n  \"pays\": \"France\",\r\n  \"telephone\": \"0123456789\",\r\n  \"date_naissance\": \"01/01/1990\",\r\n  \"password\": \"admin123\",\r\n  \"is_admin\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jsohier@gmail.com\",\r\n    \"role\": \"user\",\r\n    \"civilite\": \"Monsieur\",\r\n    \"nom\": \"Jonathan\",\r\n    \"prenom\": \"Sohier\",\r\n    \"adresse_postale\": \"193 Avenue Carnot\",\r\n    \"code_postal\": \"33150\",\r\n    \"ville\": \"Cenon\",\r\n    \"pays\": \"France\",\r\n    \"telephone\": \"0640136969\",\r\n    \"date_naissance\": \"1996-07-24\",\r\n    \"password\": \"Sohier//123\",\r\n    \"is_admin\": true \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/646b907304ea8e55a036f13e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"646b907304ea8e55a036f13e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/cart/644e84c9ff758124942288c9/644ff33924c551dd721e3eae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"644e84c9ff758124942288c9",
+								"644ff33924c551dd721e3eae"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "ajouter un produit au panier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": \"644d7dd87da463397df36cd3\",\r\n  \"items\": [\r\n    {\r\n      \"product_id\": \"6477473007433b2234dcf495\",\r\n      \"quantity\": 10\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/cart/644e84c9ff758124942288c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"644e84c9ff758124942288c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/cart/644e84c9ff758124942288c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"644e84c9ff758124942288c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/cart/644e84c9ff758124942288c9/644ff33924c551dd721e3eae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"644e84c9ff758124942288c9",
+								"644ff33924c551dd721e3eae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quantity\": 6\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "ttp://localhost:8000/cart/647110a8ab48e99354a468af/646c8a651a952a86709f84ec",
+							"protocol": "ttp",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"cart",
+								"647110a8ab48e99354a468af",
+								"646c8a651a952a86709f84ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"delivery_date\": \"2023-06-02\",\r\n        \"in_delivery\": false,\r\n        \"total_price\": 400.99,\r\n        \"delivery_address\": \"123 Avenue D'Ares, 33000 Bordeaux\",\r\n        \"payment_card\": \"**** **** **** 1234\",\r\n        \"details\": [\r\n            {\r\n                \"product_id\": \"646c8a651a952a86709f84ec\",\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"product_id\": \"6477473007433b2234dcf495\",\r\n                \"quantity\": 5\r\n            }\r\n        ],\r\n        \"cart_id\": \"60d7e3451234567890abcdef\",\r\n        \"user_id\": \"60d7e12f1234567890abcdef\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"in_delivery\": true,\r\n    \"total_price\": 500.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/orders/648789c886b458275996d79b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								"648789c886b458275996d79b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
