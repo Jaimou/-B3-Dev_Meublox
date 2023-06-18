@@ -61,7 +61,7 @@ const Filtres = (props) => {
         }
         if (tri == "note") {
             filteredData.sort(function (a, b) {
-                return a.note - b.note;
+                return b.note - a.note;
             });
         }
         setData(filteredData)

@@ -35,7 +35,7 @@ const ObjectsList = (props) => {
         }
         if (currentUrl == "http://localhost:3000/products") {
 
-            const objectsDataPopular = allData.sort((a, b) => b.Rate - a.Rate);
+            const objectsDataPopular = allData.sort((a, b) => b.note - a.note);
             setData(objectsDataPopular)
         }
 
