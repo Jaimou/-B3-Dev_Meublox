@@ -66,7 +66,7 @@ const Header = () => {
                 setCartQuantity(cart.length)
             }
         }
-    }, [currentWindowLocation])
+    })
 
 
     verifyWindow()
