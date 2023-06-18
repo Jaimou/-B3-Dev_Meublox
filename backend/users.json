@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "63fa9f2ad5807c610b383022"
+  },
+  "email": "john.doe@example.com",
+  "role": "client",
+  "commandes": [
+    1,
+    2,
+    3
+  ],
+  "Prenom": "John",
+  "Nom": "Doe",
+  "cartes de paiements": [
+    {
+      "nom": "John Doe",
+      "numéro": "1234 5678 9012 3456",
+      "date de validité": "12/23",
+      "cryptograme": "123"
+    }
+  ],
+  "Civilité": "M",
+  "Adresse postale": {
+    "adresse": "123 rue des exemples",
+    "ville": "Paris",
+    "code postal": "75001"
+  },
+  "password": "$2y$10$GUsqvn/aw7fNPwWJoKTgyO1vsjjUTYGZuK5v6LMz.sT3bv5t4OXpy"
+}]

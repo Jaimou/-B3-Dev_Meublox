@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from ..schemas.vote import Vote
-from ..database.db import get_vote, add_vote, update_vote, delete_vote, get_average_rating
+from ..database.db import get_vote, add_vote, update_vote, delete_vote, get_average_rating, get_all_vote
 
 router = APIRouter()
 
@@ -31,11 +31,10 @@ async def get_votes_by_user(user_id: int):
         raise HTTPException(status_code=404, detail="Votes not found")
     return votes
 
-@router.get("/")
-async def get_votes():
-    votes = get_vote()
-    if not votes:
-        raise HTTPException(status_code=404, detail="Votes not found")
+@router.get("")
+async def get_all_votes():
+    votes = get_all_vote()
+    print(votes)
     return votes
 
 @router.put("/{id}")

@@ -7,9 +7,6 @@ from app.schemas.user import Token
 from app.utils import oauth2, passwd_utils
 
 
-
-
-
 router = APIRouter(tags=['Authentication'])
 
 @router.post('/login', response_model=Token)

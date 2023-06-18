@@ -30,7 +30,6 @@ def fetch_products(nom: Optional[str] = Query(None, alias="nom"),
     couleurs: Optional[List[str]] = Query(None,alias="couleurs"),
     note: Optional[int] = Query(None,alias="note"),
     sort: Optional[str] = Query(None,alias="sort",regex="^[a-z_-]+:(desc|asc)$"),
-    current_user: user.User = Depends(oauth2.get_current_user)
     ):
     sorting_keys = ["nom","note","prix"]
 
