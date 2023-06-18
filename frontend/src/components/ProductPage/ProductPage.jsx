@@ -20,6 +20,8 @@ const ProductPage = () => {
     const token = sessionStorage.getItem("token");
     const myDecodedToken = decodeToken(token);
 
+    console.log(product)
+
 
 
 

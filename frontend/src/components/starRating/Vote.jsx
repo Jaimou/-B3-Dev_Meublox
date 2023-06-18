@@ -23,12 +23,10 @@ const Vote = (props) => {
     }, [])
 
     const checkVotes = () => {
-        console.log(allVotes.length)
         if (allVotes == []) {
             return
         }
         if (allVotes.length > 0) {
-            console.log(allVotes)
             allVotes.forEach(vote => {
                 if (productId == vote.product_id) {
                     setAlreadyVoted(true)
@@ -61,7 +59,6 @@ const Vote = (props) => {
 
 
     const setNewNote = () => {
-        console.log(users_notes)
         if (users_notes != null) {
             let newNote = 0
             users_notes.forEach(note => {
@@ -80,20 +77,29 @@ const Vote = (props) => {
         let finalUsersNotes = []
         let finalUsersId = []
 
-        let newNote = setNewNote() + rate
+        console.log(users_notes)
+        console.log(users_id)
 
-        if (users_id != null) {
+        let newNote = setNewNote() + rate
+        console.log(users_id)
+
+        if (users_id != null && users_id != []) {
 
             finalNewNote = newNote / (users_id.length + 1)
             finalUsersNotes = users_notes.push(rate)
             finalUsersId = users_id.push(userId)
+            console.log(finalUsersNotes)
+            console.log(finalUsersId)
+            console.log("if")
 
         }
         else {
             finalNewNote = newNote
             finalUsersNotes.push(rate)
             finalUsersId.push(userId)
+            console.log("else")
         }
+
 
         const requestOptionsFirst = {
             method: 'POST',
@@ -119,9 +125,12 @@ const Vote = (props) => {
             })
         };
 
+        console.log(finalUsersNotes)
+        console.log(finalUsersId)
+
         // creation du VOTE
         try {
-            fetch(`http://localhost:8000/votes`, requestOptionsFirst)
+            await fetch(`http://localhost:8000/votes/`, requestOptionsFirst)
                 .then(response => {
                     response.json();
                 })
@@ -133,7 +142,7 @@ const Vote = (props) => {
 
         // modification de la note produit
         try {
-            fetch(`http://localhost:8000/products/${productId}`, requestOptionsSecond)
+            await fetch(`http://localhost:8000/products/${productId}`, requestOptionsSecond)
                 .then(response => {
                     response.json();
                 })
@@ -151,7 +160,7 @@ const Vote = (props) => {
             {!alreadyVoted ?
                 <div className="vote-div">
                     <label htmlFor="vote">Votre note :</label>
-                    <input type="number" name="vote" min={0} max={5} step={0.5} onChange={(e) => { setRate(e.target.value) }} />
+                    <input type="number" name="vote" min={0} max={5} step={1} onChange={(e) => { setRate(e.target.value) }} />
                     <button type="button" onClick={createVote}> Voter</button>
                 </div>
                 :

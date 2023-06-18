@@ -5,13 +5,13 @@ from app.utils.pyobjectid import PyObjectId
 
 
 class Product(BaseModel):
-    nom: str
-    description: str
-    short_description: str
-    prix: float
+    nom: Optional[str]
+    description: Optional[str]
+    short_description: Optional[str]
+    prix: Optional[float]
     images: Optional[List[str]]
     couleurs: Optional[List[str]]
-    stock: int
+    stock: Optional[int]
     categorie: Optional[List[str]]
     note: Optional[int]
     users_id: Optional[List[str]]
