@@ -47,7 +47,7 @@ const Header = () => {
             };
             let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
             const responseInJSON = await response.json();
-            if (responseInJSON.detail == "Cart not found") {
+            if (responseInJSON == ["Cart not found"]) {
                 setCartQuantity(0)
             }
             else {

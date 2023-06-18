@@ -8,9 +8,9 @@ const ProductsAdmin = (props) => {
     let images = []
 
     const [errors, setErrors] = useState({});
-    const [productId, setProductId] = useState("")
 
     const [inputs, setInputs] = useState({
+        id: "",
         nom: "",
         description: "",
         short_description: "",
@@ -46,6 +46,8 @@ const ProductsAdmin = (props) => {
         { value: 'Armoire', label: 'Armoire' },
         { value: 'Rangement', label: 'Rangement' },
         { value: 'Dressing', label: 'Dressing' },
+        { value: 'Bibliothèque', label: 'Bibliothèque' },
+
     ];
 
     const productForm = useRef();
@@ -116,18 +118,20 @@ const ProductsAdmin = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                nom: "",
-                description: "",
-                short_description: "",
-                prix: 929.00,
-                images: [],
-                couleurs: [],
-                stock: 45,
-                categorie: []
+                nom: inputs.nom,
+                description: inputs.description,
+                short_description: inputs.short_description,
+                prix: inputs.prix,
+                images: inputs.images,
+                couleurs: inputs.couleurs,
+                stock: inputs.stock,
+                categorie: inputs.categorie
             })
         };
 
-        fetch(`http://localhost:8000/products/${productId}`, requestOptionsFirst)
+        console.log(requestOptionsFirst.body)
+
+        fetch(`http://localhost:8000/products/${inputs.id}`, requestOptionsFirst)
             .then(response => {
                 response.json();
             })
@@ -160,7 +164,7 @@ const ProductsAdmin = (props) => {
                                 required={true}
                                 id="short-description"
                                 name="short-description"
-                                maxlength="150"
+                                maxLength="150"
                                 value={inputs.short_description}
                                 onChange={(e) => { handleInputChange(e) }}
                             />
@@ -174,7 +178,7 @@ const ProductsAdmin = (props) => {
                                 required={true}
                                 id="description"
                                 name="description"
-                                maxlength="300"
+                                maxLength="300"
                                 value={inputs.description}
                                 onChange={(e) => { handleInputChange(e) }}
                             />
@@ -259,8 +263,8 @@ const ProductsAdmin = (props) => {
                                 className="product-input"
                                 type="number"
                                 required={true}
-                                id="prix"
-                                name="prix"
+                                id="stock"
+                                name="stock"
                                 value={inputs.stock}
                                 onChange={(e) => { handleInputChange(e) }}
                             />
@@ -285,7 +289,7 @@ const ProductsAdmin = (props) => {
                     </form>
                 </div>
                 <div className="products-table">
-                    <ProductsTable products={products} setInputs={setInputs} setProductId={setProductId} />
+                    <ProductsTable products={products} setInputs={setInputs} />
                 </div>
 
             </div>

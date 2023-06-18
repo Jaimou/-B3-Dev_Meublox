@@ -5,7 +5,6 @@ const ProductsTable = (props) => {
 
     let products = props.products;
     const setInputs = props.setInputs
-    const setProductId = props.setProductId
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(2);
 
@@ -44,6 +43,7 @@ const ProductsTable = (props) => {
         })
 
         let selectedProduct = {
+            id: product._id,
             nom: product.nom,
             description: product.description,
             short_description: product.short_description,
