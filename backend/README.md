@@ -11,16 +11,13 @@ pip install -r requirements.txt # de préférence ouvrir le fichier requirements
  ````
 
  ````bash
- ````
-
- ````bash
 pip freeze > requirements.txt
  ````
 
 ## To start server in dev mode (live server):
 
 ````bash
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload #si vous avez un problème faites un pip uninstall pymongo et pip uninstall bson et faire pip install pymongo puis réexécuter la commande précédente
  ````
 
  ### For Swagger OpenAPI doc
@@ -32,4 +29,4 @@ uvicorn app.main:app --reload
  http://localhost:8000/redoc
  ```
 
-## mon fichier test postman est présent dans le dossier dossier
+## mon fichier test postman est présent dans le dossier doc\postman

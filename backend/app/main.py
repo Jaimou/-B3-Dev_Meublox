@@ -65,7 +65,7 @@ def generate_reset_token() -> str:
     return token
 
 def generate_reset_link(user_id: int, token: str) -> str:
-    reset_link = f"http://localhost:3000/forgot/userId?user_id={user_id}&token={token}"
+    reset_link = f"http://localhost:3000/forgot/{user_id}/{token}"
     return reset_link
 
 def send_reset_email(email: str, reset_link: str):
@@ -161,7 +161,7 @@ def send_reset_email(email: str, reset_link: str):
 
     with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
         smtp.starttls()
-        smtp.login("soso8amine@gmail.com", "zogkisyuvbwuhsjq")
+        smtp.login("meublox.contact@gmail.com", "dpjuugnlroqzgxvr")
         smtp.send_message(msg)
 
 
