@@ -32,8 +32,10 @@ const Searchbar = () => {
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        var lowerCase = e.target.value.toLowerCase();
-        setSearchInput(lowerCase);
+        let string = e.target.value
+        let upperCase = string.charAt(0).toUpperCase() + string.slice(1)
+        console.log(upperCase)
+        setSearchInput(upperCase);
     };
 
     const handleSubmit = () => {

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "423641214315",
+    "project_id": "projet-fin-d-annee-4e30e",
+    "storage_bucket": "projet-fin-d-annee-4e30e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423641214315:android:0fc5323c4b3d0a210a302e",
+        "android_client_info": {
+          "package_name": "com.example.meublox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423641214315-t0ta07u3kmsmh992caeluqhmn9hi669j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEoX3WqvEpWr1JxuKAI9jDi8Zn4xN6gck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423641214315-k6na72i2pcg4q6mj41udrsspcq5ujt80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,13 +24,13 @@ const ObjectsList = (props) => {
         }
         if (currentUrl.includes("products/category/")) {
 
-            const objectsDataPopular = allData.filter((product) => product.categorie.includes(type));
-
+            const objectsDataPopular = allData.filter((product) => product.categorie.includes(type)).sort((a, b) => b.note - a.note);
+            console.log(objectsDataPopular)
             setData(objectsDataPopular)
         }
         if (currentUrl.includes("products/search/")) {
 
-            const objectsDataPopular = allData.filter((product) => product.nom.includes(type));
+            const objectsDataPopular = allData.filter((product) => product.nom.includes(type)).sort((a, b) => b.note - a.note);
             setData(objectsDataPopular)
         }
         if (currentUrl == "http://localhost:3000/products") {
