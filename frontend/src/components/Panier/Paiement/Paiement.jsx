@@ -178,7 +178,7 @@ const Paiement = () => {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 console.log(result)
-                navigate("/")
+                // navigate("/")
             }
             catch (e) {
                 console.log(e.message)

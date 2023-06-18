@@ -6,6 +6,8 @@ const StarRating = (props) => {
 
     const rate = props.note;
 
+    console.log(rate)
+
     const getRate = (rate) => {
         if (rate < 0.75) {
             return (
@@ -62,7 +64,7 @@ const StarRating = (props) => {
                 </div>
             )
         }
-        else if (4.75 > rate) {
+        else if (4.75 < rate) {
             return (
                 <div className="star-rate">
                     <StarOn />

@@ -68,7 +68,7 @@ async def get_cart(user_id: str):
 
 
 @router.delete("/cart/{user_id}")
-async def delete_cart(user_id: int):
+async def delete_cart(user_id: str):
     cart_collection = db.get_carts_collection()
 
     cart = cart_collection.find_one({"user_id": user_id})

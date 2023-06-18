@@ -18,6 +18,9 @@ const Vote = (props) => {
     let users_notes = props.users_notes;
     let users_id = props.users_id;
 
+
+
+
     useEffect(() => {
         callVotesApi();
     }, [])
@@ -74,30 +77,24 @@ const Vote = (props) => {
     const createVote = async () => {
 
         let finalNewNote = 0
-        let finalUsersNotes = []
-        let finalUsersId = []
+        let finalUsersNotes = users_notes
+        let finalUsersId = users_id
 
-        console.log(users_notes)
-        console.log(users_id)
+        let newNote = Number(setNewNote() + rate)
 
-        let newNote = setNewNote() + rate
-        console.log(users_id)
 
         if (users_id != null && users_id != []) {
 
             finalNewNote = newNote / (users_id.length + 1)
-            finalUsersNotes = users_notes.push(rate)
-            finalUsersId = users_id.push(userId)
-            console.log(finalUsersNotes)
-            console.log(finalUsersId)
-            console.log("if")
+            finalUsersNotes.push(rate)
+            finalUsersId.push(userId)
+
 
         }
         else {
             finalNewNote = newNote
             finalUsersNotes.push(rate)
             finalUsersId.push(userId)
-            console.log("else")
         }
 
 
@@ -125,9 +122,6 @@ const Vote = (props) => {
             })
         };
 
-        console.log(finalUsersNotes)
-        console.log(finalUsersId)
-
         // creation du VOTE
         try {
             await fetch(`http://localhost:8000/votes/`, requestOptionsFirst)
@@ -135,17 +129,12 @@ const Vote = (props) => {
                     response.json();
                 })
 
-        }
-        catch (e) {
-            console.log(e.message)
-        }
-
-        // modification de la note produit
-        try {
+            // modification de la note produit
             await fetch(`http://localhost:8000/products/${productId}`, requestOptionsSecond)
                 .then(response => {
                     response.json();
                 })
+
         }
         catch (e) {
             console.log(e.message)

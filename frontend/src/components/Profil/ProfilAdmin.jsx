@@ -49,7 +49,6 @@ const ProfilAdmin = () => {
             method: 'GET',
         })
         let response = await request.json();
-        console.log(response)
         setOrdersList(response)
     }
 
@@ -73,21 +72,24 @@ const ProfilAdmin = () => {
                     <>
                         <SideNavAdmin users={users} setUsers={setUsers} products={products} setProducts={setProducts} orders={orders} setOrders={setOrders} />
                         <div className="profil-views">
-                            {users ?
-                                <Users users={usersList} />
-                                :
-                                <></>
-                            }
-                            {products ?
-                                <ProductsAdmin products={productsList} />
-                                :
-                                <></>
-                            }
-                            {orders ?
-                                <CommandesAdmin orders={ordersList} />
-                                :
-                                <></>
-                            }
+                            <>
+                                <h3><a href="/profile">Retour</a></h3>
+                                {users ?
+                                    <Users users={usersList} />
+                                    :
+                                    <></>
+                                }
+                                {products ?
+                                    <ProductsAdmin products={productsList} />
+                                    :
+                                    <></>
+                                }
+                                {orders ?
+                                    <CommandesAdmin orders={ordersList} />
+                                    :
+                                    <></>
+                                }
+                            </>
                         </div>
                     </> :
                     <h2 className='loading'>Loading</h2>
