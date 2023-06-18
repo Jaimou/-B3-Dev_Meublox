@@ -1,0 +1,50 @@
+@import '../../lib/colors/colors.scss';
+
+
+.object {
+    display: flex;
+    flex-direction: column;
+
+    .img-div {
+        overflow: hidden;
+        height: 250px;
+        width: 100%;
+        position: relative;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+
+        img {
+            width: 100%;
+            border: 1px solid lightgray;
+            position: absolute;
+            display: flex;
+        }
+    }
+}
+
+.rate {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.object:last-child {
+    justify-self: flex-start;
+}
+
+.name,
+.description,
+.price {
+    margin-bottom: 0px;
+}
+
+.name {
+    color: $primary-color ;
+    margin-left: 0px;
+}

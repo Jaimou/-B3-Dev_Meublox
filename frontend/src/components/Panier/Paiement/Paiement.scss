@@ -1,0 +1,234 @@
+.page {
+    height: auto;
+}
+
+.paiement-page {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10%;
+    justify-content: space-between;
+
+    .paiement-choice {
+        width: 50%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        padding: 25px;
+
+        .choice-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .radio {
+                box-shadow: none;
+            }
+
+            .first-part,
+            .second-part {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .second-part {
+                justify-content: space-between;
+                width: 40%;
+            }
+
+            .first-part {
+                justify-content: flex-start;
+                width: 60%;
+                gap: 10%;
+            }
+
+            p {
+                width: 75%;
+            }
+        }
+
+        .icon-cards {
+            width: 40%;
+        }
+    }
+
+    .choice-row-new-card {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .card-number {
+            display: flex;
+            gap: 10px;
+
+            input {
+                width: 75%;
+            }
+
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .date-cvv {
+            display: flex;
+            flex-direction: row;
+            gap: 5%;
+
+
+            .date,
+            .cvv {
+                display: flex;
+                width: 45%;
+                gap: 10px;
+                align-items: center;
+
+            }
+        }
+
+    }
+
+    .choice-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+.cart-livraison {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+
+    .resume-cart {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+
+        .total-paiement {
+            margin-right: 0px;
+
+            h2 {
+                width: 100%;
+            }
+        }
+
+        h3 {
+            margin: 0%;
+            width: fit-content;
+        }
+
+
+        .resume-cart-details {
+            display: flex;
+            margin: 0 1%;
+            gap: 5%;
+            justify-content: space-between;
+
+            .cart-img {
+                width: 30%;
+                border-radius: 20px;
+                height: 30%;
+            }
+
+            .name-and-quatity {
+                display: flex;
+                flex-direction: column;
+                gap: 5%;
+                width: 30%;
+
+                h4 {
+                    line-height: 1.2em;
+                }
+
+            }
+
+            h3 {
+                margin: 0px;
+            }
+
+
+
+
+        }
+    }
+
+    .resume-livraison {
+        border: 1px solid black;
+        padding: 10px;
+
+        h3 {
+            margin: 0% 2%;
+        }
+
+        .adresse-livraison {
+
+            margin: 0 2%;
+
+            h4,
+            p {
+                margin: 0px;
+            }
+        }
+
+    }
+
+}
+
+.button-paiement {
+    width: 50%;
+    margin: 5% 25%;
+    align-self: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .paiement-page {
+        flex-direction: column;
+        gap: 20px;
+
+        .paiement-choice {
+            width: fit-content;
+
+            form {
+                margin-bottom: 5%;
+
+                .date-cvv {
+                    flex-direction: column;
+                    height: fit-content;
+                    gap: 30px;
+
+                    .date,
+                    .cvv {
+                        width: 100%;
+                    }
+
+                }
+            }
+
+        }
+
+        .cart-livraison {
+            width: 100%;
+            gap: 20px;
+        }
+
+
+
+
+    }
+
+    p,
+    label {
+        font-size: 0.8em;
+    }
+}

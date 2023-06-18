@@ -1,0 +1,198 @@
+h3 {
+    margin: 10px 100px 2px;
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 1em;
+    }
+
+    a:hover {
+        color: #D01D7B;
+    }
+
+    #productType {
+        text-transform: capitalize;
+    }
+}
+
+.product-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 5%;
+    margin-top: 50px;
+    height: fit-content;
+
+    .images-gallery {
+        width: 65%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        .images-collumn {
+            width: 20%;
+            height: min-content;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .image-gallery {
+                width: 100%;
+            }
+        }
+
+        .image-first {
+            width: 70%;
+            height: min-content;
+            overflow: hidden;
+        }
+    }
+
+    .product {
+        width: 35%;
+
+        .details {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #502776;
+            height: 10%;
+
+            h1,
+            h2 {
+                margin: 0px;
+                text-transform: capitalize;
+
+            }
+        }
+
+        .description {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 90%;
+
+            .long-description {
+                height: 50%;
+            }
+
+            .toCart {
+                display: flex;
+                justify-content: space-around;
+
+                #quantity {
+                    width: 50px;
+                    text-align: center;
+                    margin-left: 10px;
+                }
+            }
+
+            .vote-div {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+
+    h3 {
+        margin: 10px 40px 2px;
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 0.8em;
+        }
+
+        a:hover {
+            color: #D01D7B;
+        }
+
+        #productType {
+            text-transform: capitalize;
+        }
+    }
+
+    .product-page {
+        flex-direction: column;
+
+        .images-gallery {
+            width: 100%;
+            gap: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+
+            .images-collumn {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+                width: 100%;
+
+                .image-gallery {
+                    width: 20%;
+                }
+            }
+
+            .image-first {
+                width: 100%;
+                height: min-content;
+                overflow: hidden;
+            }
+        }
+
+        .product {
+            width: 100%;
+            margin-top: 10px;
+
+            .details {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                color: #502776;
+                height: 10%;
+
+                h1,
+                h2 {
+                    margin: 0px;
+                    text-transform: capitalize;
+                    font-size: 1.2em;
+                }
+            }
+
+            p {
+                height: auto;
+                font-size: 0.8em;
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 90%;
+
+                .long-description {
+                    height: 50%;
+                }
+
+                .toCart {
+                    display: flex;
+                    justify-content: space-around;
+
+                    #quantity {
+                        width: 50px;
+                        text-align: center;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+
+
+    }
+}

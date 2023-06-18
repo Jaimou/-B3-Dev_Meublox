@@ -1,0 +1,56 @@
+@import '../../../lib/colors/colors.scss';
+
+.profil-views {
+
+    .profil-infos {
+
+        .profil-form {
+            width: 100%;
+
+            .infos-div {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+
+                .infos {
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                    color: $secondary-color;
+                    margin: 1% 2%;
+                    width: 100%;
+
+                    h4 {
+                        color: #000000;
+                        margin: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    justify-self: center;
+
+    input {
+        width: 90%;
+    }
+
+    .radio {
+        width: fit-content;
+        margin-left: 10%;
+        margin-right: 2%;
+    }
+
+    button {
+        align-self: center;
+    }
+}

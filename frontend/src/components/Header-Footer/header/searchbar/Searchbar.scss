@@ -1,0 +1,38 @@
+.search {
+    width: 50%;
+    overflow: visible;
+
+    #searchBar {
+        width: 100%;
+        color: #502776 !important;
+        font-family: 'Poppins', sans-serif !important;
+        border: 2px solid #502776 !important;
+
+        fieldset {
+            border-color: red;
+        }
+    }
+
+
+    #results {
+        z-index: -1;
+        position: absolute;
+        background-color: white;
+        border: 1px solid rgb(230, 230, 230);
+        border-radius: 0 0 10px 10px;
+        width: 48%;
+        padding: 5px;
+        padding-top: 10px;
+        margin-top: -5px;
+        flex-direction: column;
+
+        .itemType-searchbar {
+            width: 100%;
+            text-transform: capitalize;
+        }
+
+        .itemName-searchbar {
+            width: 100%;
+        }
+    }
+}

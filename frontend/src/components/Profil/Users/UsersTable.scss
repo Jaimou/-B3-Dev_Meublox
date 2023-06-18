@@ -1,0 +1,59 @@
+@import '../../../lib/colors/colors.scss';
+
+
+table {
+    border: 1px black solid;
+    border-spacing: 0px;
+    width: 80%;
+
+    th {
+        background-color: $tertiary-color;
+        color: white;
+        font-weight: bold;
+        padding: 5px 15px;
+    }
+
+    td {
+        padding: 5px 15px;
+        border-spacing: 0px;
+        text-align: center;
+
+    }
+
+}
+
+.pagination {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    gap: 5px;
+    padding: 0px;
+
+    li {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        background-color: rgb(223, 223, 223);
+        border: 1px #1f1f1f solid;
+        border-radius: 10px;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+    }
+
+    .is-selected {
+        background-color: $tertiary-color;
+
+        a {
+            color: white;
+        }
+
+    }
+}

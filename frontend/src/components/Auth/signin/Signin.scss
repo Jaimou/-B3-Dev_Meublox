@@ -1,0 +1,76 @@
+.signin-page {
+    height: inherit;
+    margin-top: 30px;
+
+
+    .signin-block {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        max-width: 550px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-top: 80px;
+        border: 1px solid #c7c7c7;
+        border-radius: 20px;
+        padding: 20px;
+
+        .form {
+            width: 80%;
+            margin: 10px 0px;
+            height: 40px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .remember-validation {
+
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+
+            .remember {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                #remember {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            .validation {
+                width: 200px;
+            }
+        }
+    }
+
+    .validation {
+        width: 80%;
+        height: 50px;
+        margin: 20px auto;
+        background-color: white;
+        color: #502776;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .validation:hover {
+        box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+        background-color: #502776;
+        color: white;
+    }
+
+    p {
+        text-align: center;
+        color: black;
+
+        a {
+            color: #502776;
+            font-weight: bold;
+        }
+    }
+}

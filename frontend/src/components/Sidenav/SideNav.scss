@@ -1,0 +1,47 @@
+@import '../../lib/colors/colors.scss';
+
+.sidebar {
+    height: 100%;
+    width: 30%;
+    background-color: $primary-color;
+    color: white;
+    padding-top: 50px;
+
+    h1 {
+        color: white;
+        text-align: center;
+        margin: 0px;
+    }
+
+    li {
+        list-style: none;
+
+        p:hover {
+            cursor: pointer;
+        }
+    }
+
+    .profil-onglet {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-inline-start: 10%;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+
+        .profil-onglet {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            padding-inline-start: 10%;
+            padding-inline-end: 10%;
+            flex-wrap: wrap;
+        }
+
+    }
+}
