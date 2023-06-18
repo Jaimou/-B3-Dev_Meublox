@@ -5,7 +5,6 @@ import './ProductsAdmin.scss'
 
 const ProductsAdmin = (props) => {
     let products = props.products;
-    let images = []
 
     const [errors, setErrors] = useState({});
 
@@ -73,43 +72,48 @@ const ProductsAdmin = (props) => {
         }));
     };
 
-    const handleAddFirstImageChange = (event) => {
-        images[0] = event.target.value;
-        setInputs((inputs) => ({
-            ...inputs,
-            images: images,
-        }));
+    const handleAddImageChange = (event) => {
+        console.log(inputs.images)
+        if (event.target.id == "image 1") {
+            setInputs((inputs) => ({
+                ...inputs,
+                images: [event.target.value, inputs.images[1], inputs.images[2], inputs.images[3]],
+            }));
+        }
+        if (event.target.id == "image 2") {
+            setInputs((inputs) => ({
+                ...inputs,
+                images: [inputs.images[0], event.target.value, inputs.images[2], inputs.images[3]],
+            }));
+        }
+        if (event.target.id == "image 3") {
+            setInputs((inputs) => ({
+                ...inputs,
+                images: [inputs.images[0], inputs.images[1], event.target.value, inputs.images[3]],
+            }));
+        }
+        if (event.target.id == "image 4") {
+            setInputs((inputs) => ({
+                ...inputs,
+                images: [inputs.images[0], inputs.images[1], inputs.images[2], event.target.value],
+            }));
+        }
     };
-
-    const handleAddSecondImageChange = (event) => {
-        images[1] = event.target.value;
-        setInputs((inputs) => ({
-            ...inputs,
-            images: images,
-        }));
-    };
-
-    const handleAddThirdImageChange = (event) => {
-        images[2] = event.target.value;
-        setInputs((inputs) => ({
-            ...inputs,
-            images: images,
-        }));
-    };
-
-    const handleAddFourthImageChange = (event) => {
-        images[3] = event.target.value;
-        setInputs((inputs) => ({
-            ...inputs,
-            images: images,
-        }));
-    };
-
-
-
 
 
     const modifySubmit = () => {
+
+        console.log(inputs.images)
+        let coloris = []
+        let categories = []
+
+        inputs.couleurs.forEach(couleur => {
+            coloris.push(couleur.value)
+        });
+
+        inputs.categorie.forEach(categorie => {
+            categories.push(categorie.value)
+        });
 
         // methode put pour modifier le user
         const requestOptionsFirst = {
@@ -123,13 +127,11 @@ const ProductsAdmin = (props) => {
                 short_description: inputs.short_description,
                 prix: inputs.prix,
                 images: inputs.images,
-                couleurs: inputs.couleurs,
+                couleurs: coloris,
                 stock: inputs.stock,
-                categorie: inputs.categorie
+                categorie: categories
             })
         };
-
-        console.log(requestOptionsFirst.body)
 
         fetch(`http://localhost:8000/products/${inputs.id}`, requestOptionsFirst)
             .then(response => {
@@ -162,8 +164,8 @@ const ProductsAdmin = (props) => {
                                 className="product-input"
                                 type="text"
                                 required={true}
-                                id="short-description"
-                                name="short-description"
+                                id="short_description"
+                                name="short_description"
                                 maxLength="150"
                                 value={inputs.short_description}
                                 onChange={(e) => { handleInputChange(e) }}
@@ -204,40 +206,40 @@ const ProductsAdmin = (props) => {
                                 value={inputs.images[0]}
                                 type="text"
                                 required={true}
-                                id="images"
+                                id="image 1"
                                 name="images"
                                 placeholder="image 1"
-                                onChange={(e) => { handleAddFirstImageChange(e) }}
+                                onChange={(e) => { handleAddImageChange(e) }}
                             />
                             <input
                                 className="product-input"
                                 value={inputs.images[1]}
                                 type="text"
                                 required={true}
-                                id="images"
+                                id="image 2"
                                 name="images"
                                 placeholder="image 2"
-                                onChange={(e) => { handleAddSecondImageChange(e) }}
+                                onChange={(e) => { handleAddImageChange(e) }}
                             />
                             <input
                                 className="product-input"
                                 value={inputs.images[2]}
                                 type="text"
                                 required={true}
-                                id="images"
+                                id="image 3"
                                 name="images"
                                 placeholder="image 3"
-                                onChange={(e) => { handleAddThirdImageChange(e) }}
+                                onChange={(e) => { handleAddImageChange(e) }}
                             />
                             <input
                                 className="product-input"
                                 value={inputs.images[3]}
                                 type="text"
                                 required={true}
-                                id="images"
+                                id="image 4"
                                 name="images"
                                 placeholder="image 4"
-                                onChange={(e) => { handleAddFourthImageChange(e) }}
+                                onChange={(e) => { handleAddImageChange(e) }}
                             />
                         </div>
 

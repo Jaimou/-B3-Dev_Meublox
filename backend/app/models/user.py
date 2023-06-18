@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 from app.utils.pyobjectid import PyObjectId
 
+
 class UserBase(BaseModel):
     email: EmailStr = Field(...)
     role: str = Field(...)
@@ -19,9 +20,11 @@ class UserBase(BaseModel):
 class UserIn(UserBase):
     password: Optional[str]
 
+
 class User(UserIn):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     hashed_password: Optional[str] = None
+
 
 class UserUpdate(UserBase):
     password: Optional[str] = None
@@ -36,6 +39,8 @@ class UserUpdate(UserBase):
     telephone: Optional[str] = None
     email: Optional[str] = None
     date_naissance: Optional[str] = None
+    hashed_password: Optional[str] = None
+
 
 class UserIn(UserBase):
     password: Optional[str]
