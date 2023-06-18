@@ -26,13 +26,13 @@
         margin-top: -5px;
         flex-direction: column;
 
-        .itemType-searchbar {
-            width: 100%;
-            text-transform: capitalize;
-        }
-
+        .itemType-searchbar,
         .itemName-searchbar {
             width: 100%;
+            text-transform: capitalize;
+            text-decoration: none;
+            color: black;
         }
+
     }
 }

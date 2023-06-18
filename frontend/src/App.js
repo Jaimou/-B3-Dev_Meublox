@@ -32,7 +32,7 @@ function App() {
     {window.location.href.includes("facture") ? 
      <BrowserRouter>
      <Routes>
-     <Route path="profile/administation/:orderId/facture/:orderId" element={<FactureRender/>} />
+     <Route path="/facture/:orderId" element={<FactureRender/>} />
      </Routes>
  
      </BrowserRouter>

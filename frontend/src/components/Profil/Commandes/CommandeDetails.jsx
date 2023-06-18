@@ -103,7 +103,7 @@ const CommandeDetails = () => {
 
                         </div>
 
-                        <button type="button" onClick={() => navigate(`facture/${order._id}`)}>Télécharger la facture</button>
+                        <button type="button"><a href={`http://localhost:3000/facture/${order._id}`} target="_blank" rel="noreferrer" >Télécharger la facture</a></button>
                     </>
                     :
                     <>
