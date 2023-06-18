@@ -1,17 +1,19 @@
+import 'dart:convert';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:meublox/models/item.dart';
+import 'package:meublox/models/item.dart';
 
 import '../widgets/item_app_bar.dart';
 
 class ItemPage extends StatefulWidget {
-  // final Item item;
+  final Item selectedItem;
 
-  const ItemPage({super.key});
+  const ItemPage({super.key, required this.selectedItem});
 
   @override
   _ItemPageState createState() => _ItemPageState();
@@ -45,12 +47,11 @@ class _ItemPageState extends State<ItemPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final Item item = widget.item;
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       body: ListView(
         children: [
-          const ItemAppBar(),
+          ItemAppBar(nom: widget.selectedItem.nom),
           SizedBox(
             height: 300,
             child: Stack(
@@ -59,9 +60,7 @@ class _ItemPageState extends State<ItemPage> {
                   items: imageUrls.map((imageUrl) {
                     return Padding(
                       padding: const EdgeInsets.all(16),
-                      child: Image.asset(
-                        imageUrl,
-                      ),
+                      child: Image.network(widget.selectedItem.imagePath![0]),
                     );
                   }).toList(),
                   options: CarouselOptions(
@@ -111,27 +110,25 @@ class _ItemPageState extends State<ItemPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
+                    Padding(
+                      padding: const EdgeInsets.only(
                         top: 48,
                         bottom: 15,
                       ),
                       child: Row(
                         children: [
                           Text(
-                            // item.title,
-                            "Product title",
-                            style: TextStyle(
+                            utf8.decode(widget.selectedItem.nom.runes.toList()),
+                            style: const TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 80, 39, 118),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Text(
-                            // "${item.price.toStringAsFixed(2)} €",
-                            "45 €",
-                            style: TextStyle(
+                            "${widget.selectedItem.price.toStringAsFixed(2)} €",
+                            style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 80, 39, 118),
@@ -140,13 +137,12 @@ class _ItemPageState extends State<ItemPage> {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       child: Text(
-                        // item.description,
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl vitae nisl. Donec euismod, nisl eget aliquam ultricies, nunc nisl ultricies nunc, vitae ultricies nisl nisl vitae nisl.",
+                        utf8.decode(widget.selectedItem.description.runes.toList()),
                         textAlign: TextAlign.justify,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 17,
                           color: Color.fromARGB(255, 80, 39, 118),
                         ),
@@ -161,7 +157,7 @@ class _ItemPageState extends State<ItemPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RatingBar.builder(
-                            initialRating: 4,
+                            initialRating: widget.selectedItem.note?.toDouble() ?? 0.0,
                             minRating: 1,
                             direction: Axis.horizontal,
                             itemCount: 5,
@@ -173,9 +169,9 @@ class _ItemPageState extends State<ItemPage> {
                             ),
                             onRatingUpdate: (index) {},
                           ),
-                          const Text(
-                            "(17)",
-                            style: TextStyle(
+                          Text(
+                            widget.selectedItem.note.toString(),
+                            style: const TextStyle(
                               fontSize: 18,
                               color: Color.fromARGB(255, 80, 39, 118),
                             ),

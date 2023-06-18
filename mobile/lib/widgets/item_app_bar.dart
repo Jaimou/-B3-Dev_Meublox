@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class ItemAppBar extends StatelessWidget {
-  const ItemAppBar({super.key});
+  final String nom;
+
+  const ItemAppBar({super.key, required this.nom});
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +24,17 @@ class ItemAppBar extends StatelessWidget {
               color: Color.fromARGB(255, 80, 39, 118),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
             child: Text(
-              "Product title",
-              style: TextStyle(
+              utf8.decode(nom.runes.toList()),
+              style: const TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 80, 39, 118),
               ),
             ),
           ),
-          const Spacer(),
-          const Icon(
-            Icons.favorite,
-            size: 30,
-            color: Colors.red,
-          )
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meublox/models/item.dart';
 import 'package:meublox/pages/auth_page.dart';
 import 'package:meublox/pages/cart_page.dart';
 import 'package:meublox/pages/home_page.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/": (context) => const HomePage(),
           "cartPage": (context) => const CartPage(),
-          "itemPage": (context) => const ItemPage(),
+          "itemPage": (context) => ItemPage(selectedItem: ModalRoute.of(context)?.settings.arguments as Item),
           "searchPage": (context) => const SearchPage(),
           "favoritePage": (context) => const FavoritePage(),
           "loginOrRegisterPage": (context) => const LoginOrRegisterPage(),

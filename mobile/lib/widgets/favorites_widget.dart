@@ -13,8 +13,7 @@ class FavoritesWidget extends StatelessWidget {
 
     return Consumer<FavoritesProvider>(
       builder: (context, favoritesProvider, _) {
-        final favoriteIndices = favoritesProvider.favoriteIndices;
-        final favoriteItems = itemsProvider.getFavoriteItems(favoriteIndices);
+        final favoriteItems = favoritesProvider.getFavoriteItems();
 
         if (favoriteItems.isEmpty) {
           return const SizedBox(
@@ -61,7 +60,7 @@ class FavoritesWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 10),
                     height: 120,
                     width: 120,
-                    child: Image.asset(item.imagePath),
+                    child: Image.asset(item.imagePath![0]),
                   ),
                   Expanded(
                     child: Column(
@@ -76,7 +75,7 @@ class FavoritesWidget extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 8),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              item.title,
+                              item.nom,
                               style: const TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 80, 39, 118),
