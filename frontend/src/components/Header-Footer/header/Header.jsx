@@ -25,7 +25,6 @@ const Header = () => {
 
 
     const verifyWindow = () => {
-        console.log(currentWindowLocation)
 
         if (currentWindowLocation == window.location.href) {
             return

@@ -3,8 +3,6 @@ import meubloxLogo from './assets/meubloxLogo.png';
 
 
 const Facture = (props) => {
-    console.log(props)
-
 
     const styles = StyleSheet.create({
         page: {

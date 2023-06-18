@@ -23,10 +23,7 @@ import CommandeDetails from './components/Profil/Commandes/CommandeDetails';
 
 function App() {
 
-  console.log(window.location.href)
-
-
-  
+ 
   return (
     <>
     {window.location.href.includes("facture") ? 

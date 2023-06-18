@@ -54,7 +54,6 @@ const Paiement = () => {
 
         let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
         const responseInJSON = await response.json();
-        console.log(responseInJSON)
         if (responseInJSON.detail == "Cart not found") {
             setCart([])
             setEmptyCart(true)
@@ -82,7 +81,6 @@ const Paiement = () => {
     }
 
     const createCart = () => {
-        console.log(emptyCart)
         if (!emptyCart) {
             cart.items.forEach((product) => {
                 let userProduct = allData.find((dbProduct) => {
@@ -142,8 +140,7 @@ const Paiement = () => {
     }
 
     const handleSubmit = async () => {
-        console.log(cardNumber)
-        console.log(luhnTest(cardNumber))
+
 
         if (luhnTest(cardNumber) == true) {
 
@@ -172,13 +169,10 @@ const Paiement = () => {
 
             try {
                 let response = await fetch(`http://localhost:8000/orders`, requestOptions);
-                console.log(response)
                 let result = await fetch(`http://localhost:8000/cart/${userId}`, {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' }
                 })
-                console.log(result)
-                // navigate("/")
             }
             catch (e) {
                 console.log(e.message)

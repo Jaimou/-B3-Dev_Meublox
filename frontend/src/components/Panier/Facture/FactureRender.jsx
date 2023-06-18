@@ -27,7 +27,6 @@ const FactureRender = () => {
         let orderById = await request.json();
         setOrder(orderById)
         setIsLoad(true)
-        console.log(orderById)
         setDeliveryAddress(JSON.parse(orderById.delivery_address))
 
     }
@@ -42,7 +41,6 @@ const FactureRender = () => {
 
     const createCart = () => {
         if (isLoad) {
-            console.log(order.details)
             order.details.forEach((product) => {
                 let userProduct = allData.find((dbProduct) => {
                     return product.product_id == dbProduct._id

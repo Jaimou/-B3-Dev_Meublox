@@ -4,7 +4,6 @@ import './Commandes.scss';
 const Order = (props) => {
 
     const order = props.order;
-    console.log(props)
     const navigate = useNavigate()
 
     return (

@@ -73,7 +73,6 @@ const ProductsAdmin = (props) => {
     };
 
     const handleAddImageChange = (event) => {
-        console.log(inputs.images)
         if (event.target.id == "image 1") {
             setInputs((inputs) => ({
                 ...inputs,
@@ -103,7 +102,6 @@ const ProductsAdmin = (props) => {
 
     const modifySubmit = () => {
 
-        console.log(inputs.images)
         let coloris = []
         let categories = []
 

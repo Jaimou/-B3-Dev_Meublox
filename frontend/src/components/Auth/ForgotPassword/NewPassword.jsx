@@ -8,7 +8,6 @@ const NewPassword = () => {
     const [passwordTwo, setPasswordTwo] = useState('');
 
     const params = useParams()
-    console.log(params.user_id)
 
 
     const handleChangePassword = () => {
