@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './Signin.scss';
+import './Signup.scss';
 import { useState } from 'react';
 
 const Signin = () => {
@@ -104,7 +104,7 @@ const Signin = () => {
             <h1>Inscription</h1>
             <div className='trait'></div>
             <div className="signin-block">
-                <h2>Sign in</h2>
+                <h2>Sign up</h2>
                 <input id="email" className="form" value={email} typeof="text" aria-label="email" placeholder="email" onChange={handleChangeEmail}></input>
                 <input id="password" className="form" value={password} type="password" aria-label="password" placeholder="password" onChange={handleChangePassword}></input>
                 <input id="password-verify" className="form" value={passwordVerify} type="password" aria-label="taper de nouveau le password" placeholder="taper de nouveau le password" onChange={checkPassword}></input>
