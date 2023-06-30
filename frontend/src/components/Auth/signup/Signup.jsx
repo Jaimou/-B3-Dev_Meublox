@@ -115,7 +115,7 @@ const Signin = () => {
                     </div>
                     <button className='validation' type='submit' onClick={() => {
                         handleSigninClick();
-                    }}>Sign In</button>
+                    }}>Sign Up</button>
                 </div>
                 <div className='trait inside'></div>
                 {/* <button className='validation' type='submit'>S'enregistrer avec Facebook</button>
