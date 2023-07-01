@@ -8,6 +8,7 @@ const NewPassword = () => {
     const [passwordTwo, setPasswordTwo] = useState('');
 
     const params = useParams()
+    console.log(params.user_id)
 
 
     const handleChangePassword = () => {
@@ -31,7 +32,7 @@ const NewPassword = () => {
             })
         };
         if (password == passwordTwo) {
-            fetch(`http://localhost:8000/users/${params.user_id}`, requestOptions)
+            fetch(`${process.env.API_URL}/users/${params.user_id}`, requestOptions)
                 .then(response => {
                     response.json();
                     navigate('/login')

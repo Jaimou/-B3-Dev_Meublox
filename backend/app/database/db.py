@@ -10,7 +10,7 @@ from ..schemas.vote import Vote
 
 
 
-if settings.environment == "dev": 
+if settings.environment == "prod": 
     DATABASE_URL = f"mongodb+srv://meublox:lOf8vaigXxPl43rg@meublox.xhnwwem.mongodb.net/"
 else:
     DATABASE_URL = f"mongodb://{settings.db_hostname}:{settings.db_port}"

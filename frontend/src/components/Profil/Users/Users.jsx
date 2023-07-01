@@ -72,12 +72,12 @@ const Users = (props) => {
                 role: inputs.is_admin,
             })
         };
-        fetch(`http://localhost:8000/users/${userId}`, requestOptionsFirst)
+        fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, requestOptionsFirst)
             .then(response => {
                 response.json();
             })
 
-        fetch(`http://localhost:8000/users/${userId}/admin`, requestOptionsSecond)
+        fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/admin`, requestOptionsSecond)
             .then(response => {
                 response.json();
             })

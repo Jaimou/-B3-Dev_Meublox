@@ -23,7 +23,7 @@ const ProductsTable = (props) => {
 
     const deleteProduct = async (productId) => {
 
-        let request = await fetch(`http://localhost:8000/products/${productId}`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, {
             method: 'DELETE',
         })
         let responseProfile = await request.json();

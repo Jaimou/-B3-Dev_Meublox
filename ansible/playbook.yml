@@ -1,0 +1,73 @@
+---
+- hosts: aws
+  become: true
+  tasks:
+    - name: Install docker python SDK package
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        executable: pip3
+        state: present
+      with_items:
+        - docker
+
+    - name: Create directory for Meublox in '/var/tmp/src/github.com/amine2000beny/Meublox'
+      ansible.builtin.file:
+        path: /var/tmp/src/github.com/amine2000beny/Meublox
+        state: directory
+
+    - name: Clone github repository Meublox
+      git:
+        repo: https://github.com/amine2000beny/Meublox.git
+        dest: /var/tmp/src/github.com/amine2000beny/Meublox
+        clone: yes
+        update: yes
+
+    - name: Build an image of server api
+      community.docker.docker_image:
+        build:
+          path: /var/tmp/src/github.com/amine2000beny/Meublox/backend
+        name: localhost/server
+        source: build
+
+    - name: Build an image of frontend app
+      community.docker.docker_image:
+        build:
+          path: /var/tmp/src/github.com/amine2000beny/Meublox/frontend
+        name: localhost/app-site
+        source: build
+
+    - name: Container server and app-site are absent
+      community.docker.docker_container:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - server
+        - app-site
+        
+
+
+    - name: Create a server container
+      community.docker.docker_container:
+        name: server
+        image: localhost/server
+        state: started
+        ports:
+          - "8000:8000"
+
+
+
+    - name: Create a app-site container
+      community.docker.docker_container:
+        name: app-site
+        image: localhost/app-site
+        state: started
+        ports:
+          - "80:80"
+
+
+    - name: Recursively remove directory '/var/tmp/src'
+      ansible.builtin.file:
+        path: /var/tmp/src
+        state: absent
+
+

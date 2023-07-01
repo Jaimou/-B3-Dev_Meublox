@@ -1,0 +1,4 @@
+ec2-16-170-208-209.eu-north-1.compute.amazonaws.com ansible_connection=ssh ansible_ssh_user=admin ansible_ssh_private_key_file=/home/soso8/.ssh/e-commerce_stack-key.pem 
+
+[aws]
+16.171.39.80 ansible_connection=ssh ansible_ssh_user=admin ansible_ssh_private_key_file=/home/soso8/.ssh/e-commerce_stack-key.pem

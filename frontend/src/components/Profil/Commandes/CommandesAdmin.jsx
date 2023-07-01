@@ -3,6 +3,7 @@ import Order from "./Order";
 const CommandesAdmin = (orders) => {
 
     const ordersList = orders.orders;
+    console.log(ordersList)
 
     return (
         <div className="commandes-list">

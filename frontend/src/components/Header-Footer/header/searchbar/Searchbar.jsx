@@ -17,7 +17,7 @@ const Searchbar = () => {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            let response = await fetch("http://localhost:8000/products", requestOptions);
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions);
             const responseInJSON = await response.json();
             setProducts(responseInJSON)
             setIsLoad(true)
@@ -32,10 +32,8 @@ const Searchbar = () => {
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        let string = e.target.value
-        let upperCase = string.charAt(0).toUpperCase() + string.slice(1)
-        console.log(upperCase)
-        setSearchInput(upperCase);
+        var lowerCase = e.target.value.toLowerCase();
+        setSearchInput(lowerCase);
     };
 
     const handleSubmit = () => {

@@ -51,7 +51,7 @@ const Vote = (props) => {
         };
 
         try {
-            let result = await fetch(`http://localhost:8000/votes`, requestOptionsFirst)
+            let result = await fetch(`${process.env.REACT_APP_API_URL}/votes`, requestOptionsFirst)
             let response = await result.json()
             setAllVotes(response);
         }
@@ -124,13 +124,13 @@ const Vote = (props) => {
 
         // creation du VOTE
         try {
-            await fetch(`http://localhost:8000/votes/`, requestOptionsFirst)
+            await fetch(`${process.env.REACT_APP_API_URL}/votes/`, requestOptionsFirst)
                 .then(response => {
                     response.json();
                 })
 
             // modification de la note produit
-            await fetch(`http://localhost:8000/products/${productId}`, requestOptionsSecond)
+            await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, requestOptionsSecond)
                 .then(response => {
                     response.json();
                 })

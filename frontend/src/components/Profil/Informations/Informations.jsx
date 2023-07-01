@@ -80,7 +80,7 @@ const Informations = (props) => {
                 date_naissance: inputs.date_naissance,
             })
         };
-        fetch(`http://localhost:8000/users/${userId}`, requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, requestOptions)
             .then(response => {
                 response.json();
             })

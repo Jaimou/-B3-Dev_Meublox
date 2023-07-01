@@ -26,7 +26,7 @@ const ProfilAdmin = () => {
 
     const getUsersList = async () => {
 
-        let request = await fetch(`http://localhost:8000/users`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
             method: 'GET',
         })
         let response = await request.json();
@@ -35,7 +35,7 @@ const ProfilAdmin = () => {
 
     const getProductsList = async () => {
 
-        let request = await fetch(`http://localhost:8000/products`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/products`, {
             method: 'GET',
         })
         let response = await request.json();
@@ -45,7 +45,7 @@ const ProfilAdmin = () => {
 
     const getOrdersList = async () => {
 
-        let request = await fetch("http://localhost:8000/orders", {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
             method: 'GET',
         })
         let response = await request.json();

@@ -24,7 +24,7 @@ const UserTable = (props) => {
 
     const deleteUser = async (userId) => {
 
-        let request = await fetch(`http://localhost:8000/users/${userId}`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
             method: 'DELETE',
         })
         let responseProfile = await request.json();

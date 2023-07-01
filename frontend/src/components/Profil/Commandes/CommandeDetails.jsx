@@ -20,7 +20,7 @@ const CommandeDetails = () => {
 
         await dataCall()
 
-        let request = await fetch(`http://localhost:8000/orders/${orderId}`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/orders/${orderId}`, {
             method: 'GET',
         })
         let orderById = await request.json();
@@ -31,7 +31,7 @@ const CommandeDetails = () => {
 
     const dataCall = async (requestOptions) => {
 
-        let responseData = await fetch("http://localhost:8000/products", requestOptions);
+        let responseData = await fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions);
         const responseDataInJSON = await responseData.json();
         setAllData(responseDataInJSON)
 
@@ -103,7 +103,7 @@ const CommandeDetails = () => {
 
                         </div>
 
-                        <button type="button"><a href={`http://localhost:3000/facture/${order._id}`} target="_blank" rel="noreferrer" >Télécharger la facture</a></button>
+                        <button type="button"><a href={`${process.env.REACT_APP_API_URL}/facture/${order._id}`} target="_blank" rel="noreferrer" >Télécharger la facture</a></button>
                     </>
                     :
                     <>

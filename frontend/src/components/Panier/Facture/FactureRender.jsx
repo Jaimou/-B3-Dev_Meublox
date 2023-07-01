@@ -21,19 +21,20 @@ const FactureRender = () => {
 
         await dataCall()
 
-        let request = await fetch(`http://localhost:8000/orders/${orderId}`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/orders/${orderId}`, {
             method: 'GET',
         })
         let orderById = await request.json();
         setOrder(orderById)
         setIsLoad(true)
+        console.log(orderById)
         setDeliveryAddress(JSON.parse(orderById.delivery_address))
 
     }
 
     const dataCall = async (requestOptions) => {
 
-        let responseData = await fetch("http://localhost:8000/products", requestOptions);
+        let responseData = await fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions);
         const responseDataInJSON = await responseData.json();
         setAllData(responseDataInJSON)
 
@@ -41,6 +42,7 @@ const FactureRender = () => {
 
     const createCart = () => {
         if (isLoad) {
+            console.log(order.details)
             order.details.forEach((product) => {
                 let userProduct = allData.find((dbProduct) => {
                     return product.product_id == dbProduct._id

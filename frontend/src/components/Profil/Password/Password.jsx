@@ -32,6 +32,7 @@ const Password = (props) => {
 
     const validate = () => {
         let errors = {};
+        console.log(inputs.newPassword)
         if (inputs.password == "") {
             errors.password = 'Le mot de passe actuel est obligatoire';
         }
@@ -46,9 +47,15 @@ const Password = (props) => {
         return errors;
     };
 
+    console.log(userId)
+
+
 
     const modifySubmit = async () => {
         // methode put pour modifier le user
+        console.log(inputs.newPassword)
+        console.log(inputs.newPasswordConfirmation)
+
 
         if (inputs.newPassword == inputs.newPasswordConfirmation) {
 
@@ -61,8 +68,9 @@ const Password = (props) => {
                     password: inputs.newPassword
                 })
             };
-            let response = await fetch(`http://localhost:8000/users/${userId}`, requestOptions);
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, requestOptions);
             let result = response.json;
+            console.log(result)
 
         }
 

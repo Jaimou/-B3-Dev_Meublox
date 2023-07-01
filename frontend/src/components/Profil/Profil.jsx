@@ -24,7 +24,7 @@ const Profil = () => {
     const callAPI = async () => {
         const userId = myDecodedToken.user_id
 
-        let request = await fetch(`http://localhost:8000/users/${userId}`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
             method: 'GET',
         })
         let responseProfile = await request.json();

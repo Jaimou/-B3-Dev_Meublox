@@ -30,6 +30,7 @@ const Filtres = (props) => {
                 return product.couleurs.includes(color) && product.prix >= minPrice && product.prix <= maxPrice
             });
             triFunction(filteredData)
+            console.log(filteredData)
             return filteredData
         }
         else {
@@ -60,7 +61,7 @@ const Filtres = (props) => {
         }
         if (tri == "note") {
             filteredData.sort(function (a, b) {
-                return b.note - a.note;
+                return a.note - b.note;
             });
         }
         setData(filteredData)

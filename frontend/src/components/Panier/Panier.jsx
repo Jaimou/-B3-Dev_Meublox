@@ -28,7 +28,7 @@ const Panier = () => {
 
     const dataCall = async (requestOptions) => {
 
-        let responseData = await fetch("http://localhost:8000/products", requestOptions);
+        let responseData = await fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions);
         const responseDataInJSON = await responseData.json();
         setAllData(responseDataInJSON)
 
@@ -41,7 +41,7 @@ const Panier = () => {
         };
         await dataCall(requestOptions)
 
-        let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
+        let response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}`, requestOptions);
         const responseInJSON = await response.json();
         if (responseInJSON.detail == "Cart not found") {
             setCart([])
@@ -147,7 +147,7 @@ const Panier = () => {
                 },
                 body: JSON.stringify({ quantity: newQuantity })
             };
-            await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+            await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}/${productId}`, requestOptions);
             setUpdate(i + 1)
         }
 
@@ -172,7 +172,7 @@ const Panier = () => {
                     'Authorization': `Bearer ${token}`,
                 }
             };
-            await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+            await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}/${productId}`, requestOptions);
             setUpdate(i + 1)
         }
     }

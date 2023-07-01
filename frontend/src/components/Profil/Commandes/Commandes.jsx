@@ -15,7 +15,7 @@ const Commandes = () => {
     const getOrders = async () => {
         const userId = myDecodedToken.user_id
 
-        let request = await fetch(`http://localhost:8000/orders/`, {
+        let request = await fetch(`${process.env.REACT_APP_API_URL}/orders/`, {
             method: 'GET',
         })
         let ordersList = await request.json();

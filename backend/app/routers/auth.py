@@ -13,7 +13,6 @@ router = APIRouter(tags=['Authentication'])
 def login(user_credentials: OAuth2PasswordRequestForm = Depends()):
 
     user = db.get_collection("users").find_one({"email": {"$eq":user_credentials.username}}) # email $eq 
-    print(user)
 
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Invalid Credentials")

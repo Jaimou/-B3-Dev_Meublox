@@ -25,6 +25,7 @@ const Header = () => {
 
 
     const verifyWindow = () => {
+        console.log(currentWindowLocation)
 
         if (currentWindowLocation == window.location.href) {
             return
@@ -44,7 +45,7 @@ const Header = () => {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            let response = await fetch(`http://localhost:8000/cart/${userId}`, requestOptions);
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}`, requestOptions);
             const responseInJSON = await response.json();
             if (responseInJSON == ["Cart not found"]) {
                 setCartQuantity(0)

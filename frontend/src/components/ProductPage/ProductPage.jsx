@@ -20,6 +20,7 @@ const ProductPage = () => {
     const token = sessionStorage.getItem("token");
     const myDecodedToken = decodeToken(token);
 
+    console.log(product)
 
 
 
@@ -34,7 +35,7 @@ const ProductPage = () => {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         };
-        let response = await fetch(`http://127.0.0.1:8000/products/${productId}`, requestOptions);
+        let response = await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, requestOptions);
         const responseInJSON = await response.json();
         setProduct(responseInJSON)
         setIsLoad(true)
@@ -49,7 +50,7 @@ const ProductPage = () => {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            let response = await fetch(`http://127.0.0.1:8000/cart/${userId}`, requestOptions);
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}`, requestOptions);
             const responseInJSON = await response.json();
             setActualCart(responseInJSON)
         }
@@ -119,7 +120,7 @@ const ProductPage = () => {
                     ]
                 })
             };
-            await fetch(`http://127.0.0.1:8000/cart`, requestOptions);
+            await fetch(`${process.env.REACT_APP_API_URL}/cart`, requestOptions);
         }
     }
 
@@ -135,7 +136,7 @@ const ProductPage = () => {
                 },
                 body: JSON.stringify({ quantity: newQuantity })
             };
-            await fetch(`http://127.0.0.1:8000/cart/${userId}/${productId}`, requestOptions);
+            await fetch(`${process.env.REACT_APP_API_URL}/cart/${userId}/${productId}`, requestOptions);
         }
     }
 

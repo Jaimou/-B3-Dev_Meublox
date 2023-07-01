@@ -14,6 +14,8 @@ const FiltreTri = (props) => {
     ]
 
 
+
+
     return (
         <div className="filtre">
             <div className="tri">
